@@ -43,3 +43,16 @@ computation powered by
 support for multi-thread computation using native C++. In our
 simulations, parallel computation can provide many-fold performance
 boost for multiple imputation process.
+
+## References
+
+1.  Zhang, Haozhe, et al. “Random forest prediction intervals.” The
+    American Statistician (2019): 1-15.
+2.  Wright, Marvin N., and Andreas Ziegler. “ranger: A Fast
+    Implementation of Random Forests for High Dimensional Data in C++
+    and R.” Journal of Statistical Software 77.i01 (2017).
+3.  Shah, Anoop D., et al. “Comparison of random forest and parametric
+    imputation models for imputing missing data using MICE: a CALIBER
+    study.” American journal of epidemiology 179.6 (2014): 764-774.
+4.  Malley, James D., et al. “Probability machines.” Methods of
+    information in medicine 51.01 (2012): 74-81.
