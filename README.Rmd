@@ -16,9 +16,8 @@ knitr::opts_chunk$set(
 # RfEmpImp
 
 ## Random-forest-based Multiple Imputation Evolved
-This is the repository for R package `RfEmpImp`. The R package `RfEmpImp` is
-for multiple imputation based on the empirical distribution of random forest's
-out-of-bag prediction errors. This R package is an implementation for the `RfEmpImp`
+This is the repository for R package `RfEmpImp`.  
+This R package is an implementation for the `RfEmpImp`
 algorithm using the [`mice`](https://CRAN.R-project.org/package=mice) framework.  
 For continuous variables, the empirical distribution of random forest's
 out-of-bag prediction errors is used to construct the conditional distribution
@@ -38,7 +37,7 @@ remotes::install_github("shangzhi-hong/RfEmpImp")
 Usage example:
 ```r
 library(RfEmpImp)
-impObj <- mice(nhanes, method = "rfempimp", m = 10, max.iter = 10)
+impObj <- mice(nhanes, method = "rfempimp", m = 10, max.iter = 10, maxcor = 1.0)
 ```
 
 ## Support for parallel computation
