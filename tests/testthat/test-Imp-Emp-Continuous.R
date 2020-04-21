@@ -1,4 +1,4 @@
-context("Imputation for continuous variables")
+context("RfEmpImp for continuous variables")
 
 # Set-up
 NUM_OBS <- 50
@@ -19,29 +19,29 @@ ry <- sample(
     replace = TRUE,
     prob = c(0.5, 0.5))
 wy <- !ry
-num.trees.continuous <- 10
+num.trees.cont <- 10
 
 test_that("RfEmpImp works for continuous variables", {
-    for (pre.bootstrap in c(TRUE, FALSE)) {
-        for (symmetry.continuous in c(TRUE, FALSE)) {
-            for (empirical.error.continuous in c(TRUE, FALSE)) {
-                for (alpha.empirical in c(-0.1, 0.0, 0.05, 0.1)) {
-                    numImpOut1 <- mice.impute.rfempimp.continuous(
+    for (pre.boot in c(TRUE, FALSE)) {
+        for (sym.cont in c(TRUE, FALSE)) {
+            for (emp.err.cont in c(TRUE, FALSE)) {
+                for (alpha.emp in c(-0.1, 0.0, 0.05, 0.1)) {
+                    numImpOut1 <- mice.impute.rfemp.cont(
                         y = y,
                         ry = ry,
                         x = x,
                         wy = wy,
-                        num.trees.continuous = num.trees.continuous,
-                        symmetry.continuous = symmetry.continuous,
+                        num.trees.cont = num.trees.cont,
+                        sym.cont = sym.cont,
                         num.threads = 1)
 
-                    numImpOut2 <- mice.impute.rfempimp.continuous(
+                    numImpOut2 <- mice.impute.rfemp.cont(
                         y = y,
                         ry = ry,
                         x = x,
                         wy = wy,
-                        num.trees.continuous = num.trees.continuous,
-                        symmetry.continuous = symmetry.continuous,
+                        num.trees.cont = num.trees.cont,
+                        sym.cont = sym.cont,
                         num.threads = 1)
                     expect_true(all(c(is.numeric(numImpOut1),
                                       is.numeric(numImpOut2))))
@@ -56,25 +56,25 @@ test_that("RfEmpImp works for continuous variables", {
 })
 
 test_that("RfEmpImp caller works for continuous variables", {
-    for (pre.bootstrap in c(TRUE, FALSE)) {
-        for (symmetry.continuous in c(TRUE, FALSE)) {
-            for (empirical.error.continuous in c(TRUE, FALSE)) {
-                    for (alpha.empirical in c(-0.1, 0.0, 0.05, 0.1)) {
-                    numImpOut1 <- mice.impute.rfempimp(
+    for (pre.boot in c(TRUE, FALSE)) {
+        for (sym.cont in c(TRUE, FALSE)) {
+            for (emp.err.cont in c(TRUE, FALSE)) {
+                    for (alpha.emp in c(-0.1, 0.0, 0.05, 0.1)) {
+                    numImpOut1 <- mice.impute.rfemp(
                         y = y,
                         ry = ry,
                         x = x,
                         wy = wy,
-                        num.trees.continuous = num.trees.continuous,
-                        symmetry.continuous = symmetry.continuous,
+                        num.trees.cont = num.trees.cont,
+                        sym.cont = sym.cont,
                         num.threads = 1)
-                    numImpOut2 <- mice.impute.rfempimp(
+                    numImpOut2 <- mice.impute.rfemp(
                         y = y,
                         ry = ry,
                         x = x,
                         wy = wy,
-                        num.trees.continuous = num.trees.continuous,
-                        symmetry.continuous = symmetry.continuous,
+                        num.trees.cont = num.trees.cont,
+                        sym.cont = sym.cont,
                         num.threads = 1)
 
                     expect_true(all(c(is.numeric(numImpOut1),

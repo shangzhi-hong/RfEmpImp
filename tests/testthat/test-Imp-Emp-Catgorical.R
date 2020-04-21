@@ -1,4 +1,4 @@
-context("Imputation for categorical variables")
+context("RfEmpImp for categorical variables")
 
 # Set-up
 NUM_OBS <- 100
@@ -34,28 +34,28 @@ ry <- sample(
     replace = TRUE,
     prob = c(0.5, 0.5))
 wy <- !ry
-num.trees.categorical <- 10
+num.trees.cate <- 10
 
 test_that("RfEmpImp works for categorical variables", {
-    for (pre.bootstrap in c(TRUE, FALSE)) {
-        for (use.pred.prob.categorical in c(TRUE, FALSE)) {
-            catImpOut1 <- mice.impute.rfempimp.categorical(
+    for (pre.boot in c(TRUE, FALSE)) {
+        for (use.pred.prob.cate in c(TRUE, FALSE)) {
+            catImpOut1 <- mice.impute.rfemp.cate(
                 y = y,
                 ry = ry,
                 x = x,
                 wy = wy,
-                num.trees.categorical = num.trees.categorical,
-                pre.bootstrap = pre.bootstrap,
-                use.pred.prob.categorical = use.pred.prob.categorical,
+                num.trees.cate = num.trees.cate,
+                pre.boot = pre.boot,
+                use.pred.prob.cate = use.pred.prob.cate,
                 num.threads = 1)
-            catImpOut2 <- mice.impute.rfempimp.categorical(
+            catImpOut2 <- mice.impute.rfemp.cate(
                 y = y,
                 ry = ry,
                 x = x,
                 wy = wy,
-                num.trees.categorical = num.trees.categorical,
-                pre.bootstrap = pre.bootstrap,
-                use.pred.prob.categorical = use.pred.prob.categorical,
+                num.trees.cate = num.trees.cate,
+                pre.boot = pre.boot,
+                use.pred.prob.cate = use.pred.prob.cate,
                 num.threads = 1)
             expect_true(all(c(is.factor(catImpOut1), is.factor(catImpOut2))))
             expect_true(length(catImpOut1) == sum(wy))
@@ -68,24 +68,24 @@ test_that("RfEmpImp works for categorical variables", {
 })
 
 test_that("RfEmpImp caller works for categorical variables", {
-    for (pre.bootstrap in c(TRUE, FALSE)) {
-        for (use.pred.prob.categorical in c(TRUE, FALSE)) {
-            catImpOut1 <- mice.impute.rfempimp(
+    for (pre.boot in c(TRUE, FALSE)) {
+        for (use.pred.prob.cate in c(TRUE, FALSE)) {
+            catImpOut1 <- mice.impute.rfemp(
                 y = y,
                 ry = ry,
                 x = x,
                 wy = wy,
-                num.trees.categorical = num.trees.categorical,
-                pre.bootstrap = pre.bootstrap,
-                use.pred.prob.categorical = use.pred.prob.categorical)
-            catImpOut2 <- mice.impute.rfempimp(
+                num.trees.cate = num.trees.cate,
+                pre.boot = pre.boot,
+                use.pred.prob.cate = use.pred.prob.cate)
+            catImpOut2 <- mice.impute.rfemp(
                 y = y,
                 ry = ry,
                 x = x,
                 wy = wy,
-                num.trees.categorical = num.trees.categorical,
-                pre.bootstrap = pre.bootstrap,
-                use.pred.prob.categorical = use.pred.prob.categorical)
+                num.trees.cate = num.trees.cate,
+                pre.boot = pre.boot,
+                use.pred.prob.cate = use.pred.prob.cate)
             expect_true(all(c(is.factor(catImpOut1), is.factor(catImpOut2))))
             expect_true(length(catImpOut1) == sum(wy))
             expect_true(length(catImpOut2) == sum(wy))
@@ -111,24 +111,24 @@ y <- testData[["y"]]
 x <- subset(testData, select = -y)
 
 test_that("RfEmpImp works for logical variables", {
-    for (pre.bootstrap in c(TRUE, FALSE)) {
-        for (use.pred.prob.categorical in c(TRUE, FALSE)) {
-            catImpOut1 <- mice.impute.rfempimp.categorical(
+    for (pre.boot in c(TRUE, FALSE)) {
+        for (use.pred.prob.cate in c(TRUE, FALSE)) {
+            catImpOut1 <- mice.impute.rfemp.cate(
                 y = y,
                 ry = ry,
                 x = x,
                 wy = wy,
-                num.trees.categorical = num.trees.categorical,
-                pre.bootstrap = pre.bootstrap,
-                use.pred.prob.categorical = use.pred.prob.categorical)
-            catImpOut2 <- mice.impute.rfempimp.categorical(
+                num.trees.cate = num.trees.cate,
+                pre.boot = pre.boot,
+                use.pred.prob.cate = use.pred.prob.cate)
+            catImpOut2 <- mice.impute.rfemp.cate(
                 y = y,
                 ry = ry,
                 x = x,
                 wy = wy,
-                num.trees.categorical = num.trees.categorical,
-                pre.bootstrap = pre.bootstrap,
-                use.pred.prob.categorical = use.pred.prob.categorical)
+                num.trees.cate = num.trees.cate,
+                pre.boot = pre.boot,
+                use.pred.prob.cate = use.pred.prob.cate)
             expect_true(all(c(is.logical(catImpOut1), is.logical(catImpOut2))))
             expect_true(length(catImpOut1) == sum(wy))
             expect_true(length(catImpOut2) == sum(wy))
@@ -140,24 +140,24 @@ test_that("RfEmpImp works for logical variables", {
 })
 
 test_that("RfEmpImp caller works for logical variables", {
-    for (pre.bootstrap in c(TRUE, FALSE)) {
-        for (use.pred.prob.categorical in c(TRUE, FALSE)) {
-            catImpOut1 <- mice.impute.rfempimp(
+    for (pre.boot in c(TRUE, FALSE)) {
+        for (use.pred.prob.cate in c(TRUE, FALSE)) {
+            catImpOut1 <- mice.impute.rfemp(
                 y = y,
                 ry = ry,
                 x = x,
                 wy = wy,
-                num.trees.categorical = num.trees.categorical,
-                pre.bootstrap = pre.bootstrap,
-                use.pred.prob.categorical = use.pred.prob.categorical)
-            catImpOut2 <- mice.impute.rfempimp(
+                num.trees.cate = num.trees.cate,
+                pre.boot = pre.boot,
+                use.pred.prob.cate = use.pred.prob.cate)
+            catImpOut2 <- mice.impute.rfemp(
                 y = y,
                 ry = ry,
                 x = x,
                 wy = wy,
-                num.trees.categorical = num.trees.categorical,
-                pre.bootstrap = pre.bootstrap,
-                use.pred.prob.categorical = use.pred.prob.categorical)
+                num.trees.cate = num.trees.cate,
+                pre.boot = pre.boot,
+                use.pred.prob.cate = use.pred.prob.cate)
             expect_true(all(c(is.logical(catImpOut1), is.logical(catImpOut2))))
             expect_true(length(catImpOut1) == sum(wy))
             expect_true(length(catImpOut2) == sum(wy))

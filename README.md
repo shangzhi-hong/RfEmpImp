@@ -13,7 +13,9 @@ out-of-bag prediction errors is used to construct the conditional
 distribution of the variable under imputation.  
 For categorical variables, the probability machine theory is used, and
 the prediction of categories are based on the predicted probabilities of
-each observation.
+each observation.  
+With version `2.0.0`, the names of parameters were further simplified,
+please refer to the documentation for details.
 
 ## Installation
 
@@ -30,8 +32,12 @@ Usage example:
 
 ``` r
 library(RfEmpImp)
-impObj <- mice(nhanes, method = "rfempimp", m = 10, max.iter = 10, maxcor = 1.0)
+impObj <- mice(nhanes, method = "rfemp", m = 10, max.iter = 10, maxcor = 1.0)
 ```
+
+## Support for node-based imputation
+
+With version `2.0.0`, support for node-based imputation was provided.
 
 ## Support for parallel computation
 

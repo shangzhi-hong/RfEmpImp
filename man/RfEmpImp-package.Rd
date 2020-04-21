@@ -4,20 +4,26 @@
 \name{RfEmpImp-package}
 \alias{RfEmpImp}
 \alias{RfEmpImp-package}
-\title{RfEmpImp: Multiple Imputation using Random Forest Empirical Prediction Error Distribution}
+\title{RfEmpImp: Random Forest Empowered Imputation of Missing Data}
 \description{
 Adapter for MICE.
-    Tools for performing multiple imputation based on random forest empirical
-    prediction error distribution, can handle both continuous and categorical
-    variables.
+    Tools for performing multivariate imputation based on random forest.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/shangzhi-hong/RfEmpImp}
+  \item Report bugs at \url{https://github.com/shangzhi-hong/RfEmpImp/issues}
+}
+
 }
 \author{
-\strong{Maintainer}: Shangzhi Hong \email{shangzhi-hong@hotmail.com} (\href{https://orcid.org/0000-0003-3843-7040}{ORCID})
+\strong{Maintainer}: Shangzhi Hong \email{shangzhi-hong@hotmail.com}
 
 Authors:
 \itemize{
-  \item Shangzhi Hong \email{shangzhi-hong@hotmail.com} (\href{https://orcid.org/0000-0003-3843-7040}{ORCID})
-  \item Henry S. Lynn \email{hslynn@shmu.edu.cn} [thesis advisor]
+  \item Shangzhi Hong
+  \item Henry S. Lynn [thesis advisor]
 }
 
 }
