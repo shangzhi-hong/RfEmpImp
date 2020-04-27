@@ -20,12 +20,15 @@ This is the repository for R package `RfEmpImp`.
 This R package is an implementation for the `RfEmp` and `RfNode`
 algorithms using the [`mice`](https://CRAN.R-project.org/package=mice)
 framework, for both newly proposed and improved algorithms for
-random-forest-based multiple imputation of missing data.
+random-forest-based multiple imputation of missing data.  
+For details of the implemented algorithms, please refer to this 
+[preprint article (place holder)](https://placeholder).
 
-## RfEmp imputation
+## Prediction-based imputation
 For continuous variables, the empirical distribution of random forest's
 out-of-bag prediction errors is used to construct the conditional distribution
-of the variable under imputation.  
+of the variable under imputation, providing conditional distributions with
+better quality.  
 For categorical variables, the probability machine theory is used, and the
 prediction of categories are based on the predicted probabilities of each
 observation.  
@@ -37,7 +40,7 @@ library(RfEmpImp)
 impObjEmp <- mice(nhanes, method = "rfemp", m = 10, max.iter = 10, maxcor = 1.0)
 ```
 
-## RfNode imputation
+## Node-based imputation
 For both continuous variables, the observations under the predicting nodes of
 random forest are used as candidates for imputation.
 Two methods are now available for the `RfNode` algorithm:  
