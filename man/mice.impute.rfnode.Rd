@@ -71,9 +71,9 @@ if \code{FALSE}, use proximity-based imputation.}
 with equal probability.}
 
 \item{do.sample}{If \code{TRUE}, draw samples for missing observations;
-if \code{FALSE}, the corresponding observations numbers will be provided and
-will cause errors for the sampler functions. For testing purposes only, and
-use with caution.}
+if \code{FALSE}, the corresponding observations numbers will be returned.
+For testing purposes, and WILL CAUSE ERRORS for the \code{mice} sampler
+function.}
 
 \item{...}{Other arguments to pass down}
 }
@@ -85,24 +85,22 @@ Vector with imputed data, same type as \code{y}, and of length
 \code{RfNode} imputation methods, adapter for \code{mice} samplers.
 These functions can be called by the \code{mice} sampler functions.
 
-\code{mice.impute.rfnode} is the main function for performing imputation, and
-both \code{mice.impute.rfnode.cond} and \code{mice.impute.rfnode.prox} call
-this function. By default, \code{mice.impute.rfnode} works like
-\code{mice.impute.rfnode.cond}.
-
 \code{mice.impute.rfnode.cond} is for imputation using the conditional formed
 by the predicting nodes of random forests. To use this function, set
-\code{method = "rfnode.cond"}.
+\code{method = "rfnode.cond"} in \code{mice} function.
 
 \code{mice.impute.rfnode.prox} is for imputation based on proximity measures
 from random forests, and provides functionality similar to
 \code{mice.impute.rf}. To use this function, set
-\code{method = "rfnode.prox"}.
+\code{method = "rfnode.prox"} in \code{mice} function.
+
+\code{mice.impute.rfnode} is the main function for performing imputation, and
+both \code{mice.impute.rfnode.cond} and \code{mice.impute.rfnode.prox} call
+this function. By default, \code{mice.impute.rfnode} works like
+\code{mice.impute.rfnode.cond}.
 }
 \details{
-`RfNode` Imputation sampler for: continuous variables based on the empirical
-distribution of out-of-bag prediction errors of random forests;
-categorical variables based on probability machines
+Users can get more flexibility from \code{mice.impute.rfnode} function,
 }
 \examples{
 \donttest{

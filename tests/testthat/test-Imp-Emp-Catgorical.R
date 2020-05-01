@@ -39,7 +39,7 @@ num.trees.cate <- 10
 test_that("RfEmpImp works for categorical variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         for (use.pred.prob.cate in c(TRUE, FALSE)) {
-            catImpOut1 <- mice.impute.rfemp.cate(
+            catImpOut1 <- mice.impute.rfpred.cate(
                 y = y,
                 ry = ry,
                 x = x,
@@ -48,7 +48,7 @@ test_that("RfEmpImp works for categorical variables", {
                 pre.boot = pre.boot,
                 use.pred.prob.cate = use.pred.prob.cate,
                 num.threads = 1)
-            catImpOut2 <- mice.impute.rfemp.cate(
+            catImpOut2 <- mice.impute.rfpred.cate(
                 y = y,
                 ry = ry,
                 x = x,
@@ -113,7 +113,7 @@ x <- subset(testData, select = -y)
 test_that("RfEmpImp works for logical variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         for (use.pred.prob.cate in c(TRUE, FALSE)) {
-            catImpOut1 <- mice.impute.rfemp.cate(
+            catImpOut1 <- mice.impute.rfpred.cate(
                 y = y,
                 ry = ry,
                 x = x,
@@ -121,7 +121,7 @@ test_that("RfEmpImp works for logical variables", {
                 num.trees.cate = num.trees.cate,
                 pre.boot = pre.boot,
                 use.pred.prob.cate = use.pred.prob.cate)
-            catImpOut2 <- mice.impute.rfemp.cate(
+            catImpOut2 <- mice.impute.rfpred.cate(
                 y = y,
                 ry = ry,
                 x = x,

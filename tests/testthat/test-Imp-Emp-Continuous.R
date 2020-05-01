@@ -26,7 +26,7 @@ test_that("RfEmpImp works for continuous variables", {
         for (sym.cont in c(TRUE, FALSE)) {
             for (emp.err.cont in c(TRUE, FALSE)) {
                 for (alpha.emp in c(-0.1, 0.0, 0.05, 0.1)) {
-                    numImpOut1 <- mice.impute.rfemp.cont(
+                    numImpOut1 <- mice.impute.rfpred.emp(
                         y = y,
                         ry = ry,
                         x = x,
@@ -35,7 +35,7 @@ test_that("RfEmpImp works for continuous variables", {
                         sym.cont = sym.cont,
                         num.threads = 1)
 
-                    numImpOut2 <- mice.impute.rfemp.cont(
+                    numImpOut2 <- mice.impute.rfpred.emp(
                         y = y,
                         ry = ry,
                         x = x,

@@ -1,25 +1,17 @@
-#' Multiple imputation using chained random forests: RfEmp
+#' Multiple imputation using chained random forests: RfPred.Emp
 #'
 #' @description
-#' \code{RfEmpImp} multiple imputation method, adapter for \code{mice} samplers.
-#' These functions can be called by the \code{mice} sampler function. In the
-#' \code{mice()} function, set \code{method = "rfemp"} to call it.
+#' For continuous variables only.
 #'
-#' \code{mice.impute.rfemp} is for mixed types of variables, and calls
-#' corresponding functions based on variable types. Categorical variables
-#' should be of type \code{factor} or \code{logical}.
+#' This function is for \code{RfPred.Emp}
+#' multiple imputation method, adapter for \code{mice} samplers.
+#' In the \code{mice()} function, set \code{method = "rfpred.emp"} to call it.
 #'
-#' For continuous variables, \code{mice.impute.rfpred.emp} is called, performing
-#' imputation based on the empirical distribution of out-of-bag
-#' prediction errors of random forests.
-#'
-#' For categorical variables, \code{mice.impute.rfpred.cate} is called,
-#' performing imputation based on predicted probabilities.
+#' The function performs multiple imputation based on the empirical distribution
+#' of out-of-bag prediction errors of random forests.
 #'
 #' @details
-#' \code{RfEmpImp} imputation sampler, the \code{mice.impute.rfemp} calls
-#' \code{mice.impute.rfpred.emp} if the variable is numeric,
-#' otherwise it calls \code{mice.impute.rfpred.cate}.
+#' \code{RfPred.Emp} imputation sampler.
 #'
 #' @param y Vector to be imputed.
 #'
@@ -55,13 +47,6 @@
 #' empirical prediction errors, default to \code{TRUE}.
 #' This option is invalid when \code{emp.err.cont} is set to \code{FALSE}.
 #'
-#' @param num.trees.cate Number of trees to build for categorical variables,
-#' default to \code{NULL} to use the value of \code{num.trees}.
-#'
-#' @param use.pred.prob.cate Logical, \code{TRUE} for assigning categories based
-#' on predicted probabilities, \code{FALSE} for imputation based on majority
-#' votes, default to \code{TRUE}.
-#'
 #' @param pre.boot Perform bootstrap prior to imputation to get 'proper'
 #' multiple imputation, i.e. accommodating sampling variation in estimating
 #' population regression parameters (see Shah et al. 2014).
@@ -73,7 +58,7 @@
 #' @return Vector with imputed data, same type as \code{y}, and of length
 #' \code{sum(wy)}.
 #'
-#' @name mice.impute.rfemp
+#' @name mice.impute.rfpred.emp
 #'
 #' @author Shangzhi Hong, Henry S. Lynn*
 #'
@@ -90,53 +75,76 @@
 #'
 #' @examples
 #' \donttest{
-#' impRfEmpImp <- mice(nhanes, method = "rfemp", m = 10,
+#' impRfPredEmp <- mice(nhanes, method = "rfpred.emp", m = 10,
 #' max.iter = 10, maxcor = 1.0, printFlag = FALSE)#' }
 #'
 #' @export
-mice.impute.rfemp <- function(
+mice.impute.rfpred.emp <- function(
     y,
     ry,
     x,
     wy = NULL,
-    num.trees = 10,
-    num.trees.cont = NULL,
+    num.trees.cont = 10,
+    sym.cont = TRUE,
+    pre.boot = TRUE,
     emp.err.cont = TRUE,
     alpha.emp = 0.0,
-    sym.cont = TRUE,
-    num.trees.cate = NULL,
-    use.pred.prob.cate = TRUE,
-    pre.boot = TRUE,
-    ...) {
-    if (is.numeric(y)) {
-        return(
-            mice.impute.rfpred.emp(
-                y = y,
-                ry = ry,
-                x = x,
-                wy = wy,
-                num.trees.cont = ifelse(is.null(num.trees.cont),
-                                        num.trees,
-                                        num.trees.cont),
-                sym.cont = sym.cont,
-                pre.boot = pre.boot,
-                ...
-            )
-        )
+    ...
+    ) {
+    if (is.null(wy)) wy <- !ry
+    yMisNum <- sum(wy)
+    if (isTRUE(pre.boot)) {
+        bootIdx <- sample(sum(ry), replace = TRUE)
+        yObs <- y[ry][bootIdx]
+        xObs <- x[ry, , drop = FALSE][bootIdx, , drop = FALSE]
     } else {
-        return(
-            mice.impute.rfpred.cate(
-                y = y,
-                ry = ry,
-                x = x,
-                wy = wy,
-                num.trees.cate = ifelse(is.null(num.trees.cate),
-                                        num.trees,
-                                        num.trees.cate),
-                use.pred.prob.cate = use.pred.prob.cate,
-                pre.boot = pre.boot,
-                ...
-            )
-        )
+        yObs <- y[ry]
+        xObs <- x[ry, , drop = FALSE]
+    }
+    xMis <- x[wy, , drop = FALSE]
+    rfObj <- ranger(
+        x = xObs,
+        y = yObs,
+        oob.error = TRUE,
+        num.trees = num.trees.cont)
+    misPredVal <- predictions(predict(rfObj, xMis))
+    if (emp.err.cont) {
+        # Get empirical OOB prediction errors
+        oobErrEmp <-  yObs - rfObj[["predictions"]]
+        # To fix "NaN"s in OOB error due to small tree number
+        oobErrEmp <- oobErrEmp[!is.na(oobErrEmp)]
+        if (isTRUE(sym.cont)) {
+            oobErrEmpAbs <- abs(oobErrEmp)
+            if (isTRUE(alpha.emp > 0 && alpha.emp < 1)) {
+                oobErrorEmpHi <- quantile(oobErrEmpAbs,
+                                          probs = (1 - alpha.emp),
+                                          na.rm = TRUE,
+                                          names = FALSE)
+                oobErrEmpAbs <- oobErrEmpAbs[oobErrEmpAbs < oobErrorEmpHi]
+            }
+            noiseAbs <- sample(x = oobErrEmpAbs, size = yMisNum, replace = TRUE)
+            signVec <- sample(x = c(1L, -1L), size = yMisNum, replace = TRUE)
+            noiseVec <- signVec * noiseAbs
+        } else {
+            if (isTRUE(alpha.emp > 0 && alpha.emp < 1)) {
+                oobErrorEmpLimit <- quantile(
+                    oobErrEmp,
+                    probs = c((alpha.emp / 2), (1 - alpha.emp / 2)),
+                    na.rm = TRUE,
+                    names = FALSE)
+                oobErrEmp <- oobErrEmp[
+                    oobErrEmp > oobErrorEmpLimit[1] &
+                    oobErrEmp < oobErrorEmpLimit[2]]
+            }
+            noiseVec <- sample(x = oobErrEmp, size = yMisNum, replace = TRUE)
+        }
+        impVal <- misPredVal + noiseVec
+        return(impVal)
+    } else {
+        # Use normal assumption
+        impVal <- rnorm(length(misPredVal),
+                        mean = misPredVal,
+                        sd = sqrt(rfObj[["prediction.error"]]))
+        return(impVal)
     }
 }

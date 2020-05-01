@@ -38,6 +38,8 @@ library(RfEmpImp)
 
 ## Imputation based on RF predictions
 
+### For continuous variables
+
 For continuous variables, in `RfPred.Emp` method, the empirical
 distribution of random forest’s out-of-bag prediction errors is used to
 construct the conditional distributions of the variable under
@@ -54,6 +56,8 @@ errors, as proposed by Shah *et al.*
 impNorm <- mice(nhanes, method = "rfpred.norm", m = 10, max.iter = 10, maxcor = 1.0)
 ```
 
+### For categorical variables
+
 For categorical variables, in `RfPred.Cate` method, the probability
 machine theory is used, and the predictions of missing categories are
 based on the predicted probabilities for each missing observation.
@@ -62,11 +66,13 @@ based on the predicted probabilities for each missing observation.
 impCate <- mice(nhanes, method = "rfpred.cate", m = 10, max.iter = 10, maxcor = 1.0)
 ```
 
+### For mixed types of variables
+
 With version `2.0.0`, the names of parameters were further simplified,
 please refer to the documentation for details.  
-For datasets with mixed types of variables, `RfEmp` method is a short
-cut for using `RfPred.Emp` for continuous variables and `RfPred.Cate`
-for categorical variables (of type `logical` or `factor`). Example:
+For data with mixed types of variables, `RfEmp` method is a short cut
+for using `RfPred.Emp` for continuous variables and `RfPred.Cate` for
+categorical variables (of type `logical` or `factor`). Example:
 
 ``` r
 impMixed <- mice(nhanes, method = "rfemp", m = 10, max.iter = 10, maxcor = 1.0)
@@ -76,7 +82,10 @@ impMixed <- mice(nhanes, method = "rfemp", m = 10, max.iter = 10, maxcor = 1.0)
 
 For both continuous variables, the observations under the predicting
 nodes of random forest are used as candidates for imputation.  
-Two methods are now available for the `RfNode` algorithm:  
+Two methods are now available for the `RfNode` algorithm.
+
+### Nodes for condtional distributions
+
 `RfNode.Cond` uses the conditional distribution formed by the prediction
 nodes, i.e. the weight changes of observations caused by the
 bootstrapping of random forest are considered, and uses “in-bag”
@@ -86,6 +95,8 @@ Example:
 ``` r
 impCond <- mice(nhanes, method = "rfnode.cond", m = 10, max.iter = 10, maxcor = 1.0)
 ```
+
+### Nodes for proximities
 
 `RfNode.Prox` uses the concepts of proximity matrices of random forests,
 and observations fall under the same predicting nodes are used as
