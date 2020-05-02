@@ -53,6 +53,9 @@
 #' It should be noted that if \code{TRUE}, this option is in effect even if the
 #' number of trees is set to one.
 #'
+#' @param num.threads Number of threads. Default to \code{NULL} to use all the
+#' processors available.
+#'
 #' @param ... Other arguments to pass down.
 #'
 #' @return Vector with imputed data, same type as \code{y}, and of length
@@ -63,6 +66,9 @@
 #' @author Shangzhi Hong, Henry S. Lynn*
 #'
 #' @references
+#' Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
+#' arXiv:2004.14823.
+#'
 #' Zhang, Haozhe, et al. "Random Forest Prediction Intervals."
 #' The American Statistician (2019): 1-20.
 #'
@@ -84,6 +90,7 @@ mice.impute.rfpred.emp <- function(
     pre.boot = TRUE,
     emp.err.cont = TRUE,
     alpha.emp = 0.0,
+    num.threads = NULL,
     ...
     ) {
     if (is.null(wy)) wy <- !ry
@@ -97,11 +104,13 @@ mice.impute.rfpred.emp <- function(
         xObs <- x[ry, , drop = FALSE]
     }
     xMis <- x[wy, , drop = FALSE]
+    # TODO: Add `...` back to ranger when updates available
     rfObj <- ranger(
         x = xObs,
         y = yObs,
         oob.error = TRUE,
-        num.trees = num.trees.cont)
+        num.trees = num.trees.cont,
+        num.threads = num.threads)
     misPredVal <- predictions(predict(rfObj, xMis))
     if (emp.err.cont) {
         # Get empirical OOB prediction errors

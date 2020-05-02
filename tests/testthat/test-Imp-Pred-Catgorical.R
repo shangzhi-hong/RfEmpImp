@@ -69,29 +69,25 @@ test_that("rfpred.cate works for categorical variables", {
 
 test_that("rfemp caller works for categorical variables", {
     for (pre.boot in c(TRUE, FALSE)) {
-        for (use.pred.prob.cate in c(TRUE, FALSE)) {
-            catImpOut1 <- mice.impute.rfemp(
-                y = y,
-                ry = ry,
-                x = x,
-                wy = wy,
-                num.trees.cate = num.trees.cate,
-                pre.boot = pre.boot,
-                use.pred.prob.cate = use.pred.prob.cate)
-            catImpOut2 <- mice.impute.rfemp(
-                y = y,
-                ry = ry,
-                x = x,
-                wy = wy,
-                num.trees.cate = num.trees.cate,
-                pre.boot = pre.boot,
-                use.pred.prob.cate = use.pred.prob.cate)
-            expect_true(all(c(is.factor(catImpOut1), is.factor(catImpOut2))))
-            expect_true(length(catImpOut1) == sum(wy))
-            expect_true(length(catImpOut2) == sum(wy))
-            expect_true(!anyNA(catImpOut1) && !anyNA(catImpOut2))
-            expect_true(!all(catImpOut1 == catImpOut2))
-        }
+        catImpOut1 <- mice.impute.rfemp(
+            y = y,
+            ry = ry,
+            x = x,
+            wy = wy,
+            num.trees.cate = num.trees.cate,
+            pre.boot = pre.boot)
+        catImpOut2 <- mice.impute.rfemp(
+            y = y,
+            ry = ry,
+            x = x,
+            wy = wy,
+            num.trees.cate = num.trees.cate,
+            pre.boot = pre.boot)
+        expect_true(all(c(is.factor(catImpOut1), is.factor(catImpOut2))))
+        expect_true(length(catImpOut1) == sum(wy))
+        expect_true(length(catImpOut2) == sum(wy))
+        expect_true(!anyNA(catImpOut1) && !anyNA(catImpOut2))
+        expect_true(!all(catImpOut1 == catImpOut2))
     }
 })
 
@@ -141,28 +137,24 @@ test_that("rfpred.cate works for logical variables", {
 
 test_that("rfemp caller works for logical variables", {
     for (pre.boot in c(TRUE, FALSE)) {
-        for (use.pred.prob.cate in c(TRUE, FALSE)) {
-            catImpOut1 <- mice.impute.rfemp(
-                y = y,
-                ry = ry,
-                x = x,
-                wy = wy,
-                num.trees.cate = num.trees.cate,
-                pre.boot = pre.boot,
-                use.pred.prob.cate = use.pred.prob.cate)
-            catImpOut2 <- mice.impute.rfemp(
-                y = y,
-                ry = ry,
-                x = x,
-                wy = wy,
-                num.trees.cate = num.trees.cate,
-                pre.boot = pre.boot,
-                use.pred.prob.cate = use.pred.prob.cate)
-            expect_true(all(c(is.logical(catImpOut1), is.logical(catImpOut2))))
-            expect_true(length(catImpOut1) == sum(wy))
-            expect_true(length(catImpOut2) == sum(wy))
-            expect_true(!anyNA(catImpOut1) && !anyNA(catImpOut2))
-            expect_true(!all(catImpOut1 == catImpOut2))
-        }
+        catImpOut1 <- mice.impute.rfemp(
+            y = y,
+            ry = ry,
+            x = x,
+            wy = wy,
+            num.trees.cate = num.trees.cate,
+            pre.boot = pre.boot)
+        catImpOut2 <- mice.impute.rfemp(
+            y = y,
+            ry = ry,
+            x = x,
+            wy = wy,
+            num.trees.cate = num.trees.cate,
+            pre.boot = pre.boot)
+        expect_true(all(c(is.logical(catImpOut1), is.logical(catImpOut2))))
+        expect_true(length(catImpOut1) == sum(wy))
+        expect_true(length(catImpOut2) == sum(wy))
+        expect_true(!anyNA(catImpOut1) && !anyNA(catImpOut2))
+        expect_true(!all(catImpOut1 == catImpOut2))
     }
 })

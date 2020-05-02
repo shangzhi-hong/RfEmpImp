@@ -17,6 +17,7 @@ mice.impute.rfnode(
   use.node.cond.dist = TRUE,
   obs.eq.prob = FALSE,
   do.sample = TRUE,
+  num.threads = NULL,
   ...
 )
 
@@ -25,7 +26,7 @@ mice.impute.rfnode.cond(
   ry,
   x,
   wy = NULL,
-  num.trees.node = 10,
+  num.trees = 10,
   pre.boot = TRUE,
   obs.eq.prob = FALSE,
   ...
@@ -36,7 +37,7 @@ mice.impute.rfnode.prox(
   ry,
   x,
   wy = NULL,
-  num.trees.node = 10,
+  num.trees = 10,
   pre.boot = TRUE,
   obs.eq.prob = FALSE,
   ...
@@ -75,6 +76,9 @@ if \code{FALSE}, the corresponding observations numbers will be returned.
 For testing purposes, and WILL CAUSE ERRORS for the \code{mice} sampler
 function.}
 
+\item{num.threads}{Number of threads. Default to \code{NULL} to use all the
+processors available.}
+
 \item{...}{Other arguments to pass down}
 }
 \value{
@@ -111,15 +115,18 @@ lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
 
 # Using "rfnode.cond"
 impRfNodeCond <- mice(nhanesFix, method = "rfnode.cond", m = 10,
-max.iter = 10, maxcor = 1.0, printFlag = FALSE)
+maxit = 10, maxcor = 1.0, printFlag = FALSE)
 
 # Using "rfnode.prox"
 impRfNodeProx <- mice(nhanesFix, method = "rfnode.prox", m = 10,
-max.iter = 10, maxcor = 1.0, printFlag = FALSE)
+maxit = 10, maxcor = 1.0, printFlag = FALSE)
 }
 
 }
 \references{
+Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
+arXiv:2004.14823.
+
 Doove, Lisa L., Stef Van Buuren, and Elise Dusseldorp.
 "Recursive partitioning for missing data imputation in the presence of
 interaction effects."

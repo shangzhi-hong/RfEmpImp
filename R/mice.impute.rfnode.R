@@ -53,6 +53,9 @@
 #' For testing purposes, and WILL CAUSE ERRORS for the \code{mice} sampler
 #' function.
 #'
+#' @param num.threads Number of threads. Default to \code{NULL} to use all the
+#' processors available.
+#'
 #' @param ... Other arguments to pass down
 #'
 #' @return Vector with imputed data, same type as \code{y}, and of length
@@ -64,6 +67,9 @@
 #' @order 1
 #'
 #' @references
+#' Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
+#' arXiv:2004.14823.
+#'
 #' Doove, Lisa L., Stef Van Buuren, and Elise Dusseldorp.
 #' "Recursive partitioning for missing data imputation in the presence of
 #' interaction effects."
@@ -78,11 +84,11 @@
 #'
 #' # Using "rfnode.cond"
 #' impRfNodeCond <- mice(nhanesFix, method = "rfnode.cond", m = 10,
-#' max.iter = 10, maxcor = 1.0, printFlag = FALSE)
+#' maxit = 10, maxcor = 1.0, printFlag = FALSE)
 #'
 #' # Using "rfnode.prox"
 #' impRfNodeProx <- mice(nhanesFix, method = "rfnode.prox", m = 10,
-#' max.iter = 10, maxcor = 1.0, printFlag = FALSE)
+#' maxit = 10, maxcor = 1.0, printFlag = FALSE)
 #' }
 #'
 #' @export
@@ -96,6 +102,7 @@ mice.impute.rfnode <- function(
     use.node.cond.dist = TRUE,
     obs.eq.prob = FALSE,
     do.sample = TRUE,
+    num.threads = NULL,
     ...) {
     if (is.null(wy)) wy <- !ry
     if (isTRUE(pre.boot)) {
@@ -108,11 +115,12 @@ mice.impute.rfnode <- function(
     }
     xMis <- x[wy, , drop = FALSE]
     # Output in-bag list when using conditional distribution
+    # TODO: Add `...` back to ranger when updates available
     rfObj <- ranger(x = xObs,
                     y = yObs,
                     num.trees = num.trees.node,
                     keep.inbag = use.node.cond.dist,
-                    ...)
+                    num.threads = num.threads)
     # Get Nodes for training and test set
     nodeObjMis <- predict(rfObj, data = xMis, type = "terminalNodes")
     nodeObjObs <- predict(rfObj, data = xObs, type = "terminalNodes")

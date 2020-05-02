@@ -46,14 +46,14 @@ construct the conditional distributions of the variable under
 imputation, providing conditional distributions with better quality.
 
 ``` r
-impEmp <- mice(nhanes, method = "rfpred.emp", m = 10, max.iter = 10, maxcor = 1.0)
+impEmp <- mice(nhanes, method = "rfpred.emp", m = 10, maxit = 10, maxcor = 1.0)
 ```
 
 Also, in `RfPred.Norm` method, normality was assumed for RF prediction
 errors, as proposed by Shah *et al.*
 
 ``` r
-impNorm <- mice(nhanes, method = "rfpred.norm", m = 10, max.iter = 10, maxcor = 1.0)
+impNorm <- mice(nhanes, method = "rfpred.norm", m = 10, maxit = 10, maxcor = 1.0)
 ```
 
 ### For categorical variables
@@ -63,7 +63,7 @@ machine theory is used, and the predictions of missing categories are
 based on the predicted probabilities for each missing observation.
 
 ``` r
-impCate <- mice(nhanes, method = "rfpred.cate", m = 10, max.iter = 10, maxcor = 1.0)
+impCate <- mice(nhanes, method = "rfpred.cate", m = 10, maxit = 10, maxcor = 1.0)
 ```
 
 ### For mixed types of variables
@@ -75,7 +75,7 @@ for using `RfPred.Emp` for continuous variables and `RfPred.Cate` for
 categorical variables (of type `logical` or `factor`). Example:
 
 ``` r
-impMixed <- mice(nhanes, method = "rfemp", m = 10, max.iter = 10, maxcor = 1.0)
+impMixed <- mice(nhanes, method = "rfemp", m = 10, maxit = 10, maxcor = 1.0)
 ```
 
 ## Imputation based on RF nodes
@@ -93,7 +93,7 @@ observations only.
 Example:
 
 ``` r
-impCond <- mice(nhanes, method = "rfnode.cond", m = 10, max.iter = 10, maxcor = 1.0)
+impCond <- mice(nhanes, method = "rfnode.cond", m = 10, maxit = 10, maxcor = 1.0)
 ```
 
 ### Nodes for proximities
@@ -104,7 +104,7 @@ candidates for imputation.
 Example:
 
 ``` r
-impProx <- mice(nhanes, method = "rfnode.prox", m = 10, max.iter = 10, maxcor = 1.0)
+impProx <- mice(nhanes, method = "rfnode.prox", m = 10, maxit = 10, maxcor = 1.0)
 ```
 
 ## Support for parallel computation

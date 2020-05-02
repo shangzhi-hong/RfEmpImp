@@ -2,20 +2,18 @@
 % Please edit documentation in R/gen.mcar.R
 \name{gen.mcar}
 \alias{gen.mcar}
-\title{Make Missing Cells in a Data Frame}
+\title{Generate missing cells in the dataset}
 \usage{
-gen.mcar(df, propMiss = 0.2, warnEmptyRow = TRUE, maxTry = 10)
+gen.mcar(df, prop.na = 0.2, warn.empty.row = TRUE, ...)
 }
 \arguments{
 \item{df}{Input complete data frame}
 
-\item{propMiss}{Proportion of missing cells, default = 0.2}
-
-\item{warnEmptyRow}{Whether try to warn about empty rows}
+\item{prop.na}{Proportion of missing cells, default = 0.2}
 }
 \value{
 A data frame containing NAs
 }
 \description{
-Make Missing Cells in a Data Frame
+Generate missing cells in the dataset
 }

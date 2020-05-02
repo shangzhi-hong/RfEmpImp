@@ -15,6 +15,7 @@ mice.impute.rfpred.cate(
   num.trees.cate = 10,
   use.pred.prob.cate = TRUE,
   pre.boot = TRUE,
+  num.threads = NULL,
   ...
 )
 
@@ -24,13 +25,11 @@ mice.impute.rfemp(
   x,
   wy = NULL,
   num.trees = 10,
-  num.trees.cont = NULL,
-  emp.err.cont = TRUE,
   alpha.emp = 0,
   sym.cont = TRUE,
-  num.trees.cate = NULL,
-  use.pred.prob.cate = TRUE,
   pre.boot = TRUE,
+  num.trees.cont = NULL,
+  num.trees.cate = NULL,
   ...
 )
 }
@@ -53,7 +52,7 @@ default to \code{NULL} to use the value of \code{num.trees}.}
 
 \item{use.pred.prob.cate}{Logical, \code{TRUE} for assigning categories based
 on predicted probabilities, \code{FALSE} for imputation based on majority
-votes, default to \code{TRUE}.}
+votes, default to \code{TRUE}}
 
 \item{pre.boot}{Perform bootstrap prior to imputation to get 'proper'
 multiple imputation, i.e. accommodating sampling variation in estimating
@@ -61,17 +60,12 @@ population regression parameters (see Shah et al. 2014).
 It should be noted that if \code{TRUE}, this option is in effect even if the
 number of trees is set to one.}
 
+\item{num.threads}{Number of threads. Default to \code{NULL} to use all the
+processors available.}
+
 \item{...}{Other arguments to pass down.}
 
 \item{num.trees}{Number of trees to build, default to \code{10}.}
-
-\item{num.trees.cont}{Number of trees to build for continuous variables,
-default to \code{NULL} to use the value of \code{num.trees}.}
-
-\item{emp.err.cont}{Logical, \code{TRUE} for using
-empirical error; \code{FALSE}, for assuming normal distribution for the
-prediction error, the variance equals to overall out-of-bag prediction error,
-i.e. mean squared error (see Shah et al. 2014).}
 
 \item{alpha.emp}{The "significance level" for empirical distribution of
 prediction errors, can be used for prevention for outliers (useful for highly
@@ -83,6 +77,14 @@ Default is \code{0.0}, and the empirical error distribution is kept intact.}
 empirical prediction errors, \code{FALSE} for asymmetric distribution of
 empirical prediction errors, default to \code{TRUE}.
 This option is invalid when \code{emp.err.cont} is set to \code{FALSE}.}
+
+\item{num.trees.cont}{Number of trees to build for continuous variables,
+default to \code{NULL} to use the value of \code{num.trees}.}
+
+\item{emp.err.cont}{Logical, \code{TRUE} for using
+empirical error; \code{FALSE}, for assuming normal distribution for the
+prediction error, the variance equals to overall out-of-bag prediction error,
+i.e. mean squared error (see Shah et al. 2014).}
 }
 \value{
 Vector with imputed data, same type as \code{y}, and of length
@@ -128,7 +130,7 @@ nhanesFix[, c("age", "hyp")] <-
 lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
 
 impRfEmpImp <- mice(nhanesFix, method = "rfemp", m = 10,
-max.iter = 10, maxcor = 1.0, printFlag = FALSE)
+maxit = 10, maxcor = 1.0, printFlag = FALSE)
 }
 
 }

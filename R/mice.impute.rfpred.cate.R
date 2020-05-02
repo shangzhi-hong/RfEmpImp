@@ -57,6 +57,9 @@
 #' distribution. Default is \code{0.0}, and the empirical error distribution is
 #' kept intact.
 #'
+#' @param num.threads Number of threads. Default to \code{NULL} to use all the
+#' processors available.
+#'
 #' @param ... Other arguments to pass down
 #'
 #' @return Vector with imputed data, same type as \code{y}, and of length
@@ -87,6 +90,7 @@ mice.impute.rfpred.cate <- function(
     num.trees.cate = 10,
     use.pred.prob.cate = TRUE,
     pre.boot = TRUE,
+    num.threads = NULL,
     ...) {
     if (is.null(wy)) wy <- !ry
     yMisNum <- sum(wy)
@@ -113,12 +117,14 @@ mice.impute.rfpred.cate <- function(
         # Construct predictions based on vote probs averaged over nodes.
         # Suppress warnings like:
         # "Dropped unused factor level(s) in dependent variable"
+        # TODO: Add `...` back to ranger when updates available
         rangerObjProb <- suppressWarnings(ranger(
             x = xObs,
             y = yObs,
             probability = TRUE,
             oob.error = FALSE,
-            num.trees = num.trees.cate))
+            num.trees = num.trees.cate,
+            num.threads = num.threads))
         misPredMat <- predictions(predict(rangerObjProb, xMis))
         yLevels <- colnames(misPredMat)
         impValChar <- apply(
