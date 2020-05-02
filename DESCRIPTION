@@ -1,14 +1,14 @@
 Package: RfEmpImp
 Type: Package
-Title: Random Forest Empowered Imputation of Missing Data
+Title: Multiple imputation using chained random forests
 Version: 2.0.0
 Authors@R: c(person("Shangzhi", "Hong", role = c("cre"),
             email = "shangzhi-hong@hotmail.com"),
             person("Shangzhi", "Hong", role = c("aut")),
             person("Henry S.", "Lynn", role = c("aut", "ths")))
 Maintainer: Shangzhi Hong <shangzhi-hong@hotmail.com>
-Description: Adapter for MICE.
-    Tools for performing multivariate imputation based on random forest.
+Description: Adapters for MICE.
+    Functions for performing multiple imputation based on random forests.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

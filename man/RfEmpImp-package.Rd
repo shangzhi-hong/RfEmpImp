@@ -4,10 +4,10 @@
 \name{RfEmpImp-package}
 \alias{RfEmpImp}
 \alias{RfEmpImp-package}
-\title{RfEmpImp: Random Forest Empowered Imputation of Missing Data}
+\title{RfEmpImp: Multiple imputation using chained random forests}
 \description{
-Adapter for MICE.
-    Tools for performing multivariate imputation based on random forest.
+Adapters for MICE.
+    Functions for performing multiple imputation based on random forests.
 }
 \seealso{
 Useful links:

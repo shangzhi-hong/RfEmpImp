@@ -91,7 +91,8 @@
 #' @examples
 #' \donttest{
 #' impRfEmpImp <- mice(nhanes, method = "rfemp", m = 10,
-#' max.iter = 10, maxcor = 1.0, printFlag = FALSE)#' }
+#' max.iter = 10, maxcor = 1.0, printFlag = FALSE)
+#' }
 #'
 #' @export
 mice.impute.rfemp <- function(

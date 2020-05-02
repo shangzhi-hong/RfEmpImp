@@ -80,8 +80,9 @@
 #'
 #' @examples
 #' \donttest{
-#' impRfEmpImp <- mice(nhanes, method = "rfempimp", m = 10,
-#' max.iter = 10, maxcor = 1.0, printFlag = FALSE)#' }
+#' impRfPredCate <- mice(nhanes, method = "rfpred.cate", m = 10,
+#' max.iter = 10, maxcor = 1.0, printFlag = FALSE)
+#' }
 #'
 #' @export
 mice.impute.rfpred.cate <- function(
