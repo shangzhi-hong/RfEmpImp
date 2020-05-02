@@ -104,12 +104,17 @@ Users can get more flexibility from \code{mice.impute.rfnode} function,
 }
 \examples{
 \donttest{
+nhanesFix <- nhanes
+
+nhanesFix[, c("age", "hyp")] <-
+lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
+
 # Using "rfnode.cond"
-impRfNodeCond <- mice(nhanes, method = "rfnode.cond", m = 10,
+impRfNodeCond <- mice(nhanesFix, method = "rfnode.cond", m = 10,
 max.iter = 10, maxcor = 1.0, printFlag = FALSE)
 
 # Using "rfnode.prox"
-impRfNodeProx <- mice(nhanes, method = "rfnode.prox", m = 10,
+impRfNodeProx <- mice(nhanesFix, method = "rfnode.prox", m = 10,
 max.iter = 10, maxcor = 1.0, printFlag = FALSE)
 }
 

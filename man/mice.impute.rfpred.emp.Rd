@@ -77,12 +77,6 @@ of out-of-bag prediction errors of random forests.
 \details{
 \code{RfPred.Emp} imputation sampler.
 }
-\examples{
-\donttest{
-impRfPredEmp <- mice(nhanes, method = "rfpred.emp", m = 10,
-max.iter = 10, maxcor = 1.0, printFlag = FALSE)#' }
-
-}
 \references{
 Zhang, Haozhe, et al. "Random Forest Prediction Intervals."
 The American Statistician (2019): 1-20.

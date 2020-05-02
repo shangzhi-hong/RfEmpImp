@@ -122,12 +122,12 @@ otherwise it calls \code{mice.impute.rfpred.cate}.
 }
 \examples{
 \donttest{
-impRfPredCate <- mice(nhanes, method = "rfpred.cate", m = 10,
-max.iter = 10, maxcor = 1.0, printFlag = FALSE)
-}
+nhanesFix <- nhanes
 
-\donttest{
-impRfEmpImp <- mice(nhanes, method = "rfemp", m = 10,
+nhanesFix[, c("age", "hyp")] <-
+lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
+
+impRfEmpImp <- mice(nhanesFix, method = "rfemp", m = 10,
 max.iter = 10, maxcor = 1.0, printFlag = FALSE)
 }
 

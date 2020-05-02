@@ -58,12 +58,6 @@ out-of-bag mean squared error as the estimate for variance.
 \details{
 \code{RfPred.Emp} imputation sampler.
 }
-\examples{
-\donttest{
-impRfPredEmp <- mice(nhanes, method = "rfpred.norm", m = 10,
-max.iter = 10, maxcor = 1.0, printFlag = FALSE)#' }
-
-}
 \references{
 Shah, Anoop D., et al. "Comparison of random forest and parametric
 imputation models for imputing missing data using MICE: a CALIBER study."

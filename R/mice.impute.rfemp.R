@@ -90,7 +90,12 @@
 #'
 #' @examples
 #' \donttest{
-#' impRfEmpImp <- mice(nhanes, method = "rfemp", m = 10,
+#' nhanesFix <- nhanes
+#'
+#' nhanesFix[, c("age", "hyp")] <-
+#' lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
+#'
+#' impRfEmpImp <- mice(nhanesFix, method = "rfemp", m = 10,
 #' max.iter = 10, maxcor = 1.0, printFlag = FALSE)
 #' }
 #'

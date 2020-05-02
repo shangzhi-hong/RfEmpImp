@@ -51,11 +51,6 @@
 #' imputation models for imputing missing data using MICE: a CALIBER study."
 #' American journal of epidemiology 179.6 (2014): 764-774.
 #'
-#' @examples
-#' \donttest{
-#' impRfPredEmp <- mice(nhanes, method = "rfpred.norm", m = 10,
-#' max.iter = 10, maxcor = 1.0, printFlag = FALSE)#' }
-#'
 #' @export
 mice.impute.rfpred.norm <- function(
     y,

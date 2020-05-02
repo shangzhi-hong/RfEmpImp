@@ -78,12 +78,6 @@
 #' Malley, James D., et al. "Probability machines." Methods of information
 #' in medicine 51.01 (2012): 74-81.
 #'
-#' @examples
-#' \donttest{
-#' impRfPredCate <- mice(nhanes, method = "rfpred.cate", m = 10,
-#' max.iter = 10, maxcor = 1.0, printFlag = FALSE)
-#' }
-#'
 #' @export
 mice.impute.rfpred.cate <- function(
     y,
