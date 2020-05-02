@@ -21,7 +21,7 @@ ry <- sample(
 wy <- !ry
 num.trees.cont <- 10
 
-test_that("RfEmpImp works for continuous variables", {
+test_that("rfpred.emp works for continuous variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         for (sym.cont in c(TRUE, FALSE)) {
             for (emp.err.cont in c(TRUE, FALSE)) {
@@ -33,6 +33,7 @@ test_that("RfEmpImp works for continuous variables", {
                         wy = wy,
                         num.trees.cont = num.trees.cont,
                         sym.cont = sym.cont,
+                        emp.err.cont = emp.err.cont,
                         num.threads = 1)
 
                     numImpOut2 <- mice.impute.rfpred.emp(
@@ -42,6 +43,7 @@ test_that("RfEmpImp works for continuous variables", {
                         wy = wy,
                         num.trees.cont = num.trees.cont,
                         sym.cont = sym.cont,
+                        emp.err.cont = emp.err.cont,
                         num.threads = 1)
                     expect_true(all(c(is.numeric(numImpOut1),
                                       is.numeric(numImpOut2))))
@@ -55,7 +57,7 @@ test_that("RfEmpImp works for continuous variables", {
     }
 })
 
-test_that("RfEmpImp caller works for continuous variables", {
+test_that("rfemp caller works for continuous variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         for (sym.cont in c(TRUE, FALSE)) {
             for (emp.err.cont in c(TRUE, FALSE)) {
@@ -67,6 +69,7 @@ test_that("RfEmpImp caller works for continuous variables", {
                         wy = wy,
                         num.trees.cont = num.trees.cont,
                         sym.cont = sym.cont,
+                        emp.err.cont = emp.err.cont,
                         num.threads = 1)
                     numImpOut2 <- mice.impute.rfemp(
                         y = y,
@@ -75,6 +78,7 @@ test_that("RfEmpImp caller works for continuous variables", {
                         wy = wy,
                         num.trees.cont = num.trees.cont,
                         sym.cont = sym.cont,
+                        emp.err.cont = emp.err.cont,
                         num.threads = 1)
 
                     expect_true(all(c(is.numeric(numImpOut1),
