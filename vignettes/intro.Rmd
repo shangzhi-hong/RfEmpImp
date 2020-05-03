@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 An R package for random-forest-empowered imputation of missing Data
 
-```{r setup}
+```{r setup, include = FALSE}
 suppressMessages(library(RfEmpImp))
 ```
 
