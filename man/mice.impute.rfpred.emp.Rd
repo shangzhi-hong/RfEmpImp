@@ -10,7 +10,7 @@ mice.impute.rfpred.emp(
   x,
   wy = NULL,
   num.trees.cont = 10,
-  sym.cont = TRUE,
+  sym.dist = TRUE,
   emp.err.cont = TRUE,
   alpha.emp = 0,
   pre.boot = TRUE,
@@ -35,9 +35,9 @@ indicates locations in \code{y} for which imputations are created.}
 \item{num.trees.cont}{Number of trees to build for continuous variables.
 The default is \code{num.trees = 10}.}
 
-\item{sym.cont}{If \code{TRUE}, symmetric empirical distribution of
+\item{sym.dist}{If \code{TRUE}, symmetric empirical distribution of
 out-of-bag prediction errors will be assumed; if \code{FALSE}, asymmetric
-distribution will be used. The default is \code{sym.cont = TRUE}.
+distribution will be used. The default is \code{sym.dist = TRUE}.
 This option is invalid when \code{emp.err.cont = FALSE}.}
 
 \item{emp.err.cont}{If \code{TRUE}, the empirical distribution of out-of-bag

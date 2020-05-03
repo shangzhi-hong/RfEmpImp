@@ -46,9 +46,9 @@
 #' out-of-bag prediction errors will be kept intact.
 #' This option is invalid when \code{emp.err.cont = FALSE}.
 #'
-#' @param sym.cont If \code{TRUE}, symmetric empirical distribution of
+#' @param sym.dist If \code{TRUE}, symmetric empirical distribution of
 #' out-of-bag prediction errors will be assumed; if \code{FALSE}, asymmetric
-#' distribution will be used. The default is \code{sym.cont = TRUE}.
+#' distribution will be used. The default is \code{sym.dist = TRUE}.
 #' This option is invalid when \code{emp.err.cont = FALSE}.
 #'
 #' @param pre.boot If \code{TRUE}, bootstrapping prior to imputation will be
@@ -91,7 +91,7 @@ mice.impute.rfpred.emp <- function(
     x,
     wy = NULL,
     num.trees.cont = 10,
-    sym.cont = TRUE,
+    sym.dist = TRUE,
     emp.err.cont = TRUE,
     alpha.emp = 0.0,
     pre.boot = TRUE,
@@ -122,7 +122,7 @@ mice.impute.rfpred.emp <- function(
         oobErrEmp <-  yObs - rfObj[["predictions"]]
         # To fix "NaN"s in OOB error due to small tree number
         oobErrEmp <- oobErrEmp[!is.na(oobErrEmp)]
-        if (isTRUE(sym.cont)) {
+        if (isTRUE(sym.dist)) {
             oobErrEmpAbs <- abs(oobErrEmp)
             if (isTRUE(alpha.emp > 0 && alpha.emp < 1)) {
                 oobErrorEmpHi <- quantile(oobErrEmpAbs,

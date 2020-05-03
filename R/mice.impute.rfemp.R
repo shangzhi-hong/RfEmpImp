@@ -42,7 +42,7 @@
 #' for empirical distribution of prediction errors.
 #' Default is \code{0.0}, and the empirical error distribution is kept intact.
 #'
-#' @param sym.cont Logical, \code{TRUE} for assuming symmetric distribution of
+#' @param sym.dist Logical, \code{TRUE} for assuming symmetric distribution of
 #' empirical prediction errors, \code{FALSE} for asymmetric distribution of
 #' empirical prediction errors, default to \code{TRUE}.
 #' This option is invalid when \code{emp.err.cont} is set to \code{FALSE}.
@@ -101,7 +101,7 @@ mice.impute.rfemp <- function(
     wy = NULL,
     num.trees = 10,
     alpha.emp = 0.0,
-    sym.cont = TRUE,
+    sym.dist = TRUE,
     pre.boot = TRUE,
     num.trees.cont = NULL,
     num.trees.cate = NULL,
@@ -116,7 +116,7 @@ mice.impute.rfemp <- function(
                 num.trees.cont = ifelse(is.null(num.trees.cont),
                                         num.trees,
                                         num.trees.cont),
-                sym.cont = sym.cont,
+                sym.dist = sym.dist,
                 pre.boot = pre.boot,
                 ...
             )

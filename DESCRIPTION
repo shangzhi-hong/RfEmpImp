@@ -8,7 +8,7 @@ Authors@R: c(person("Shangzhi", "Hong", role = c("cre"),
             person("Henry S.", "Lynn", role = c("aut", "ths")))
 Maintainer: Shangzhi Hong <shangzhi-hong@hotmail.com>
 Description: Adapters for MICE.
-    Functions for performing multiple imputation based on random forests.
+    Functions for performing multiple imputation using chained random forests.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

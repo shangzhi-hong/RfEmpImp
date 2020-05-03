@@ -23,7 +23,7 @@ num.trees.cont <- 10
 
 test_that("rfpred.emp works for continuous variables", {
     for (pre.boot in c(TRUE, FALSE)) {
-        for (sym.cont in c(TRUE, FALSE)) {
+        for (sym.dist in c(TRUE, FALSE)) {
             for (emp.err.cont in c(TRUE, FALSE)) {
                 for (alpha.emp in c(-0.1, 0.0, 0.05, 0.1)) {
                     numImpOut1 <- mice.impute.rfpred.emp(
@@ -32,7 +32,7 @@ test_that("rfpred.emp works for continuous variables", {
                         x = x,
                         wy = wy,
                         num.trees.cont = num.trees.cont,
-                        sym.cont = sym.cont,
+                        sym.dist = sym.dist,
                         emp.err.cont = emp.err.cont,
                         num.threads = 1)
 
@@ -42,7 +42,7 @@ test_that("rfpred.emp works for continuous variables", {
                         x = x,
                         wy = wy,
                         num.trees.cont = num.trees.cont,
-                        sym.cont = sym.cont,
+                        sym.dist = sym.dist,
                         emp.err.cont = emp.err.cont,
                         num.threads = 1)
                     expect_true(all(c(is.numeric(numImpOut1),
@@ -59,7 +59,7 @@ test_that("rfpred.emp works for continuous variables", {
 
 test_that("rfemp caller works for continuous variables", {
     for (pre.boot in c(TRUE, FALSE)) {
-        for (sym.cont in c(TRUE, FALSE)) {
+        for (sym.dist in c(TRUE, FALSE)) {
             for (emp.err.cont in c(TRUE, FALSE)) {
                     for (alpha.emp in c(-0.1, 0.0, 0.05, 0.1)) {
                     numImpOut1 <- mice.impute.rfemp(
@@ -68,7 +68,7 @@ test_that("rfemp caller works for continuous variables", {
                         x = x,
                         wy = wy,
                         num.trees.cont = num.trees.cont,
-                        sym.cont = sym.cont,
+                        sym.dist = sym.dist,
                         emp.err.cont = emp.err.cont,
                         num.threads = 1)
                     numImpOut2 <- mice.impute.rfemp(
@@ -77,7 +77,7 @@ test_that("rfemp caller works for continuous variables", {
                         x = x,
                         wy = wy,
                         num.trees.cont = num.trees.cont,
-                        sym.cont = sym.cont,
+                        sym.dist = sym.dist,
                         emp.err.cont = emp.err.cont,
                         num.threads = 1)
 

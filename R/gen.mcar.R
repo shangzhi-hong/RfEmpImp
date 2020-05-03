@@ -20,9 +20,9 @@ gen.mcar <- function(
     c <- ncol(df)
     cellNum <- r * c
     naNum <- ceiling(cellNum * prop.na)
-    thisNaLoc <- rep(FALSE, cellNum)
-    thisNaLoc[sample(cellNum, size = naNum, replace = FALSE)] <- TRUE
-    df[matrix(thisNaLoc, nrow = r, ncol = c)] <- NA
+    naLoc <- rep(FALSE, cellNum)
+    naLoc[sample.int(cellNum, size = naNum, replace = FALSE)] <- TRUE
+    df[matrix(naLoc, nrow = r, ncol = c)] <- NA
     if (any(rowSums(is.na(df)) == c)) {
         warning("Generated output contains empty row(s).", call. = FALSE)
     }

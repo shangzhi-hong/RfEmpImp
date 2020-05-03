@@ -34,9 +34,9 @@
 #' The default is \code{alpha.emp = 0.0}, and the empirical distribution of
 #' out-of-bag prediction errors will be kept intact.
 #'
-#' @param sym.cont If \code{TRUE}, symmetric empirical distribution of
+#' @param sym.dist If \code{TRUE}, symmetric empirical distribution of
 #' out-of-bag prediction errors will be assumed; if \code{FALSE}, asymmetric
-#' distribution will be used. The default is \code{sym.cont = TRUE}.
+#' distribution will be used. The default is \code{sym.dist = TRUE}.
 #'
 #' @param pre.boot If \code{TRUE}, bootstrapping prior to imputation will be
 #' performed to perform 'proper' multiple imputation, for accommodating sampling
@@ -104,7 +104,7 @@ imp.rfemp <- function(
     max.iter = 5,
     num.trees = 10,
     alpha.emp = 0.0,
-    sym.cont = TRUE,
+    sym.dist = TRUE,
     pre.boot = TRUE,
     num.trees.cont = NULL,
     num.trees.cate = NULL,
@@ -118,7 +118,7 @@ imp.rfemp <- function(
         maxit = max.iter,
         num.trees = num.trees,
         alpha.emp = alpha.emp,
-        sym.cont = sym.cont,
+        sym.dist = sym.dist,
         pre.boot = pre.boot,
         num.trees.cont = num.trees.cont,
         num.trees.cate = num.trees.cate,

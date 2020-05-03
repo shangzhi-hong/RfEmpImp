@@ -26,7 +26,7 @@ mice.impute.rfemp(
   wy = NULL,
   num.trees = 10,
   alpha.emp = 0,
-  sym.cont = TRUE,
+  sym.dist = TRUE,
   pre.boot = TRUE,
   num.trees.cont = NULL,
   num.trees.cate = NULL,
@@ -73,7 +73,7 @@ skewed variables). For example, set alpha = 0.05 to use 95\% confidence level
 for empirical distribution of prediction errors.
 Default is \code{0.0}, and the empirical error distribution is kept intact.}
 
-\item{sym.cont}{Logical, \code{TRUE} for assuming symmetric distribution of
+\item{sym.dist}{Logical, \code{TRUE} for assuming symmetric distribution of
 empirical prediction errors, \code{FALSE} for asymmetric distribution of
 empirical prediction errors, default to \code{TRUE}.
 This option is invalid when \code{emp.err.cont} is set to \code{FALSE}.}

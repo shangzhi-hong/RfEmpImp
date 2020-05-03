@@ -10,7 +10,7 @@ imp.rfemp(
   max.iter = 5,
   num.trees = 10,
   alpha.emp = 0,
-  sym.cont = TRUE,
+  sym.dist = TRUE,
   pre.boot = TRUE,
   num.trees.cont = NULL,
   num.trees.cate = NULL,
@@ -38,9 +38,9 @@ For example, set alpha = 0.05 to use 95\% confidence level.
 The default is \code{alpha.emp = 0.0}, and the empirical distribution of
 out-of-bag prediction errors will be kept intact.}
 
-\item{sym.cont}{If \code{TRUE}, symmetric empirical distribution of
+\item{sym.dist}{If \code{TRUE}, symmetric empirical distribution of
 out-of-bag prediction errors will be assumed; if \code{FALSE}, asymmetric
-distribution will be used. The default is \code{sym.cont = TRUE}.}
+distribution will be used. The default is \code{sym.dist = TRUE}.}
 
 \item{pre.boot}{If \code{TRUE}, bootstrapping prior to imputation will be
 performed to perform 'proper' multiple imputation, for accommodating sampling
