@@ -23,6 +23,7 @@
 .Rproj.user/
 
 # produced vignettes
+vignettes/*.R
 vignettes/*.html
 vignettes/*.pdf
 
@@ -39,3 +40,4 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+inst/doc

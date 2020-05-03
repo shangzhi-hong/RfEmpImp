@@ -14,18 +14,18 @@ testData <- transform(testData,
 testDataAmp <- gen.mcar(testData, warn.empty.row = F)
 
 test_that("imp.rfemp works", {
-    outDf <- imp.rfemp(testDataAmp, num.imp = 2, max.iter = 2,
+    impObj <- imp.rfemp(testDataAmp, num.imp = 2, max.iter = 2,
                        num.threads = 1)
-    regObj <- with(outDf, lm(y ~ x1 + x2 + x3 + 0))
+    regObj <- with(impObj, lm(y ~ x1 + x2 + x3 + 0))
     poolObj <- pool(regObj)
     df <- reg.ests(poolObj)
     expect_equal(nrow(df), 3L)
 })
 
 test_that("imp.rfnode.cond works", {
-    outDf <- imp.rfnode.cond(testDataAmp, num.imp = 2, max.iter = 2,
+    impObj <- imp.rfnode.cond(testDataAmp, num.imp = 2, max.iter = 2,
                              num.threads = 1)
-    regObj <- with(outDf, lm(y ~ x1 + x2 + x3 + 0))
+    regObj <- with(impObj, lm(y ~ x1 + x2 + x3 + 0))
     poolObj <- pool(regObj)
     poolObj <- pool(regObj)
     df <- reg.ests(poolObj)
@@ -33,9 +33,9 @@ test_that("imp.rfnode.cond works", {
 })
 
 test_that("imp.rfemp works", {
-    outDf <- imp.rfnode.prox(testDataAmp, num.imp = 2, max.iter = 2,
+    impObj <- imp.rfnode.prox(testDataAmp, num.imp = 2, max.iter = 2,
                              num.threads = 1)
-    regObj <- with(outDf, lm(y ~ x1 + x2 + x3 + 0))
+    regObj <- with(impObj, lm(y ~ x1 + x2 + x3 + 0))
     poolObj <- pool(regObj)
     df <- reg.ests(poolObj)
     expect_equal(nrow(df), 3L)

@@ -1,21 +1,24 @@
 ---
-output: github_document
+title: "Introduction to RfEmpImp"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r setup, include = FALSE}
+```{r include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+  comment = "#>"
 )
 ```
 
-# RfEmpImp
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)  
 An R package for random-forest-empowered imputation of missing Data
+
+```{r setup}
+suppressMessages(library(RfEmpImp))
+```
 
 ## Random-forest-based multiple imputation evolved
 This is the repository for R package `RfEmpImp`, for multiple imputation using
@@ -27,19 +30,6 @@ The R package contains both newly proposed and improved existing algorithms for
 random-forest-based multiple imputation of missing data.  
 For details of the newly proposed algorithms, please refer to:
 [arXiv:2004.14823](https://arxiv.org/abs/2004.14823) (further updates pending).
-
-
-## Installation
-This R package is already submitted to CRAN, but it may take a while before the
-package being approved.  
-Currently, interested users can install the package from GitHub:
-```r
-# Install
-if(!"remotes" %in% installed.packages()) install.packages("remotes")
-remotes::install_github("shangzhi-hong/RfEmpImp")
-# Attach
-library(RfEmpImp)
-```
 
 
 ## Imputation based on predictions
