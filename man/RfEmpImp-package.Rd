@@ -6,8 +6,8 @@
 \alias{RfEmpImp-package}
 \title{RfEmpImp: Multiple imputation using chained random forests}
 \description{
-Adapters for MICE.
-    Functions for performing multiple imputation based on random forests.
+Multiple imputation using chained random forests, sampler adapters
+    for MICE.
 }
 \seealso{
 Useful links:

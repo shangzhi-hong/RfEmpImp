@@ -7,13 +7,16 @@ Authors@R: c(person("Shangzhi", "Hong", role = c("cre"),
             person("Shangzhi", "Hong", role = c("aut")),
             person("Henry S.", "Lynn", role = c("aut", "ths")))
 Maintainer: Shangzhi Hong <shangzhi-hong@hotmail.com>
-Description: Adapters for MICE.
-    Functions for performing multiple imputation using chained random forests.
+Description: Multiple imputation using chained random forests, sampler adapters
+    for MICE.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
-Depends: R (>= 3.5.0), mice (>= 3.8.0), ranger (>= 0.12.1)
+Depends:
+    R (>= 3.5.0),
+    mice (>= 3.8.0),
+    ranger (>= 0.12.1)
 Suggests: 
     testthat (>= 2.1.0),
     knitr,

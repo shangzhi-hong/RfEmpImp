@@ -23,8 +23,9 @@ gen.mcar <- function(
     naLoc <- rep(FALSE, cellNum)
     naLoc[sample.int(cellNum, size = naNum, replace = FALSE)] <- TRUE
     df[matrix(naLoc, nrow = r, ncol = c)] <- NA
-    if (any(rowSums(is.na(df)) == c)) {
-        warning("Generated output contains empty row(s).", call. = FALSE)
+    if (warn.empty.row) {
+        if (any(rowSums(is.na(df)) == c))
+            warning("Generated output contains empty row(s).", call. = FALSE)
     }
     return(df)
 }
