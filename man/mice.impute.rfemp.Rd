@@ -60,8 +60,8 @@ population regression parameters (see Shah et al. 2014).
 It should be noted that if \code{TRUE}, this option is in effect even if the
 number of trees is set to one.}
 
-\item{num.threads}{Number of threads for parallel computing. Default to
-\code{NULL} to use all the processors available.}
+\item{num.threads}{Number of threads for parallel computing. The default is
+\code{num.threads = NULL} and all the processors available can be used.}
 
 \item{...}{Other arguments to pass down.}
 
@@ -73,9 +73,10 @@ skewed variables). For example, set alpha = 0.05 to use 95\% confidence level
 for empirical distribution of prediction errors.
 Default is \code{0.0}, and the empirical error distribution is kept intact.}
 
-\item{sym.dist}{Logical, \code{TRUE} for assuming symmetric distribution of
-empirical prediction errors, \code{FALSE} for asymmetric distribution of
-empirical prediction errors, default to \code{TRUE}.
+\item{sym.dist}{If \code{TRUE}, the empirical distribution of out-of-bag
+prediction errors will be assumed to be symmetric; if \code{FALSE}, the
+empirical distribution will be kept intact. The default is
+\code{sym.dist = TRUE}.
 This option is invalid when \code{emp.err.cont} is set to \code{FALSE}.}
 
 \item{num.trees.cont}{Number of trees to build for continuous variables,

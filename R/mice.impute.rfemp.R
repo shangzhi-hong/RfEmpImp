@@ -42,9 +42,10 @@
 #' for empirical distribution of prediction errors.
 #' Default is \code{0.0}, and the empirical error distribution is kept intact.
 #'
-#' @param sym.dist Logical, \code{TRUE} for assuming symmetric distribution of
-#' empirical prediction errors, \code{FALSE} for asymmetric distribution of
-#' empirical prediction errors, default to \code{TRUE}.
+#' @param sym.dist If \code{TRUE}, the empirical distribution of out-of-bag
+#' prediction errors will be assumed to be symmetric; if \code{FALSE}, the
+#' empirical distribution will be kept intact. The default is
+#' \code{sym.dist = TRUE}.
 #' This option is invalid when \code{emp.err.cont} is set to \code{FALSE}.
 #'
 #' @param pre.boot Perform bootstrap prior to imputation to get 'proper'

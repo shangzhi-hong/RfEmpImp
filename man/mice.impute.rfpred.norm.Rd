@@ -39,8 +39,8 @@ variation in estimating population regression parameters
 It should be noted that if \code{TRUE}, this option is in effect even if the
 number of trees is set to one.}
 
-\item{num.threads}{Number of threads for parallel computing. Default to
-\code{NULL} to use all the processors available.}
+\item{num.threads}{Number of threads for parallel computing. The default is
+\code{num.threads = NULL} and all the processors available can be used.}
 
 \item{...}{Other arguments to pass down.}
 }

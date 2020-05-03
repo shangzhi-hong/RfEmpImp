@@ -35,9 +35,10 @@ indicates locations in \code{y} for which imputations are created.}
 \item{num.trees.cont}{Number of trees to build for continuous variables.
 The default is \code{num.trees = 10}.}
 
-\item{sym.dist}{If \code{TRUE}, symmetric empirical distribution of
-out-of-bag prediction errors will be assumed; if \code{FALSE}, asymmetric
-distribution will be used. The default is \code{sym.dist = TRUE}.
+\item{sym.dist}{If \code{TRUE}, the empirical distribution of out-of-bag
+prediction errors will be assumed to be symmetric; if \code{FALSE}, the
+empirical distribution will be kept intact. The default is
+\code{sym.dist = TRUE}.
 This option is invalid when \code{emp.err.cont = FALSE}.}
 
 \item{emp.err.cont}{If \code{TRUE}, the empirical distribution of out-of-bag
@@ -61,8 +62,8 @@ variation in estimating population regression parameters
 It should be noted that if \code{TRUE}, this option is in effect even if the
 number of trees is set to one.}
 
-\item{num.threads}{Number of threads for parallel computing. Default to
-\code{NULL} to use all the processors available.}
+\item{num.threads}{Number of threads for parallel computing. The default is
+\code{num.threads = NULL} and all the processors available can be used.}
 
 \item{...}{Other arguments to pass down.}
 

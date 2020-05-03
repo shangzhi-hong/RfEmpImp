@@ -56,8 +56,8 @@
 #' For testing purposes, and WILL CAUSE ERRORS for the \code{mice} sampler
 #' function.
 #'
-#' @param num.threads Number of threads for parallel computing. Default to
-#' \code{NULL} to use all the processors available.
+#' @param num.threads Number of threads for parallel computing. The default is
+#' \code{num.threads = NULL} and all the processors available can be used.
 #'
 #' @param ... Other arguments to pass down
 #'
@@ -197,7 +197,7 @@ mice.impute.rfnode <- function(
 # 1. This script aims to find the corresponding nodes used for predictions
 # with better efficiency and consistency by using matrix manipulations
 # instead of joining tables (like "quantforesterror" in R package
-# "forestError") or equality testings (like "mice.rf" in R package "mice").
+# "forestError").
 #
 # 2. The nodes is found by corresponding node IDs, which is different from
 # previous implementations like in Doove et al., that used equality testings

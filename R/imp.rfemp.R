@@ -1,7 +1,7 @@
 #' RfEmp: Multiple imputation using chained random forests
 #'
 #' @description
-#' \code{RfEmpImp} multiple imputation method is for mixed types of variables,
+#' \code{RfEmp} multiple imputation method is for mixed types of variables,
 #' and calls corresponding functions based on variable types.
 #' Categorical variables should be of type \code{factor} or \code{logical}.
 #'
@@ -29,19 +29,20 @@
 #'
 #' @param alpha.emp The "significance level" for the empirical distribution of
 #' out-of-bag prediction errors, can be used for prevention for outliers
-#' (useful for highly skewed variables).
+#' (helpful for highly skewed variables).
 #' For example, set alpha = 0.05 to use 95\% confidence level.
 #' The default is \code{alpha.emp = 0.0}, and the empirical distribution of
 #' out-of-bag prediction errors will be kept intact.
 #'
-#' @param sym.dist If \code{TRUE}, symmetric empirical distribution of
-#' out-of-bag prediction errors will be assumed; if \code{FALSE}, asymmetric
-#' distribution will be used. The default is \code{sym.dist = TRUE}.
+#' @param sym.dist If \code{TRUE}, the empirical distribution of out-of-bag
+#' prediction errors will be assumed to be symmetric; if \code{FALSE}, the
+#' empirical distribution will be kept intact. The default is
+#' \code{sym.dist = TRUE}.
 #'
 #' @param pre.boot If \code{TRUE}, bootstrapping prior to imputation will be
 #' performed to perform 'proper' multiple imputation, for accommodating sampling
 #' variation in estimating population regression parameters
-#' (see Shah et al. 2014).
+#' (refer to Shah et al. 2014).
 #' It should be noted that if \code{TRUE}, this option is valid even if the
 #' number of trees is set to one.
 #'
@@ -53,8 +54,8 @@
 #' The default is \code{num.trees.cate = NULL} and the value of \code{num.trees}
 #' will be used.
 #'
-#' @param num.threads Number of threads for parallel computing. Default to
-#' \code{NULL} to use all the processors available.
+#' @param num.threads Number of threads for parallel computing. The default is
+#' \code{num.threads = NULL} and all the processors available can be used.
 #'
 #' @param print.flag If \code{TRUE}, details will be sent to console. The
 #' default is \code{print.flag = FALSE}.

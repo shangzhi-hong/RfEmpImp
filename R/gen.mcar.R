@@ -1,6 +1,6 @@
-#' Generate cells missing completely at random in the dataset
+#' Generate missing (completely at random) cells in the dataset
 #'
-#' @param df Input complete data frame.
+#' @param df Input data frame.
 #'
 #' @param prop.na Proportion of missing cells, default = 0.2.
 #'

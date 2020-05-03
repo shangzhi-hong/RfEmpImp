@@ -36,8 +36,8 @@
 #' It should be noted that if \code{TRUE}, this option is in effect even if the
 #' number of trees is set to one.
 #'
-#' @param num.threads Number of threads for parallel computing. Default to
-#' \code{NULL} to use all the processors available.
+#' @param num.threads Number of threads for parallel computing. The default is
+#' \code{num.threads = NULL} and all the processors available can be used.
 #'
 #' @param ... Other arguments to pass down.
 #'

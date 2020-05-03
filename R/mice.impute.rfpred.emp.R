@@ -46,9 +46,10 @@
 #' out-of-bag prediction errors will be kept intact.
 #' This option is invalid when \code{emp.err.cont = FALSE}.
 #'
-#' @param sym.dist If \code{TRUE}, symmetric empirical distribution of
-#' out-of-bag prediction errors will be assumed; if \code{FALSE}, asymmetric
-#' distribution will be used. The default is \code{sym.dist = TRUE}.
+#' @param sym.dist If \code{TRUE}, the empirical distribution of out-of-bag
+#' prediction errors will be assumed to be symmetric; if \code{FALSE}, the
+#' empirical distribution will be kept intact. The default is
+#' \code{sym.dist = TRUE}.
 #' This option is invalid when \code{emp.err.cont = FALSE}.
 #'
 #' @param pre.boot If \code{TRUE}, bootstrapping prior to imputation will be
@@ -58,8 +59,8 @@
 #' It should be noted that if \code{TRUE}, this option is in effect even if the
 #' number of trees is set to one.
 #'
-#' @param num.threads Number of threads for parallel computing. Default to
-#' \code{NULL} to use all the processors available.
+#' @param num.threads Number of threads for parallel computing. The default is
+#' \code{num.threads = NULL} and all the processors available can be used.
 #'
 #' @param ... Other arguments to pass down.
 #'
