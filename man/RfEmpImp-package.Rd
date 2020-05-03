@@ -4,7 +4,7 @@
 \name{RfEmpImp-package}
 \alias{RfEmpImp}
 \alias{RfEmpImp-package}
-\title{RfEmpImp: Multiple imputation using chained random forests}
+\title{RfEmpImp: Multiple Imputation using Chained Random Forests}
 \description{
 Multiple imputation using chained random forests, sampler adapters
     for MICE.

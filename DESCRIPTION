@@ -1,7 +1,7 @@
 Package: RfEmpImp
 Type: Package
-Title: Multiple imputation using chained random forests
-Version: 2.0.0
+Title: Multiple Imputation using Chained Random Forests
+Version: 2.0.1
 Authors@R: c(person("Shangzhi", "Hong", role = c("cre"),
             email = "shangzhi-hong@hotmail.com"),
             person("Shangzhi", "Hong", role = c("aut")),
