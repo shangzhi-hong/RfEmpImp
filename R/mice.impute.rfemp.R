@@ -36,7 +36,6 @@
 #'
 #' @param num.trees Number of trees to build, default to \code{10}.
 #'
-
 #' @param alpha.emp The "significance level" for empirical distribution of
 #' prediction errors, can be used for prevention for outliers (useful for highly
 #' skewed variables). For example, set alpha = 0.05 to use 95\% confidence level
@@ -67,9 +66,12 @@
 #'
 #' @name mice.impute.rfemp
 #'
-#' @author Shangzhi Hong, Henry S. Lynn*
+#' @author Shangzhi Hong
 #'
 #' @references
+#' Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
+#' Preprint (2020) arXiv:2004.14823.
+#'
 #' Zhang, Haozhe, et al. "Random Forest Prediction Intervals."
 #' The American Statistician (2019): 1-20.
 #'

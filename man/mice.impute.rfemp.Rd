@@ -60,8 +60,8 @@ population regression parameters (see Shah et al. 2014).
 It should be noted that if \code{TRUE}, this option is in effect even if the
 number of trees is set to one.}
 
-\item{num.threads}{Number of threads. Default to \code{NULL} to use all the
-processors available.}
+\item{num.threads}{Number of threads for parallel computing. Default to
+\code{NULL} to use all the processors available.}
 
 \item{...}{Other arguments to pass down.}
 
@@ -80,11 +80,6 @@ This option is invalid when \code{emp.err.cont} is set to \code{FALSE}.}
 
 \item{num.trees.cont}{Number of trees to build for continuous variables,
 default to \code{NULL} to use the value of \code{num.trees}.}
-
-\item{emp.err.cont}{Logical, \code{TRUE} for using
-empirical error; \code{FALSE}, for assuming normal distribution for the
-prediction error, the variance equals to overall out-of-bag prediction error,
-i.e. mean squared error (see Shah et al. 2014).}
 }
 \value{
 Vector with imputed data, same type as \code{y}, and of length
@@ -114,9 +109,8 @@ For categorical variables, \code{mice.impute.rfpred.cate} is called,
 performing imputation based on predicted probabilities.
 }
 \details{
-\code{RfEmpImp} Imputation sampler for: continuous variables based on the
-empirical distribution of out-of-bag prediction errors of random forests;
-categorical variables based on probability machines
+\code{RfEmpImp} Imputation sampler for: continuous variables based on
+probability machines
 
 \code{RfEmpImp} imputation sampler, the \code{mice.impute.rfemp} calls
 \code{mice.impute.rfpred.emp} if the variable is numeric,
@@ -135,8 +129,8 @@ maxit = 10, maxcor = 1.0, printFlag = FALSE)
 
 }
 \references{
-Zhang, Haozhe, et al. "Random Forest Prediction Intervals."
-The American Statistician just-accepted (2019): 1-20.
+Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
+arXiv:2004.14823.
 
 Shah, Anoop D., et al. "Comparison of random forest and parametric
 imputation models for imputing missing data using MICE: a CALIBER study."
@@ -144,6 +138,9 @@ American journal of epidemiology 179.6 (2014): 764-774.
 
 Malley, James D., et al. "Probability machines." Methods of information
 in medicine 51.01 (2012): 74-81.
+
+Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
+Preprint (2020) arXiv:2004.14823.
 
 Zhang, Haozhe, et al. "Random Forest Prediction Intervals."
 The American Statistician (2019): 1-20.
@@ -156,7 +153,7 @@ Malley, James D., et al. "Probability machines." Methods of information
 in medicine 51.01 (2012): 74-81.
 }
 \author{
-Shangzhi Hong, Henry S. Lynn*
+Shangzhi Hong
 
-Shangzhi Hong, Henry S. Lynn*
+Shangzhi Hong
 }

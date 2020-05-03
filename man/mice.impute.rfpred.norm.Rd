@@ -11,6 +11,7 @@ mice.impute.rfpred.norm(
   wy = NULL,
   num.trees.cont = 10,
   pre.boot = TRUE,
+  num.threads = NULL,
   ...
 )
 }
@@ -28,18 +29,20 @@ model is fitted. The \code{ry} generally distinguishes the observed
 \item{wy}{Logical vector of length \code{length(y)}. A \code{TRUE} value
 indicates locations in \code{y} for which imputations are created.}
 
-\item{num.trees.cont}{Number of trees to build for continuous variables,
-default to \code{NULL} to use the value of \code{num.trees}.}
+\item{num.trees.cont}{Number of trees to build for continuous variables.
+The default is \code{num.trees = 10}.}
 
-\item{pre.boot}{Perform bootstrap prior to imputation to get 'proper'
-multiple imputation, i.e. accommodating sampling variation in estimating
-population regression parameters (see Shah et al. 2014).
+\item{pre.boot}{If \code{TRUE}, bootstrapping prior to imputation will be
+performed to perform 'proper' multiple imputation, for accommodating sampling
+variation in estimating population regression parameters
+(see Shah et al. 2014).
 It should be noted that if \code{TRUE}, this option is in effect even if the
 number of trees is set to one.}
 
-\item{...}{Other arguments to pass down.}
+\item{num.threads}{Number of threads for parallel computing. Default to
+\code{NULL} to use all the processors available.}
 
-\item{num.trees}{Number of trees to build, default to \code{10}.}
+\item{...}{Other arguments to pass down.}
 }
 \value{
 Vector with imputed data, same type as \code{y}, and of length
@@ -56,7 +59,7 @@ The function performs multiple imputation based on normality assumption using
 out-of-bag mean squared error as the estimate for variance.
 }
 \details{
-\code{RfPred.Emp} imputation sampler.
+\code{RfPred.Norm} imputation sampler.
 }
 \references{
 Shah, Anoop D., et al. "Comparison of random forest and parametric
@@ -64,5 +67,5 @@ imputation models for imputing missing data using MICE: a CALIBER study."
 American journal of epidemiology 179.6 (2014): 764-774.
 }
 \author{
-Shangzhi Hong, Henry S. Lynn*
+Shangzhi Hong
 }

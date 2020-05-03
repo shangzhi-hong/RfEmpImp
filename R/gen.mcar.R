@@ -1,9 +1,15 @@
-#' Generate missing cells in the dataset
+#' Generate cells missing completely at random in the dataset
 #'
-#' @param df Input complete data frame
-#' @param prop.na Proportion of missing cells, default = 0.2
+#' @param df Input complete data frame.
 #'
-#' @return A data frame containing NAs
+#' @param prop.na Proportion of missing cells, default = 0.2.
+#'
+#' @param warn.empty.row Show warnings if empty rows were present.
+#'
+#' @param ... Other parameters (will be ignored).
+#'
+#' @return A data frame containing generated missing values.
+#'
 #' @export
 gen.mcar <- function(
     df,

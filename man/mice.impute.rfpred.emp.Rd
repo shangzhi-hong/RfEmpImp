@@ -11,9 +11,9 @@ mice.impute.rfpred.emp(
   wy = NULL,
   num.trees.cont = 10,
   sym.cont = TRUE,
-  pre.boot = TRUE,
   emp.err.cont = TRUE,
   alpha.emp = 0,
+  pre.boot = TRUE,
   num.threads = NULL,
   ...
 )
@@ -32,37 +32,42 @@ model is fitted. The \code{ry} generally distinguishes the observed
 \item{wy}{Logical vector of length \code{length(y)}. A \code{TRUE} value
 indicates locations in \code{y} for which imputations are created.}
 
-\item{num.trees.cont}{Number of trees to build for continuous variables,
-default to \code{NULL} to use the value of \code{num.trees}.}
+\item{num.trees.cont}{Number of trees to build for continuous variables.
+The default is \code{num.trees = 10}.}
 
-\item{sym.cont}{Logical, \code{TRUE} for assuming symmetric distribution of
-empirical prediction errors, \code{FALSE} for asymmetric distribution of
-empirical prediction errors, default to \code{TRUE}.
-This option is invalid when \code{emp.err.cont} is set to \code{FALSE}.}
+\item{sym.cont}{If \code{TRUE}, symmetric empirical distribution of
+out-of-bag prediction errors will be assumed; if \code{FALSE}, asymmetric
+distribution will be used. The default is \code{sym.cont = TRUE}.
+This option is invalid when \code{emp.err.cont = FALSE}.}
 
-\item{pre.boot}{Perform bootstrap prior to imputation to get 'proper'
-multiple imputation, i.e. accommodating sampling variation in estimating
-population regression parameters (see Shah et al. 2014).
+\item{emp.err.cont}{If \code{TRUE}, the empirical distribution of out-of-bag
+prediction errors will be used for constructing conditional distributions;
+if \code{FALSE}, for normality will be assumed for the distribution for the
+prediction errors, the variance estimate equals to overall out-of-bag
+prediction error, i.e. out-of-bag mean squared error (see Shah et al. 2014).}
+
+\item{alpha.emp}{The "significance level" for the empirical distribution of
+out-of-bag prediction errors, can be used for prevention for outliers
+(useful for highly skewed variables).
+For example, set alpha = 0.05 to use 95\% confidence level.
+The default is \code{alpha.emp = 0.0}, and the empirical distribution of
+out-of-bag prediction errors will be kept intact.
+This option is invalid when \code{emp.err.cont = FALSE}.}
+
+\item{pre.boot}{If \code{TRUE}, bootstrapping prior to imputation will be
+performed to perform 'proper' multiple imputation, for accommodating sampling
+variation in estimating population regression parameters
+(see Shah et al. 2014).
 It should be noted that if \code{TRUE}, this option is in effect even if the
 number of trees is set to one.}
 
-\item{emp.err.cont}{Logical, \code{TRUE} for using
-empirical error; \code{FALSE}, for assuming normal distribution for the
-prediction error, the variance equals to overall out-of-bag prediction error,
-i.e. mean squared error (see Shah et al. 2014).}
-
-\item{alpha.emp}{The "significance level" for empirical distribution of
-prediction errors, can be used for prevention for outliers (useful for highly
-skewed variables). For example, set alpha = 0.05 to use 95\% confidence level
-for empirical distribution of prediction errors.
-Default is \code{0.0}, and the empirical error distribution is kept intact.}
-
-\item{num.threads}{Number of threads. Default to \code{NULL} to use all the
-processors available.}
+\item{num.threads}{Number of threads for parallel computing. Default to
+\code{NULL} to use all the processors available.}
 
 \item{...}{Other arguments to pass down.}
 
-\item{num.trees}{Number of trees to build, default to \code{10}.}
+\item{num.trees}{Number of trees to build. The default is
+\code{num.trees = 10}.}
 }
 \value{
 Vector with imputed data, same type as \code{y}, and of length
@@ -83,7 +88,7 @@ of out-of-bag prediction errors of random forests.
 }
 \references{
 Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
-arXiv:2004.14823.
+Preprint (2020) arXiv:2004.14823.
 
 Zhang, Haozhe, et al. "Random Forest Prediction Intervals."
 The American Statistician (2019): 1-20.
@@ -96,5 +101,5 @@ Malley, James D., et al. "Probability machines." Methods of information
 in medicine 51.01 (2012): 74-81.
 }
 \author{
-Shangzhi Hong, Henry S. Lynn*
+Shangzhi Hong
 }

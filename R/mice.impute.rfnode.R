@@ -34,8 +34,11 @@
 #' @param wy Logical vector of length \code{length(y)}. A \code{TRUE} value
 #' indicates locations in \code{y} for which imputations are created.
 #'
-#' @param num.trees.node Number of trees to build for imputing continuous
-#' variables, default to \code{10}
+#' @param num.trees Number of trees to build, default to \code{10}.
+#'
+#' @param num.trees.node Number of trees to build, default to \code{10}. For
+#' function \code{mice.impute.rfnode} only.
+#'
 #'
 #' @param pre.boot Perform bootstrap prior to imputation to get 'proper'
 #' imputation, i.e. accommodating sampling variation in estimating population
@@ -53,15 +56,15 @@
 #' For testing purposes, and WILL CAUSE ERRORS for the \code{mice} sampler
 #' function.
 #'
-#' @param num.threads Number of threads. Default to \code{NULL} to use all the
-#' processors available.
+#' @param num.threads Number of threads for parallel computing. Default to
+#' \code{NULL} to use all the processors available.
 #'
 #' @param ... Other arguments to pass down
 #'
 #' @return Vector with imputed data, same type as \code{y}, and of length
 #' \code{sum(wy)}
 #'
-#' @author Shangzhi Hong, Henry S. Lynn*
+#' @author Shangzhi Hong
 #'
 #' @name mice.impute.rfnode
 #' @order 1
@@ -194,9 +197,9 @@ mice.impute.rfnode <- function(
 # 1. This script aims to find the corresponding nodes used for predictions
 # with better efficiency and consistency by using matrix manipulations
 # instead of joining tables (like "quantforesterror" in R package
-# "forestError") or equality testings (like "mice.rf" in R package "mice")
+# "forestError") or equality testings (like "mice.rf" in R package "mice").
 #
 # 2. The nodes is found by corresponding node IDs, which is different from
 # previous implementations like in Doove et al., that used equality testings
-# for double precision values and one-by-one way for constructing RF
+# for double precision values and one-by-one way for constructing RF.
 ############################################################################

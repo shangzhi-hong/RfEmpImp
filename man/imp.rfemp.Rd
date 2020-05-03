@@ -2,7 +2,7 @@
 % Please edit documentation in R/imp.rfemp.R
 \name{imp.rfemp}
 \alias{imp.rfemp}
-\title{Multiple imputation using chained random forests: RfEmp}
+\title{RfEmp: Multiple imputation using chained random forests}
 \usage{
 imp.rfemp(
   data,
@@ -14,6 +14,7 @@ imp.rfemp(
   pre.boot = TRUE,
   num.trees.cont = NULL,
   num.trees.cate = NULL,
+  num.threads = NULL,
   print.flag = FALSE,
   ...
 )
@@ -22,51 +23,60 @@ imp.rfemp(
 \item{data}{A data frame or a matrix containing the incomplete data. Missing
 values should be coded as \code{NA}s.}
 
-\item{num.imp}{Number of multiple imputations. The default is 5.}
+\item{num.imp}{Number of multiple imputations. The default is
+\code{num.imp = 5}.}
 
-\item{max.iter}{Number of iterations. The default is 5.}
+\item{max.iter}{Number of iterations. The default is \code{max.iter = 5}.}
 
-\item{num.trees}{Number of trees to build, default to \code{10}.}
+\item{num.trees}{Number of trees to build. The default is
+\code{num.trees = 10}.}
 
-\item{alpha.emp}{The "significance level" for empirical distribution of
-prediction errors, can be used for prevention for outliers (useful for highly
-skewed variables). For example, set alpha = 0.05 to use 95\% confidence level
-for empirical distribution of prediction errors.
-Default is \code{0.0}, and the empirical error distribution is kept intact.}
+\item{alpha.emp}{The "significance level" for the empirical distribution of
+out-of-bag prediction errors, can be used for prevention for outliers
+(useful for highly skewed variables).
+For example, set alpha = 0.05 to use 95\% confidence level.
+The default is \code{alpha.emp = 0.0}, and the empirical distribution of
+out-of-bag prediction errors will be kept intact.}
 
-\item{sym.cont}{Logical, \code{TRUE} for assuming symmetric distribution of
-empirical prediction errors, \code{FALSE} for asymmetric distribution of
-empirical prediction errors, default to \code{TRUE}.
-This option is invalid when \code{emp.err.cont} is set to \code{FALSE}.}
+\item{sym.cont}{If \code{TRUE}, symmetric empirical distribution of
+out-of-bag prediction errors will be assumed; if \code{FALSE}, asymmetric
+distribution will be used. The default is \code{sym.cont = TRUE}.}
 
-\item{pre.boot}{Perform bootstrap prior to imputation to get 'proper'
-multiple imputation, i.e. accommodating sampling variation in estimating
-population regression parameters (see Shah et al. 2014).
-It should be noted that if \code{TRUE}, this option is in effect even if the
+\item{pre.boot}{If \code{TRUE}, bootstrapping prior to imputation will be
+performed to perform 'proper' multiple imputation, for accommodating sampling
+variation in estimating population regression parameters
+(see Shah et al. 2014).
+It should be noted that if \code{TRUE}, this option is valid even if the
 number of trees is set to one.}
 
-\item{num.trees.cont}{Number of trees to build for continuous variables,
-default to \code{NULL} to use the value of \code{num.trees}.}
+\item{num.trees.cont}{Number of trees to build for continuous variables.
+The default is \code{num.trees.cont = NULL} and the value of \code{num.trees}
+will be used.}
 
 \item{num.trees.cate}{Number of trees to build for categorical variables,
-default to \code{NULL} to use the value of \code{num.trees}.}
+The default is \code{num.trees.cate = NULL} and the value of \code{num.trees}
+will be used.}
 
-\item{print.flag}{If \code{TRUE}, details will be sent to console.}
+\item{num.threads}{Number of threads for parallel computing. Default to
+\code{NULL} to use all the processors available.}
+
+\item{print.flag}{If \code{TRUE}, details will be sent to console. The
+default is \code{print.flag = FALSE}.}
 
 \item{...}{Other arguments to pass down.}
-
-\item{use.pred.prob.cate}{Logical, \code{TRUE} for assigning categories based
-on predicted probabilities, \code{FALSE} for imputation based on majority
-votes, default to \code{TRUE}.}
 }
 \value{
 An object of S3 class \code{mids}.
 }
 \description{
-\code{RfEmpImp} multiple imputation method for mixed types of variables,
+\code{RfEmpImp} multiple imputation method is for mixed types of variables,
 and calls corresponding functions based on variable types.
 Categorical variables should be of type \code{factor} or \code{logical}.
 
+\code{RfPred.Emp} is used for continuous variables, and \code{RfPred.Cate}
+is used for categorical variables.
+}
+\details{
 For continuous variables, \code{mice.impute.rfpred.emp} is called, performing
 imputation based on the empirical distribution of out-of-bag
 prediction errors of random forests.
@@ -74,25 +84,26 @@ prediction errors of random forests.
 For categorical variables, \code{mice.impute.rfpred.cate} is called,
 performing imputation based on predicted probabilities.
 }
-\details{
-\code{RfEmpImp} multiple imputation, the \code{mice.impute.rfemp} calls
-\code{mice.impute.rfpred.emp} if the variable is numeric,
-otherwise it calls \code{mice.impute.rfpred.cate}.
-}
 \examples{
 \donttest{
 nhanesFix <- nhanes
 
 nhanesFix[, c("age", "hyp")] <-
-lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
+    lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
 
-impRfEmpImp <- imp.rfemp(nhanesFix, printFlag = FALSE)
+imp <- imp.rfemp(nhanesFix)
+
+anl <- with(imp, lm(chl ~ bmi + hyp))
+
+pool <- pool(anl)
+
+reg.ests(pool)
 }
 
 }
 \references{
 Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
-arXiv:2004.14823.
+Preprint (2020) arXiv:2004.14823.
 
 Zhang, Haozhe, et al. "Random Forest Prediction Intervals."
 The American Statistician (2019): 1-20.
@@ -105,5 +116,5 @@ Malley, James D., et al. "Probability machines." Methods of information
 in medicine 51.01 (2012): 74-81.
 }
 \author{
-Shangzhi Hong, Henry S. Lynn*
+Shangzhi Hong
 }

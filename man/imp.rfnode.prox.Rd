@@ -18,19 +18,23 @@ imp.rfnode.prox(
 \item{data}{A data frame or a matrix containing the incomplete data. Missing
 values should be coded as \code{NA}s.}
 
-\item{num.imp}{Number of multiple imputations. The default is 5.}
+\item{num.imp}{Number of multiple imputations. The default is
+\code{num.imp = 5}.}
 
-\item{max.iter}{Number of iterations. The default is 5.}
+\item{max.iter}{Number of iterations. The default is \code{max.iter = 5}.}
 
-\item{num.trees}{Number of trees to build, default to \code{10}.}
+\item{num.trees}{Number of trees to build. The default is
+\code{num.trees = 10}.}
 
-\item{pre.boot}{Perform bootstrap prior to modeling to get 'proper'
-multiple imputation, i.e. accommodating sampling variation in estimating
-population regression parameters (see Shah et al. 2014).
+\item{pre.boot}{If \code{TRUE}, bootstrapping prior to imputation will be
+performed to perform 'proper' multiple imputation, for accommodating sampling
+variation in estimating population regression parameters
+(see Shah et al. 2014).
 It should be noted that if \code{TRUE}, this option is in effect even if the
 number of trees is set to one.}
 
-\item{print.flag}{If \code{TRUE}, details will be sent to console.}
+\item{print.flag}{If \code{TRUE}, details will be sent to console. The
+default is \code{print.flag = FALSE}.}
 
 \item{...}{Other arguments to pass down.}
 }
@@ -52,7 +56,7 @@ used for imputation may not be necessarily be contained in the node.
 \donttest{
 nhanesFix <- nhanes
 nhanesFix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
-impRfEmpImp <- imp.rfnode.prox(nhanesFix, printFlag = FALSE)
+impRfEmpImp <- imp.rfnode.prox(nhanesFix)
 }
 
 }
@@ -71,5 +75,5 @@ Malley, James D., et al. "Probability machines." Methods of information
 in medicine 51.01 (2012): 74-81.
 }
 \author{
-Shangzhi Hong, Henry S. Lynn*
+Shangzhi Hong
 }

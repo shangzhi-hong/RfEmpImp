@@ -57,8 +57,8 @@ model is fitted. The \code{ry} generally distinguishes the observed
 \item{wy}{Logical vector of length \code{length(y)}. A \code{TRUE} value
 indicates locations in \code{y} for which imputations are created.}
 
-\item{num.trees.node}{Number of trees to build for imputing continuous
-variables, default to \code{10}}
+\item{num.trees.node}{Number of trees to build, default to \code{10}. For
+function \code{mice.impute.rfnode} only.}
 
 \item{pre.boot}{Perform bootstrap prior to imputation to get 'proper'
 imputation, i.e. accommodating sampling variation in estimating population
@@ -76,10 +76,12 @@ if \code{FALSE}, the corresponding observations numbers will be returned.
 For testing purposes, and WILL CAUSE ERRORS for the \code{mice} sampler
 function.}
 
-\item{num.threads}{Number of threads. Default to \code{NULL} to use all the
-processors available.}
+\item{num.threads}{Number of threads for parallel computing. Default to
+\code{NULL} to use all the processors available.}
 
 \item{...}{Other arguments to pass down}
+
+\item{num.trees}{Number of trees to build, default to \code{10}.}
 }
 \value{
 Vector with imputed data, same type as \code{y}, and of length
@@ -133,5 +135,5 @@ interaction effects."
 Computational Statistics & Data Analysis 72 (2014): 92-104.
 }
 \author{
-Shangzhi Hong, Henry S. Lynn*
+Shangzhi Hong
 }

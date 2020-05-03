@@ -7,9 +7,8 @@
 #' probabilities.
 #'
 #' @details
-#' \code{RfEmpImp} Imputation sampler for: continuous variables based on the
-#' empirical distribution of out-of-bag prediction errors of random forests;
-#' categorical variables based on probability machines
+#' \code{RfEmpImp} Imputation sampler for: continuous variables based on
+#' probability machines
 #'
 #' @param y Vector to be imputed
 #'
@@ -24,17 +23,6 @@
 #' @param wy Logical vector of length \code{length(y)}. A \code{TRUE} value
 #' indicates locations in \code{y} for which imputations are created.
 #'
-#' @param num.trees Number of trees to build, default to \code{10}; overrides
-#' \code{num.trees.cont} and \code{num.trees.cate}
-#'
-#' @param num.trees.cont Number of trees to build for continuous variables,
-#' default to \code{10}
-#'
-#' @param sym.cont Logical, \code{TRUE} for assuming symmetric empirical error
-#' distribution, \code{FALSE} for asymmetric empirical error distribution,
-#' default to \code{TRUE}. This option is ignored when \code{emp.err.cont} is
-#' set to \code{FALSE}.
-#'
 #' @param num.trees.cate Number of trees to build for categorical variables,
 #' default to \code{10}
 #'
@@ -43,22 +31,13 @@
 #' votes, default to \code{TRUE}
 #'
 #' @param pre.boot Perform bootstrap prior to imputation to get 'proper'
-#' imputation, i.e. accommodating sampling variation in estimating population
-#' regression parameters (see Shah et al. 2014)
+#' multiple imputation, i.e. accommodating sampling variation in estimating
+#' population regression parameters (see Shah et al. 2014).
+#' It should be noted that if \code{TRUE}, this option is in effect even if the
+#' number of trees is set to one.
 #'
-#' @param emp.err.cont Logical, \code{TRUE} for using
-#' empirical error; \code{FALSE}, for assuming normal distribution for the
-#' prediction error, the variance equals to overall out-of-bag prediction error,
-#' i.e. mean squared error (see Shah et al. 2014).
-#'
-#' @param alpha.emp The "significance level" for empirical error
-#' distribution in prevention for outliers.
-#' Set alpha = 0.05 to use 95\% confidence level for empirical error
-#' distribution. Default is \code{0.0}, and the empirical error distribution is
-#' kept intact.
-#'
-#' @param num.threads Number of threads. Default to \code{NULL} to use all the
-#' processors available.
+#' @param num.threads Number of threads for parallel computing. Default to
+#' \code{NULL} to use all the processors available.
 #'
 #' @param ... Other arguments to pass down
 #'
@@ -68,11 +47,11 @@
 #' @name mice.impute.rfemp
 #' @order 1
 #'
-#' @author Shangzhi Hong, Henry S. Lynn*
+#' @author Shangzhi Hong
 #'
 #' @references
-#' Zhang, Haozhe, et al. "Random Forest Prediction Intervals."
-#' The American Statistician just-accepted (2019): 1-20.
+#' Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
+#' arXiv:2004.14823.
 #'
 #' Shah, Anoop D., et al. "Comparison of random forest and parametric
 #' imputation models for imputing missing data using MICE: a CALIBER study."

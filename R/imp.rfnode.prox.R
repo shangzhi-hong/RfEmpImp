@@ -14,19 +14,23 @@
 #' @param data A data frame or a matrix containing the incomplete data. Missing
 #' values should be coded as \code{NA}s.
 #'
-#' @param num.imp Number of multiple imputations. The default is 5.
+#' @param num.imp Number of multiple imputations. The default is
+#' \code{num.imp = 5}.
 #'
-#' @param max.iter Number of iterations. The default is 5.
+#' @param max.iter Number of iterations. The default is \code{max.iter = 5}.
 #'
-#' @param num.trees Number of trees to build, default to \code{10}.
+#' @param num.trees Number of trees to build. The default is
+#' \code{num.trees = 10}.
 #'
-#' @param pre.boot Perform bootstrap prior to modeling to get 'proper'
-#' multiple imputation, i.e. accommodating sampling variation in estimating
-#' population regression parameters (see Shah et al. 2014).
+#' @param pre.boot If \code{TRUE}, bootstrapping prior to imputation will be
+#' performed to perform 'proper' multiple imputation, for accommodating sampling
+#' variation in estimating population regression parameters
+#' (see Shah et al. 2014).
 #' It should be noted that if \code{TRUE}, this option is in effect even if the
 #' number of trees is set to one.
 #'
-#' @param print.flag If \code{TRUE}, details will be sent to console.
+#' @param print.flag If \code{TRUE}, details will be sent to console. The
+#' default is \code{print.flag = FALSE}.
 #'
 #' @param ... Other arguments to pass down.
 #'
@@ -34,7 +38,7 @@
 #'
 #' @name imp.rfnode.prox
 #'
-#' @author Shangzhi Hong, Henry S. Lynn*
+#' @author Shangzhi Hong
 #'
 #' @references
 #' Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
@@ -54,7 +58,7 @@
 #' \donttest{
 #' nhanesFix <- nhanes
 #' nhanesFix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
-#' impRfEmpImp <- imp.rfnode.prox(nhanesFix, printFlag = FALSE)
+#' impRfEmpImp <- imp.rfnode.prox(nhanesFix)
 #' }
 #'
 #' @export
