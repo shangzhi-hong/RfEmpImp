@@ -29,9 +29,11 @@ before the package being approved.
 Currently, interested users can install the package from GitHub:
 
 ``` r
-# Install
+# Install from GitHub online
 if(!"remotes" %in% installed.packages()) install.packages("remotes")
 remotes::install_github("shangzhi-hong/RfEmpImp")
+# Install from downloaded source file
+install.packages(path_to_source_file, repos = NULL, type = "source")
 # Attach
 library(RfEmpImp)
 ```
