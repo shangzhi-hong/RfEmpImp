@@ -2,7 +2,8 @@
 % Please edit documentation in R/imp.rfemp.R
 \name{imp.rfemp}
 \alias{imp.rfemp}
-\title{RfEmp: Multiple imputation using chained random forests}
+\title{Perform multiple imputation based on the empirical error distribution of
+random forests}
 \usage{
 imp.rfemp(
   data,
@@ -86,20 +87,17 @@ For categorical variables, \code{mice.impute.rfpred.cate} is called,
 performing imputation based on predicted probabilities.
 }
 \examples{
-\donttest{
-nhanesFix <- nhanes
-
-nhanesFix[, c("age", "hyp")] <-
-    lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
-
-imp <- imp.rfemp(nhanesFix)
-
+# Prepare data: convert categorical variables to factors
+nhanes.fix <- nhanes
+nhanes.fix[, c("age", "hyp")] <-  lapply(nhanes[, c("age", "hyp")], as.factor)
+# Perform imputation using imp.rfemp
+imp <- imp.rfemp(nhanes.fix)
+# Do repeated analyses
 anl <- with(imp, lm(chl ~ bmi + hyp))
-
+# Pool the results
 pool <- pool(anl)
-
+# Get pooled estimates
 reg.ests(pool)
-}
 
 }
 \references{

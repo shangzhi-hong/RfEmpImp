@@ -5,7 +5,8 @@
 \alias{mice.impute.rfnode}
 \alias{mice.impute.rfnode.cond}
 \alias{mice.impute.rfnode.prox}
-\title{Multiple imputation based on predicting nodes of random forest}
+\title{Sampling function for multiple imputation based on predicting nodes of
+random forests}
 \usage{
 mice.impute.rfnode(
   y,
@@ -88,6 +89,10 @@ Vector with imputed data, same type as \code{y}, and of length
 \code{sum(wy)}
 }
 \description{
+Please note that functions with names starting with "mice.impute" are
+exported to be visible for the mice sampler functions. Please do not call
+these functions directly unless you know exactly what you are doing.
+
 \code{RfNode} imputation methods, adapter for \code{mice} samplers.
 These functions can be called by the \code{mice} sampler functions.
 
@@ -109,20 +114,17 @@ this function. By default, \code{mice.impute.rfnode} works like
 Users can get more flexibility from \code{mice.impute.rfnode} function,
 }
 \examples{
-\donttest{
-nhanesFix <- nhanes
+# Prepare data: convert categorical variables to factors
+nhanes.fix <- nhanes
+nhanes.fix[, c("age", "hyp")] <-  lapply(nhanes[, c("age", "hyp")], as.factor)
 
-nhanesFix[, c("age", "hyp")] <-
-lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
-
-# Using "rfnode.cond"
-impRfNodeCond <- mice(nhanesFix, method = "rfnode.cond", m = 10,
-maxit = 10, maxcor = 1.0, printFlag = FALSE)
+# Using "rfnode.cond" or "rfnode"
+impRfNodeCond <- mice(nhanes.fix, method = "rfnode.cond", m = 5,
+maxit = 5, maxcor = 1.0, printFlag = FALSE)
 
 # Using "rfnode.prox"
-impRfNodeProx <- mice(nhanesFix, method = "rfnode.prox", m = 10,
-maxit = 10, maxcor = 1.0, printFlag = FALSE)
-}
+impRfNodeProx <- mice(nhanes.fix, method = "rfnode.prox", m = 5,
+maxit = 5, maxcor = 1.0, printFlag = FALSE)
 
 }
 \references{

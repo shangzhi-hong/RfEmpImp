@@ -1,5 +1,5 @@
-#' Multiple imputation using chained random forests and conditional
-#' distributions formed by predicting nodes
+#' Perform multiple imputation based on the conditional distribution formed by
+#' prediction nodes of random forests
 #'
 #' @description
 #' \code{RfEmpImp} multiple imputation method for mixed types of variables,
@@ -55,11 +55,17 @@
 #' in medicine 51.01 (2012): 74-81.
 #'
 #' @examples
-#' \donttest{
-#' nhanesFix <- nhanes
-#' nhanesFix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
-#' impRfEmpImp <- imp.rfnode.cond(nhanesFix)
-#' }
+#' # Prepare data: convert categorical variables to factors
+#' nhanes.fix <- nhanes
+#' nhanes.fix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
+#' # Perform imputation using imp.rfnode.cond
+#' imp <- imp.rfnode.cond(nhanes.fix)
+#' # Do repeated analyses
+#' anl <- with(imp, lm(chl ~ bmi + hyp))
+#' # Pool the results
+#' pool <- pool(anl)
+#' # Get pooled estimates
+#' reg.ests(pool)
 #'
 #' @export
 imp.rfnode.cond <- function(

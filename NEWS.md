@@ -1,6 +1,10 @@
+## RfEmpImp 2.0.2
+* Updated documentation for initial CRAN release
+* Added logo file
+
 ## RfEmpImp 2.0.0
-* Support for imputation using predicting nodes of random forests
+* Added support for imputation using predicting nodes of random forests
 
 ## RfEmpImp 1.0.0
-* First public release on CRAN
+* First public release
 * Unit tests ready

@@ -2,8 +2,8 @@
 % Please edit documentation in R/imp.rfnode.cond.R
 \name{imp.rfnode.cond}
 \alias{imp.rfnode.cond}
-\title{Multiple imputation using chained random forests and conditional
-distributions formed by predicting nodes}
+\title{Perform multiple imputation based on the conditional distribution formed by
+prediction nodes of random forests}
 \usage{
 imp.rfnode.cond(
   data,
@@ -53,11 +53,17 @@ non-missing observations used for imputation will be found by the observations
 included in the predicting nodes in the random trees.
 }
 \examples{
-\donttest{
-nhanesFix <- nhanes
-nhanesFix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
-impRfEmpImp <- imp.rfnode.cond(nhanesFix)
-}
+# Prepare data: convert categorical variables to factors
+nhanes.fix <- nhanes
+nhanes.fix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
+# Perform imputation using imp.rfnode.cond
+imp <- imp.rfnode.cond(nhanes.fix)
+# Do repeated analyses
+anl <- with(imp, lm(chl ~ bmi + hyp))
+# Pool the results
+pool <- pool(anl)
+# Get pooled estimates
+reg.ests(pool)
 
 }
 \references{

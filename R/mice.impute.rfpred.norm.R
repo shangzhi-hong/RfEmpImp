@@ -1,6 +1,10 @@
 #' Multiple imputation using chained random forests: RfPred.Norm
 #'
 #' @description
+#' Please note that functions with names starting with "mice.impute" are
+#' exported to be visible for the mice sampler functions. Please do not call
+#' these functions directly unless you know exactly what you are doing.
+#'
 #' For continuous variables only.
 #'
 #' This function is for \code{RfPred.Norm}
@@ -52,6 +56,12 @@
 #' Shah, Anoop D., et al. "Comparison of random forest and parametric
 #' imputation models for imputing missing data using MICE: a CALIBER study."
 #' American journal of epidemiology 179.6 (2014): 764-774.
+#'
+#' @examples
+#' # Users can set method = "rfpred.norm" in call to mice to use this method
+#' data("airquality")
+#' impObj <- mice(airquality, method = "rfpred.norm", m = 5,
+#' maxit = 5, maxcor = 1.0, eps = .Machine$double.xmin, printFlag = FALSE)
 #'
 #' @export
 mice.impute.rfpred.norm <- function(

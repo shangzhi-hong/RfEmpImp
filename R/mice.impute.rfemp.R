@@ -1,6 +1,11 @@
-#' Multiple imputation using chained random forests: RfEmp
+#' Sampling function for multiple imputation based on the empirical error
+#' distribution of random forests
 #'
 #' @description
+#' Please note that functions with names starting with "mice.impute" are
+#' exported to be visible for the mice sampler functions. Please do not call
+#' these functions directly unless you know exactly what you are doing.
+#'
 #' \code{RfEmpImp} multiple imputation method, adapter for \code{mice} samplers.
 #' These functions can be called by the \code{mice} sampler function. In the
 #' \code{mice()} function, set \code{method = "rfemp"} to call it.
@@ -84,15 +89,14 @@
 #' in medicine 51.01 (2012): 74-81.
 #'
 #' @examples
-#' \donttest{
-#' nhanesFix <- nhanes
-#'
-#' nhanesFix[, c("age", "hyp")] <-
-#' lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
-#'
-#' impRfEmpImp <- mice(nhanesFix, method = "rfemp", m = 10,
-#' maxit = 10, maxcor = 1.0, printFlag = FALSE)
-#' }
+#' # Prepare data: convert categorical variables to factors
+#' nhanes.fix <- nhanes
+#' nhanes.fix[, c("age", "hyp")] <-  lapply(nhanes[, c("age", "hyp")], as.factor)
+#' # This function is exported to be visible to the mice sampler functions, and
+#' # users can set method = "rfemp" in call to mice to use this function.
+#' # Users are recommended to use the imp.rfemp function instead:
+#' impObj <- mice(nhanes.fix, method = "rfemp", m = 5,
+#' maxit = 5, maxcor = 1.0, eps = .Machine$double.xmin, printFlag = FALSE)
 #'
 #' @export
 mice.impute.rfemp <- function(

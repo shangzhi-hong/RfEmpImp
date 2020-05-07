@@ -1,7 +1,7 @@
 #' Multiple imputation using chained random forests and node proximities
 #'
 #' @description
-#' \code{RfEmpImp} multiple imputation method for mixed types of variables,
+#' \code{RfNodeProx} multiple imputation method is for mixed types of variables,
 #' using conditional distributions formed by proximity measures of random
 #' forests (both in-bag and out-of-bag observations will be included).
 #'
@@ -55,11 +55,17 @@
 #' in medicine 51.01 (2012): 74-81.
 #'
 #' @examples
-#' \donttest{
-#' nhanesFix <- nhanes
-#' nhanesFix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
-#' impRfEmpImp <- imp.rfnode.prox(nhanesFix)
-#' }
+#' # Prepare data: convert categorical variables to factors
+#' nhanes.fix <- nhanes
+#' nhanes.fix[, c("age", "hyp")] <-  lapply(nhanes[, c("age", "hyp")], as.factor)
+#' # Perform imputation using imp.rfnode.prox
+#' imp <- imp.rfnode.prox(nhanes.fix)
+#' # Do repeated analyses
+#' anl <- with(imp, lm(chl ~ bmi + hyp))
+#' # Pool the results
+#' pool <- pool(anl)
+#' # Get pooled estimates
+#' reg.ests(pool)
 #'
 #' @export
 imp.rfnode.prox <- function(

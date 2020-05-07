@@ -1,11 +1,15 @@
 #' Multiple imputation using chained random forests: RfPred.Emp
 #'
 #' @description
+#' Please note that functions with names starting with "mice.impute" are
+#' exported to be visible for the mice sampler functions. Please do not call
+#' these functions directly unless you know exactly what you are doing.
+#'
 #' For continuous variables only.
 #'
-#' This function is for \code{RfPred.Emp}
-#' multiple imputation method, adapter for \code{mice} samplers.
-#' In the \code{mice()} function, set \code{method = "rfpred.emp"} to call it.
+#' This function is for \code{RfPred.Emp} multiple imputation method, adapter
+#' for \code{mice} samplers. In the \code{mice()} function, set
+#' \code{method = "rfpred.emp"} to call it.
 #'
 #' The function performs multiple imputation based on the empirical distribution
 #' of out-of-bag prediction errors of random forests.
@@ -84,6 +88,12 @@
 #'
 #' Malley, James D., et al. "Probability machines." Methods of information
 #' in medicine 51.01 (2012): 74-81.
+#'
+#' @examples
+#' # Users can set method = "rfpred.emp" in call to mice to use this method
+#' data("airquality")
+#' impObj <- mice(airquality, method = "rfpred.emp", m = 5,
+#' maxit = 5, maxcor = 1.0, eps = .Machine$double.xmin, printFlag = FALSE)
 #'
 #' @export
 mice.impute.rfpred.emp <- function(

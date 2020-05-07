@@ -1,14 +1,21 @@
 Package: RfEmpImp
 Type: Package
 Title: Multiple Imputation using Chained Random Forests
-Version: 2.0.1
-Authors@R: c(person("Shangzhi", "Hong", role = c("cre"),
+Version: 2.0.2
+Authors@R: c(person("Shangzhi", "Hong", role = c("aut", "cre"),
             email = "shangzhi-hong@hotmail.com"),
-            person("Shangzhi", "Hong", role = c("aut")),
-            person("Henry S.", "Lynn", role = c("aut", "ths")))
+            person("Henry S.", "Lynn", role = c("ths")))
 Maintainer: Shangzhi Hong <shangzhi-hong@hotmail.com>
-Description: Multiple imputation using chained random forests, sampler adapters
-    for MICE.
+Description: Functions for methods for multiple imputation using chained random
+    forests. Implemented algorithms can handle missing data in both continuous
+    and categorical variables by using prediction-based or node-based
+    conditional distributions constructed using random forests. For
+    prediction-based imputation, the method based on the empirical distribution
+    of out-of-bag prediction errors of random forests and the method based on
+    normality assumption are provided. For node-based imputation, the method
+    based on the conditional distribution formed by predicting nodes of random
+    forests and the method based on measures of proximities of random forests
+    are provided.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

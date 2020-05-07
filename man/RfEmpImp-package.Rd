@@ -6,8 +6,18 @@
 \alias{RfEmpImp-package}
 \title{RfEmpImp: Multiple Imputation using Chained Random Forests}
 \description{
-Multiple imputation using chained random forests, sampler adapters
-    for MICE.
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
+Functions for methods for multiple imputation using chained random
+    forests. Implemented algorithms can handle missing data in both continuous
+    and categorical variables by using prediction-based or node-based
+    conditional distributions constructed using random forests. For
+    prediction-based imputation, the method based on the empirical distribution
+    of out-of-bag prediction errors of random forests and the method based on
+    normality assumption are provided. For node-based imputation, the method
+    based on the conditional distribution formed by predicting nodes of random
+    forests and the method based on measures of proximities of random forests
+    are provided.
 }
 \seealso{
 Useful links:
@@ -20,9 +30,8 @@ Useful links:
 \author{
 \strong{Maintainer}: Shangzhi Hong \email{shangzhi-hong@hotmail.com}
 
-Authors:
+Other contributors:
 \itemize{
-  \item Shangzhi Hong
   \item Henry S. Lynn [thesis advisor]
 }
 

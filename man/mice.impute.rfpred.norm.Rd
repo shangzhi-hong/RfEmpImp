@@ -49,6 +49,10 @@ Vector with imputed data, same type as \code{y}, and of length
 \code{sum(wy)}.
 }
 \description{
+Please note that functions with names starting with "mice.impute" are
+exported to be visible for the mice sampler functions. Please do not call
+these functions directly unless you know exactly what you are doing.
+
 For continuous variables only.
 
 This function is for \code{RfPred.Norm}
@@ -60,6 +64,13 @@ out-of-bag mean squared error as the estimate for variance.
 }
 \details{
 \code{RfPred.Norm} imputation sampler.
+}
+\examples{
+# Users can set method = "rfpred.norm" in call to mice to use this method
+data("airquality")
+impObj <- mice(airquality, method = "rfpred.norm", m = 5,
+maxit = 5, maxcor = 1.0, eps = .Machine$double.xmin, printFlag = FALSE)
+
 }
 \references{
 Shah, Anoop D., et al. "Comparison of random forest and parametric

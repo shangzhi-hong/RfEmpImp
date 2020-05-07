@@ -2,6 +2,10 @@
 #' of random forest
 #'
 #' @description
+#' Please note that functions with names starting with "mice.impute" are
+#' exported to be visible for the mice sampler functions. Please do not call
+#' these functions directly unless you know exactly what you are doing.
+#'
 #' Part of project \code{RfEmpImp}, the function \code{mice.impute.rfpred.cate}
 #' is for mixed categorical variables, performing imputation based on predicted
 #' probabilities.
@@ -60,6 +64,18 @@
 #' Malley, James D., et al. "Probability machines." Methods of information
 #' in medicine 51.01 (2012): 74-81.
 #'
+#' @examples
+#' # Prepare data
+#' mtcars.catmcar <- mtcars
+#' mtcars.catmcar[, c("gear", "carb")] <-
+#'     gen.mcar(mtcars.catmcar[, c("gear", "carb")], warn.empty.row = FALSE)
+#' mtcars.catmcar[, c("gear", "carb")] <-
+#'     lapply(mtcars.catmcar[, c("gear", "carb")], as.factor)
+#' # Perform imputation
+#' impObj <- mice(mtcars.catmcar, method = "rfpred.cate", m = 5,
+#'                maxit = 5, maxcor = 1.0,
+#'                eps = .Machine$double.xmin,
+#'                printFlag = FALSE)
 #' @export
 mice.impute.rfpred.cate <- function(
     y,

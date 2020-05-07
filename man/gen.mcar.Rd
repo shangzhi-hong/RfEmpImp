@@ -21,3 +21,8 @@ A data frame containing generated missing values.
 \description{
 Generate missing (completely at random) cells in the dataset
 }
+\examples{
+data("mtcars")
+mtcars.mcar <- gen.mcar(mtcars, warn.empty.row = FALSE)
+
+}

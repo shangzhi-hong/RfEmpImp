@@ -90,9 +90,17 @@ Vector with imputed data, same type as \code{y}, and of length
 \code{sum(wy)}.
 }
 \description{
+Please note that functions with names starting with "mice.impute" are
+exported to be visible for the mice sampler functions. Please do not call
+these functions directly unless you know exactly what you are doing.
+
 Part of project \code{RfEmpImp}, the function \code{mice.impute.rfpred.cate}
 is for mixed categorical variables, performing imputation based on predicted
 probabilities.
+
+Please note that functions with names starting with "mice.impute" are
+exported to be visible for the mice sampler functions. Please do not call
+these functions directly unless you know exactly what you are doing.
 
 \code{RfEmpImp} multiple imputation method, adapter for \code{mice} samplers.
 These functions can be called by the \code{mice} sampler function. In the
@@ -118,15 +126,25 @@ probability machines
 otherwise it calls \code{mice.impute.rfpred.cate}.
 }
 \examples{
-\donttest{
-nhanesFix <- nhanes
-
-nhanesFix[, c("age", "hyp")] <-
-lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
-
-impRfEmpImp <- mice(nhanesFix, method = "rfemp", m = 10,
-maxit = 10, maxcor = 1.0, printFlag = FALSE)
-}
+# Prepare data
+mtcars.catmcar <- mtcars
+mtcars.catmcar[, c("gear", "carb")] <-
+    gen.mcar(mtcars.catmcar[, c("gear", "carb")], warn.empty.row = FALSE)
+mtcars.catmcar[, c("gear", "carb")] <-
+    lapply(mtcars.catmcar[, c("gear", "carb")], as.factor)
+# Perform imputation
+impObj <- mice(mtcars.catmcar, method = "rfpred.cate", m = 5,
+               maxit = 5, maxcor = 1.0,
+               eps = .Machine$double.xmin,
+               printFlag = FALSE)
+# Prepare data: convert categorical variables to factors
+nhanes.fix <- nhanes
+nhanes.fix[, c("age", "hyp")] <-  lapply(nhanes[, c("age", "hyp")], as.factor)
+# This function is exported to be visible to the mice sampler functions, and
+# users can set method = "rfemp" in call to mice to use this function.
+# Users are recommended to use the imp.rfemp function instead:
+impObj <- mice(nhanes.fix, method = "rfemp", m = 5,
+maxit = 5, maxcor = 1.0, eps = .Machine$double.xmin, printFlag = FALSE)
 
 }
 \references{
