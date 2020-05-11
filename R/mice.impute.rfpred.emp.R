@@ -120,8 +120,7 @@ mice.impute.rfpred.emp <- function(
         xObs <- x[ry, , drop = FALSE]
     }
     xMis <- x[wy, , drop = FALSE]
-    # TODO: Add `...` back to ranger, and add `suppressWarnings`
-    # after release of v0.12.3
+    # TODO: Add `...` back to ranger when updates available
     rfObj <- ranger(
         x = xObs,
         y = yObs,

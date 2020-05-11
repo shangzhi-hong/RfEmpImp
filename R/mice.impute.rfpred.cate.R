@@ -112,7 +112,7 @@ mice.impute.rfpred.cate <- function(
         # Construct predictions based on vote probs averaged over nodes.
         # Suppress warnings like:
         # "Dropped unused factor level(s) in dependent variable"
-        # TODO: Add `...` back to ranger after release of v0.12.3
+        # TODO: Add `...` back to ranger when updates available
         rangerObjProb <- suppressWarnings(ranger(
             x = xObs,
             y = yObs,

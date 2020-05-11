@@ -124,7 +124,6 @@ imp.rfemp <- function(
         num.threads = num.threads,
         printFlag = print.flag,
         # Try to avoid the influences of remove.lindep()
-        # Change to `eps = 0` after release of mice v3.8.4
         maxcor = 1.0,
         eps = .Machine$double.xmin,
         ...))

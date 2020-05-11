@@ -120,7 +120,7 @@ mice.impute.rfnode <- function(
     }
     xMis <- x[wy, , drop = FALSE]
     # Output in-bag list when using conditional distribution
-    # TODO: Add `...` back to ranger after release of v0.12.3
+    # TODO: Add `...` back to ranger when updates available
     rfObj <- suppressWarnings(ranger(x = xObs,
                     y = yObs,
                     num.trees = num.trees.node,
