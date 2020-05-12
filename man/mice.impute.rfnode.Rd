@@ -116,7 +116,7 @@ Users can get more flexibility from \code{mice.impute.rfnode} function,
 \examples{
 # Prepare data: convert categorical variables to factors
 nhanes.fix <- nhanes
-nhanes.fix[, c("age", "hyp")] <-  lapply(nhanes[, c("age", "hyp")], as.factor)
+nhanes.fix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
 
 # Using "rfnode.cond" or "rfnode"
 impRfNodeCond <- mice(nhanes.fix, method = "rfnode.cond", m = 5,
@@ -128,8 +128,8 @@ maxit = 5, maxcor = 1.0, printFlag = FALSE)
 
 }
 \references{
-Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
-arXiv:2004.14823.
+Hong, Shangzhi, et al. "Multiple imputation using chained random forests."
+Preprint, submitted April 30, 2020. https://arxiv.org/abs/2004.14823.
 
 Doove, Lisa L., Stef Van Buuren, and Elise Dusseldorp.
 "Recursive partitioning for missing data imputation in the presence of

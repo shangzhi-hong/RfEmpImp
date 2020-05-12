@@ -1,7 +1,7 @@
 Package: RfEmpImp
 Type: Package
 Title: Multiple Imputation using Chained Random Forests
-Version: 2.0.2
+Version: 2.0.3
 Authors@R: c(person("Shangzhi", "Hong", role = c("aut", "cre"),
             email = "shangzhi-hong@hotmail.com"),
             person("Henry S.", "Lynn", role = c("ths")))
@@ -15,7 +15,8 @@ Description: Functions for methods for multiple imputation using chained random
     normality assumption are provided. For node-based imputation, the method
     based on the conditional distribution formed by predicting nodes of random
     forests and the method based on measures of proximities of random forests
-    are provided.
+    are provided. More details of the statistical methods can be found in 
+    Hong et al. (2020) <arXiv:2004.14823>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

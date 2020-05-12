@@ -17,7 +17,8 @@ Functions for methods for multiple imputation using chained random
     normality assumption are provided. For node-based imputation, the method
     based on the conditional distribution formed by predicting nodes of random
     forests and the method based on measures of proximities of random forests
-    are provided.
+    are provided. More details of the statistical methods can be found in 
+    Hong et al. (2020) <arXiv:2004.14823>.
 }
 \seealso{
 Useful links:
