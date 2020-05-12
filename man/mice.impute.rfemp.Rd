@@ -139,7 +139,7 @@ impObj <- mice(mtcars.catmcar, method = "rfpred.cate", m = 5,
                printFlag = FALSE)
 # Prepare data: convert categorical variables to factors
 nhanes.fix <- nhanes
-nhanes.fix[, c("age", "hyp")] <-  lapply(nhanes[, c("age", "hyp")], as.factor)
+nhanes.fix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
 # This function is exported to be visible to the mice sampler functions, and
 # users can set method = "rfemp" in call to mice to use this function.
 # Users are recommended to use the imp.rfemp function instead:
@@ -148,8 +148,8 @@ maxit = 5, maxcor = 1.0, eps = .Machine$double.xmin, printFlag = FALSE)
 
 }
 \references{
-Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
-arXiv:2004.14823.
+Hong, Shangzhi, et al. "Multiple imputation using chained random forests."
+Preprint, submitted April 30, 2020. https://arxiv.org/abs/2004.14823.
 
 Shah, Anoop D., et al. "Comparison of random forest and parametric
 imputation models for imputing missing data using MICE: a CALIBER study."
@@ -158,8 +158,8 @@ American journal of epidemiology 179.6 (2014): 764-774.
 Malley, James D., et al. "Probability machines." Methods of information
 in medicine 51.01 (2012): 74-81.
 
-Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
-Preprint (2020) arXiv:2004.14823.
+Hong, Shangzhi, et al. "Multiple imputation using chained random forests."
+Preprint, submitted April 30, 2020. https://arxiv.org/abs/2004.14823.
 
 Zhang, Haozhe, et al. "Random Forest Prediction Intervals."
 The American Statistician (2019): 1-20.

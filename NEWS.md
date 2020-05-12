@@ -1,4 +1,4 @@
-## RfEmpImp 2.0.2
+## RfEmpImp 2.0.3
 * Updated documentation for initial CRAN release
 * Added logo file
 
