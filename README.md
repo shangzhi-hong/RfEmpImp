@@ -133,7 +133,8 @@ quad-core laptop).
 ## References
 
 1.  Hong, Shangzhi, et al. “Multiple imputation using chained random
-    forests” Preprint (2020) arXiv:2004.14823.
+    forests.” Preprint, submitted April 30, 2020.
+    <https://arxiv.org/abs/2004.14823>.
 2.  Zhang, Haozhe, et al. “Random forest prediction intervals.” The
     American Statistician (2019): 1-15.
 3.  Wright, Marvin N., and Andreas Ziegler. “ranger: A Fast

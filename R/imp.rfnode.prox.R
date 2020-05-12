@@ -41,8 +41,8 @@
 #' @author Shangzhi Hong
 #'
 #' @references
-#' Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
-#' arXiv:2004.14823.
+#' Hong, Shangzhi, et al. "Multiple imputation using chained random forests."
+#' Preprint, submitted April 30, 2020. https://arxiv.org/abs/2004.14823.
 #'
 #' Zhang, Haozhe, et al. "Random Forest Prediction Intervals."
 #' The American Statistician (2019): 1-20.
@@ -57,7 +57,7 @@
 #' @examples
 #' # Prepare data: convert categorical variables to factors
 #' nhanes.fix <- nhanes
-#' nhanes.fix[, c("age", "hyp")] <-  lapply(nhanes[, c("age", "hyp")], as.factor)
+#' nhanes.fix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
 #' # Perform imputation using imp.rfnode.prox
 #' imp <- imp.rfnode.prox(nhanes.fix)
 #' # Do repeated analyses

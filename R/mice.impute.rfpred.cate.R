@@ -54,8 +54,8 @@
 #' @author Shangzhi Hong
 #'
 #' @references
-#' Hong, Shangzhi, et al. "Multiple imputation using chained random forests"
-#' arXiv:2004.14823.
+#' Hong, Shangzhi, et al. "Multiple imputation using chained random forests."
+#' Preprint, submitted April 30, 2020. https://arxiv.org/abs/2004.14823.
 #'
 #' Shah, Anoop D., et al. "Comparison of random forest and parametric
 #' imputation models for imputing missing data using MICE: a CALIBER study."

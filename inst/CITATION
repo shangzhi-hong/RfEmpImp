@@ -1,0 +1,17 @@
+bibentry(bibtype = "misc",
+  title = "Multiple imputation using chained random forests",
+  author = c(person(given = "Shangzhi", family = "Hong"),
+	person(given = "Yuqi", family = "Sun"),
+	person(given = "Hanying", family = "Li"),
+	person(given = c("Henry", "S."), family = "Lynn")),
+  year = "2020",
+  eprint = "2004.14823",
+  archivePrefix = "arXiv",
+  primaryClass = "stat.ME",
+  header = "To cite RfEmpImp in publications use:",
+  textVersion =
+  paste("Shangzhi, Hong, et al.",
+        "\"Multiple imputation using chained random forests.\"",
+        "Preprint, submitted April 30, 2020.",
+        "https://arxiv.org/abs/2004.14823.")
+)
