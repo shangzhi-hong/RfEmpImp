@@ -46,7 +46,7 @@ With version `2.0.0`, the names of parameters were further simplified,
 please refer to the documentation for details.  
 For data with mixed types of variables, `RfEmp` method is a short cut
 for using `RfPred.Emp` for continuous variables and `RfPred.Cate` for
-categorical variables (of type `logical` or `factor`, etc.).  
+categorical variables (of type `logical` or `factor`).  
 Example:
 
 ``` r
