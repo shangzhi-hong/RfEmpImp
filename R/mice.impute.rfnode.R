@@ -201,7 +201,7 @@ mice.impute.rfnode <- function(
 # instead of joining tables (like "quantforesterror" in R package
 # "forestError").
 #
-# 2. The nodes is found by corresponding node IDs, which is different from
+# 2. The nodes are identified by corresponding IDs, which is different from
 # previous implementations like in Doove et al., that used equality testings
 # for double precision values and one-by-one way for constructing RF.
 ############################################################################

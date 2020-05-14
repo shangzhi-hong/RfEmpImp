@@ -127,9 +127,10 @@ res <- reg.ests(poolObj)
 
 As random forest can be compute-intensive itself, and during multiple
 imputation process, random forest models will be built for the variables
-containing missing data for a certain iterations, so computational
-efficiency can be of crucial importance for multiple imputation using
-chained random forests.  
+containing missing data for a certain number of iterations (usually 5 to
+10 times) repeatedly (usually 5 to 20 times), so computational
+efficiency is of crucial importance for multiple imputation using
+chained random forests, especially for large data sets.  
 So in `RfEmpImp`, the random forest model building process is
 accelerated using parallel computation powered by
 [`ranger`](https://CRAN.R-project.org/package=ranger). The ranger R
