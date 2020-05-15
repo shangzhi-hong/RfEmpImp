@@ -1,7 +1,7 @@
 Package: RfEmpImp
 Type: Package
 Title: Multiple Imputation using Chained Random Forests
-Version: 2.0.3
+Version: 2.0.4
 Authors@R: c(person("Shangzhi", "Hong", role = c("aut", "cre"),
             email = "shangzhi-hong@hotmail.com"),
             person("Henry S.", "Lynn", role = c("ths")))
@@ -23,7 +23,7 @@ LazyData: true
 RoxygenNote: 7.1.0
 Depends:
     R (>= 3.5.0),
-    mice (>= 3.8.0),
+    mice (>= 3.9.0),
     ranger (>= 0.12.1)
 Suggests: 
     testthat (>= 2.1.0),
