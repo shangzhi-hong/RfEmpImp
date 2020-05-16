@@ -3,6 +3,8 @@
 
 # RfEmpImp <a href='https://github.com/shangzhi-hong/RfEmpImp'><img src='man/figures/logo.png' align="right" height="160"/></a>
 
+[![CRAN Status
+Badge](http://www.r-pkg.org/badges/version/RfEmpImp)](https://CRAN.R-project.org/package=RfEmpImp)
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)  
 An R package for random-forest-empowered imputation of missing Data
@@ -23,13 +25,12 @@ updates pending).
 
 ## Installation
 
-This R package is already submitted to CRAN, but it may take a while
-before being published.  
-Currently, interested users can install this package from GitHub:
+Users can install the CRAN version of `RfEmpImp` from CRAN, or the
+latest development version of `RfEmpImp` from GitHub:
 
 ``` r
-# Install from CRAN (Pending)
-# install.packages("RfEmpImp")
+# Install from CRAN
+install.packages("RfEmpImp")
 # Install from GitHub online
 if(!"remotes" %in% installed.packages()) install.packages("remotes")
 remotes::install_github("shangzhi-hong/RfEmpImp")
