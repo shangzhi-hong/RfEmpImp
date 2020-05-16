@@ -5,6 +5,8 @@
 
 [![CRAN Status
 Badge](http://www.r-pkg.org/badges/version/RfEmpImp)](https://CRAN.R-project.org/package=RfEmpImp)
+[![GitHub Version
+Badge](https://img.shields.io/static/v1?label=GitHub&message=2.0.4&color=3399ff)](https://github.com/shangzhi-hong/RfEmpImp)
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)  
 An R package for random-forest-empowered imputation of missing Data
@@ -13,11 +15,11 @@ An R package for random-forest-empowered imputation of missing Data
 
 This is the repository for R package `RfEmpImp`, an R package for
 multiple imputation using chained random forests (RF).  
-This R package is an implementation for the prediction-based and
-node-based imputation algorithms and currently operates under the
-multiple imputation computation framework
+`RfEmpImp` implemented prediction-based and node-based multiple
+imputation algorithms using random forests and currently operates under
+the multiple imputation computation framework
 [`mice`](https://CRAN.R-project.org/package=mice).  
-This R package contains both newly proposed and improved algorithms for
+`RfEmpImp` contains both newly proposed and improved algorithms for
 random-forest-based multiple imputation of missing data.  
 For more details of the implemented imputation algorithms, please refer
 to: [arXiv:2004.14823](https://arxiv.org/abs/2004.14823) (further
@@ -44,17 +46,18 @@ library(RfEmpImp)
 
 ### For mixed types of variables
 
-With version `2.0.0`, the names of parameters were further simplified,
-please refer to the documentation for details.  
-For data with mixed types of variables, `RfEmp` method is a short cut
-for using `RfPred.Emp` for continuous variables and `RfPred.Cate` for
-categorical variables (of type `logical` or `factor`, etc.).
+Starting with version `2.0.0`, the names of parameters were further
+simplified, please refer to the documentation for details.  
+For data with mixed types of variables, users can call function
+`imp.rfemp()` to use `RfEmp` method, for using `RfPred.Emp` method for
+continuous variables, and using `RfPred.Cate` method for categorical
+variables (of type `logical` or `factor`, etc.).
 
 ### Prediction-based imputation for continuous variables
 
 For continuous variables, in `RfPred.Emp` method, the empirical
-distribution of random forest’s out-of-bag prediction errors is used to
-construct the conditional distributions of the variable under
+distribution of random forest’s out-of-bag prediction errors is used
+when constructing the conditional distributions of the variable under
 imputation, providing conditional distributions with better quality.
 Users can set `method = "rfpred.emp"` in function call to `mice` to use
 it.
@@ -94,18 +97,23 @@ Two methods are now available for the `RfNode` algorithm.
 
 ### Node-based imputation using predicting nodes
 
-`RfNode.Cond` uses the conditional distribution formed by the prediction
-nodes, i.e. the weight changes of observations caused by the
-bootstrapping of random forest are considered, and uses “in-bag”
-observations only. Users can set `method = "rfnode.cond"` in function
-call to `mice` to use it.
+Users can call function `imp.rfnode.cond()` to use `RfNode.Cond` method,
+performing imputation using the conditional distribution formed by the
+prediction nodes.  
+The weight changes of observations caused by the bootstrapping of random
+forest are considered, and only the “in-bag” observations are used as
+candidates for imputation.  
+Also, users can set `method = "rfnode.cond"` in function call to `mice`
+to use it.
 
 ### Node-based imputation using proximities
 
-`RfNode.Prox` uses the concepts of proximity matrices of random forests,
-and observations fall under the same predicting nodes are used as
-candidates for imputation. Users can set `method = "rfnode.prox"` in
-function call to `mice` to use it.
+Users can call function `imp.rfnode.prox()` to use `RfNode.Prox` method,
+performing imputation using the proximity matrices of random forests.  
+All the observations fall under the same predicting nodes are used as
+candidates for imputation, including the out-of-bag ones.  
+Also, users can set `method = "rfnode.prox"` in function call to `mice`
+to use it.
 
 ### Example:
 
