@@ -1,5 +1,5 @@
-#' Sampling function for multiple imputation based on predicting nodes of
-#' random forests
+#' Univariate sampler functions for mixed types of variables based on predicting
+#' nodes of random forests
 #'
 #' @description
 #' Please note that functions with names starting with "mice.impute" are
@@ -24,9 +24,11 @@
 #' \code{mice.impute.rfnode.cond}.
 #'
 #' @details
-#' Users can get more flexibility from \code{mice.impute.rfnode} function,
+#' Advanced users can get more flexibility from \code{mice.impute.rfnode}
+#' function, as it provides more options than \code{mice.impute.rfnode.cond} or
+#' \code{mice.impute.rfnode.prox}.
 #'
-#' @param y Vector to be imputed
+#' @param y Vector to be imputed.
 #'
 #' @param ry Logical vector of length \code{length(y)} indicating the
 #' the subset \code{y[ry]} of elements in \code{y} to which the imputation
@@ -43,7 +45,6 @@
 #'
 #' @param num.trees.node Number of trees to build, default to \code{10}. For
 #' function \code{mice.impute.rfnode} only.
-#'
 #'
 #' @param pre.boot Perform bootstrap prior to imputation to get 'proper'
 #' imputation, i.e. accommodating sampling variation in estimating population
@@ -64,10 +65,10 @@
 #' @param num.threads Number of threads for parallel computing. The default is
 #' \code{num.threads = NULL} and all the processors available can be used.
 #'
-#' @param ... Other arguments to pass down
+#' @param ... Other arguments to pass down.
 #'
 #' @return Vector with imputed data, same type as \code{y}, and of length
-#' \code{sum(wy)}
+#' \code{sum(wy)}.
 #'
 #' @author Shangzhi Hong
 #'

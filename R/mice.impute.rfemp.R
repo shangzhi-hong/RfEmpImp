@@ -1,5 +1,5 @@
-#' Sampling function for multiple imputation based on the empirical error
-#' distribution of random forests
+#' Univariate sampler functions for mixed types of variables using the empirical
+#' error distributions or predicted probabilities of random forests
 #'
 #' @description
 #' Please note that functions with names starting with "mice.impute" are
@@ -8,23 +8,24 @@
 #'
 #' \code{RfEmpImp} multiple imputation method, adapter for \code{mice} samplers.
 #' These functions can be called by the \code{mice} sampler function. In the
-#' \code{mice()} function, set \code{method = "rfemp"} to call it.
+#' \code{mice()} function, set \code{method = "rfemp"} to use the \code{RfEmp}
+#' method.
 #'
-#' \code{mice.impute.rfemp} is for mixed types of variables, and calls
-#' corresponding functions based on variable types. Categorical variables
-#' should be of type \code{factor} or \code{logical}.
+#' \code{mice.impute.rfemp} is for mixed types of variables, and it calls
+#' corresponding functions according to variable types. Categorical variables
+#' should be of type \code{factor} or \code{logical} etc.
 #'
 #' For continuous variables, \code{mice.impute.rfpred.emp} is called, performing
-#' imputation based on the empirical distribution of out-of-bag
-#' prediction errors of random forests.
+#' imputation based on the empirical distribution of out-of-bag prediction
+#' errors of random forests.
 #'
 #' For categorical variables, \code{mice.impute.rfpred.cate} is called,
 #' performing imputation based on predicted probabilities.
 #'
 #' @details
 #' \code{RfEmpImp} imputation sampler, the \code{mice.impute.rfemp} calls
-#' \code{mice.impute.rfpred.emp} if the variable is numeric,
-#' otherwise it calls \code{mice.impute.rfpred.cate}.
+#' \code{mice.impute.rfpred.emp} if the variable \code{is.numeric} is
+#' \code{TRUE}, otherwise it calls \code{mice.impute.rfpred.cate}.
 #'
 #' @param y Vector to be imputed.
 #'
@@ -96,7 +97,7 @@
 #' # users can set method = "rfemp" in call to mice to use this function.
 #' # Users are recommended to use the imp.rfemp function instead:
 #' impObj <- mice(nhanes.fix, method = "rfemp", m = 5,
-#' maxit = 5, maxcor = 1.0, eps = .Machine$double.xmin, printFlag = FALSE)
+#' maxit = 5, maxcor = 1.0, eps = 0, printFlag = FALSE)
 #'
 #' @export
 mice.impute.rfemp <- function(

@@ -1,9 +1,10 @@
-#' Multiple imputation using chained random forests and node proximities
+#' Perform multiple imputation based on the conditional distribution formed
+#' using node proximity
 #'
 #' @description
 #' \code{RfNodeProx} multiple imputation method is for mixed types of variables,
 #' using conditional distributions formed by proximity measures of random
-#' forests (both in-bag and out-of-bag observations will be included).
+#' forests (both in-bag and out-of-bag observations will be used for imputation).
 #'
 #' @details
 #' \code{imp.rfnode.prox} multiple imputation, for missing observations, the

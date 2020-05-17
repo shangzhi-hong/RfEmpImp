@@ -1,10 +1,10 @@
-#' Perform multiple imputation based on the empirical error distribution of
-#' random forests
+#' Perform multiple imputation using the empirical error distributions and
+#' predicted probabilities of random forests
 #'
 #' @description
 #' \code{RfEmp} multiple imputation method is for mixed types of variables,
 #' and calls corresponding functions based on variable types.
-#' Categorical variables should be of type \code{factor} or \code{logical}.
+#' Categorical variables should be of type \code{factor} or \code{logical}, etc.
 #'
 #' \code{RfPred.Emp} is used for continuous variables, and \code{RfPred.Cate}
 #' is used for categorical variables.

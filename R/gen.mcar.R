@@ -10,6 +10,10 @@
 #'
 #' @return A data frame containing generated missing values.
 #'
+#' @name gen.mcar
+#'
+#' @author Shangzhi Hong
+#'
 #' @examples
 #' data("mtcars")
 #' mtcars.mcar <- gen.mcar(mtcars, warn.empty.row = FALSE)

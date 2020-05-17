@@ -2,7 +2,7 @@
 #' prediction nodes of random forests
 #'
 #' @description
-#' \code{RfEmpImp} multiple imputation method for mixed types of variables,
+#' \code{RfNodeCond} multiple imputation method is for mixed types of variables,
 #' using conditional distribution formed by predicting nodes of random forest
 #' (out-of-bag observations will be excluded).
 #'

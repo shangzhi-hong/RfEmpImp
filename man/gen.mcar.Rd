@@ -26,3 +26,6 @@ data("mtcars")
 mtcars.mcar <- gen.mcar(mtcars, warn.empty.row = FALSE)
 
 }
+\author{
+Shangzhi Hong
+}

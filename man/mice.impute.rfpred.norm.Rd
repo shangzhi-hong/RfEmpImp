@@ -2,7 +2,8 @@
 % Please edit documentation in R/mice.impute.rfpred.norm.R
 \name{mice.impute.rfpred.norm}
 \alias{mice.impute.rfpred.norm}
-\title{Multiple imputation using chained random forests: RfPred.Norm}
+\title{Univariate sampler function for continuous variables assuming normality for
+prediction errors}
 \usage{
 mice.impute.rfpred.norm(
   y,
@@ -60,7 +61,7 @@ multiple imputation method, adapter for \code{mice} samplers.
 In the \code{mice()} function, set \code{method = "rfpred.norm"} to call it.
 
 The function performs multiple imputation based on normality assumption using
-out-of-bag mean squared error as the estimate for variance.
+out-of-bag mean squared error as the estimate for the variance.
 }
 \details{
 \code{RfPred.Norm} imputation sampler.
@@ -69,7 +70,7 @@ out-of-bag mean squared error as the estimate for variance.
 # Users can set method = "rfpred.norm" in call to mice to use this method
 data("airquality")
 impObj <- mice(airquality, method = "rfpred.norm", m = 5,
-maxit = 5, maxcor = 1.0, eps = .Machine$double.xmin, printFlag = FALSE)
+maxit = 5, maxcor = 1.0, eps = 0, printFlag = FALSE)
 
 }
 \references{

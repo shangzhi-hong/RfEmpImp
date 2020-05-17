@@ -43,7 +43,7 @@ default is \code{print.flag = FALSE}.}
 An object of S3 class \code{mids}.
 }
 \description{
-\code{RfEmpImp} multiple imputation method for mixed types of variables,
+\code{RfNodeCond} multiple imputation method is for mixed types of variables,
 using conditional distribution formed by predicting nodes of random forest
 (out-of-bag observations will be excluded).
 }

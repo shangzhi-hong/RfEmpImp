@@ -1,20 +1,22 @@
-#' Multiple imputation for categorical variables based on predictions
-#' of random forest
+#' Univariate sampler function for categorical variables using predicted
+#' probabilities of random forest
 #'
 #' @description
 #' Please note that functions with names starting with "mice.impute" are
 #' exported to be visible for the mice sampler functions. Please do not call
 #' these functions directly unless you know exactly what you are doing.
 #'
+#' For categorical variables only.
+#'
 #' Part of project \code{RfEmpImp}, the function \code{mice.impute.rfpred.cate}
-#' is for mixed categorical variables, performing imputation based on predicted
-#' probabilities.
+#' is for categorical variables, performing imputation based on predicted
+#' probabilities for the categories.
 #'
 #' @details
-#' \code{RfEmpImp} Imputation sampler for: continuous variables based on
-#' probability machines
+#' \code{RfEmpImp} Imputation sampler for: categorical variables based on
+#' probability machines.
 #'
-#' @param y Vector to be imputed
+#' @param y Vector to be imputed.
 #'
 #' @param ry Logical vector of length \code{length(y)} indicating the
 #' the subset \code{y[ry]} of elements in \code{y} to which the imputation
@@ -28,11 +30,11 @@
 #' indicates locations in \code{y} for which imputations are created.
 #'
 #' @param num.trees.cate Number of trees to build for categorical variables,
-#' default to \code{10}
+#' default to \code{10}.
 #'
 #' @param use.pred.prob.cate Logical, \code{TRUE} for assigning categories based
 #' on predicted probabilities, \code{FALSE} for imputation based on majority
-#' votes, default to \code{TRUE}
+#' votes, default to \code{TRUE}.
 #'
 #' @param pre.boot Perform bootstrap prior to imputation to get 'proper'
 #' multiple imputation, i.e. accommodating sampling variation in estimating
@@ -43,13 +45,12 @@
 #' @param num.threads Number of threads for parallel computing. The default is
 #' \code{num.threads = NULL} and all the processors available can be used.
 #'
-#' @param ... Other arguments to pass down
+#' @param ... Other arguments to pass down.
 #'
 #' @return Vector with imputed data, same type as \code{y}, and of length
-#' \code{sum(wy)}
+#' \code{sum(wy)}.
 #'
-#' @name mice.impute.rfemp
-#' @order 1
+#' @name mice.impute.rfpred.cate
 #'
 #' @author Shangzhi Hong
 #'
@@ -74,7 +75,7 @@
 #' # Perform imputation
 #' impObj <- mice(mtcars.catmcar, method = "rfpred.cate", m = 5,
 #'                maxit = 5, maxcor = 1.0,
-#'                eps = .Machine$double.xmin,
+#'                eps = 0,
 #'                printFlag = FALSE)
 #' @export
 mice.impute.rfpred.cate <- function(
