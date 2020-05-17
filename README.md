@@ -23,7 +23,7 @@ the multiple imputation computation framework
 random-forest-based multiple imputation of missing data.  
 For more details of the implemented imputation algorithms, please refer
 to: [arXiv:2004.14823](https://arxiv.org/abs/2004.14823) (further
-updates pending).
+updates soon).
 
 ## Installation
 
@@ -46,12 +46,12 @@ library(RfEmpImp)
 
 ### For mixed types of variables
 
-Starting with version `2.0.0`, the names of parameters were further
-simplified, please refer to the documentation for details.  
 For data with mixed types of variables, users can call function
 `imp.rfemp()` to use `RfEmp` method, for using `RfPred.Emp` method for
 continuous variables, and using `RfPred.Cate` method for categorical
-variables (of type `logical` or `factor`, etc.).
+variables (of type `logical` or `factor`, etc.).  
+Starting with version `2.0.0`, the names of parameters were further
+simplified, please refer to the documentation for details.
 
 ### Prediction-based imputation for continuous variables
 
@@ -91,9 +91,10 @@ res <- reg.ests(poolObj)
 
 ## Node-based imputation
 
-For both continuous variables, the observations under the predicting
-nodes of random forest are used as candidates for imputation.  
-Two methods are now available for the `RfNode` algorithm.
+For continuous or categorical variables, the observations under the
+predicting nodes of random forest are used as candidates for
+imputation.  
+Two methods are now available for the `RfNode` algorithm series.
 
 ### Node-based imputation using predicting nodes
 
@@ -137,9 +138,10 @@ res <- reg.ests(poolObj)
 As random forest can be compute-intensive itself, and during multiple
 imputation process, random forest models will be built for the variables
 containing missing data for a certain number of iterations (usually 5 to
-10 times) repeatedly (usually 5 to 20 times), so computational
-efficiency is of crucial importance for multiple imputation using
-chained random forests, especially for large data sets.  
+10 times) repeatedly (usually 5 to 20 times, for the number of
+imputations performed). Thus, computational efficiency is of crucial
+importance for multiple imputation using chained random forests,
+especially for large data sets.  
 So in `RfEmpImp`, the random forest model building process is
 accelerated using parallel computation powered by
 [`ranger`](https://CRAN.R-project.org/package=ranger). The ranger R

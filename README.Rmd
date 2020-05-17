@@ -29,7 +29,7 @@ imputation computation framework [`mice`](https://CRAN.R-project.org/package=mic
 `RfEmpImp` contains both newly proposed and improved algorithms for
 random-forest-based multiple imputation of missing data.  
 For more details of the implemented imputation algorithms, please refer to:
-[arXiv:2004.14823](https://arxiv.org/abs/2004.14823) (further updates pending).
+[arXiv:2004.14823](https://arxiv.org/abs/2004.14823) (further updates soon).
 
 
 ## Installation
@@ -50,12 +50,12 @@ library(RfEmpImp)
 
 ## Prediction-based imputation
 ### For mixed types of variables
-Starting with version `2.0.0`, the names of parameters were further simplified,
-please refer to the documentation for details.  
 For data with mixed types of variables, users can call function `imp.rfemp()` to
 use `RfEmp` method, for using `RfPred.Emp` method for continuous variables, and
 using `RfPred.Cate` method for categorical variables
-(of type `logical` or `factor`, etc.).
+(of type `logical` or `factor`, etc.).  
+Starting with version `2.0.0`, the names of parameters were further simplified,
+please refer to the documentation for details.
 
 ### Prediction-based imputation for continuous variables
 For continuous variables, in `RfPred.Emp` method, the empirical distribution of
@@ -90,9 +90,9 @@ res <- reg.ests(poolObj)
 ```
 
 ## Node-based imputation
-For both continuous variables, the observations under the predicting nodes of
-random forest are used as candidates for imputation.  
-Two methods are now available for the `RfNode` algorithm.
+For continuous or categorical variables, the observations under the predicting
+nodes of random forest are used as candidates for imputation.  
+Two methods are now available for the `RfNode` algorithm series.
 
 ### Node-based imputation using predicting nodes
 Users can call function `imp.rfnode.cond()` to use `RfNode.Cond` method,
