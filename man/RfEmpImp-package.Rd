@@ -8,17 +8,18 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Functions for methods for multiple imputation using chained random
-    forests. Implemented algorithms can handle missing data in both continuous
-    and categorical variables by using prediction-based or node-based
-    conditional distributions constructed using random forests. For
-    prediction-based imputation, the method based on the empirical distribution
-    of out-of-bag prediction errors of random forests and the method based on
-    normality assumption are provided. For node-based imputation, the method
-    based on the conditional distribution formed by predicting nodes of random
-    forests and the method based on measures of proximities of random forests
-    are provided. More details of the statistical methods can be found in
-    Hong et al. (2020) <arXiv:2004.14823>.
+An R package for methods of multiple imputation using chained
+    random forests. Implemented methods can handle missing data in mixed types
+    of by using prediction-based or node-based conditional distributions
+    constructed using random forests. For prediction-based imputation,
+    the method based on the empirical distribution of out-of-bag prediction
+    errors of random forests, and the method based on normality assumption are
+    provided for continuous variables. And the method based on predicted
+    probabilities is provided for categorical variables. For node-based
+    imputation, the method based on the conditional distribution formed by
+    the predicting nodes of random forests, and the method based on proximity
+    measures of random forests are provided. More details of the statistical
+    methods can be found in Hong et al. (2020) <arXiv:2004.14823>.
 }
 \seealso{
 Useful links:

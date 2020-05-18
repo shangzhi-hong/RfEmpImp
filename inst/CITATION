@@ -8,9 +8,9 @@ bibentry(bibtype = "misc",
   eprint = "2004.14823",
   archivePrefix = "arXiv",
   primaryClass = "stat.ME",
-  header = "To cite RfEmpImp in publications use:",
+  header = "To cite \"RfEmpImp\" in publications use:",
   textVersion =
-  paste("Shangzhi, Hong, et al.",
+  paste("Hong, Shangzhi, et al.",
         "\"Multiple imputation using chained random forests.\"",
         "Preprint, submitted April 30, 2020.",
         "https://arxiv.org/abs/2004.14823.")

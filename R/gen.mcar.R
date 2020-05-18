@@ -1,14 +1,16 @@
-#' Generate missing (completely at random) cells in the dataset
+#' Generate missing (completely at random) cells in a data set
 #'
-#' @param df Input data frame.
+#' @param df Input data frame or matrix.
 #'
-#' @param prop.na Proportion of missing cells, default = 0.2.
+#' @param prop.na Proportion of generated missing cells. The default is
+#' \code{prop.na = 0.2}.
 #'
-#' @param warn.empty.row Show warnings if empty rows were present.
+#' @param warn.empty.row Show a warning if empty rows were present in the
+#' output data set.
 #'
 #' @param ... Other parameters (will be ignored).
 #'
-#' @return A data frame containing generated missing values.
+#' @return A data frame or matrix containing generated missing cells.
 #'
 #' @name gen.mcar
 #'

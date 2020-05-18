@@ -2,24 +2,26 @@
 % Please edit documentation in R/gen.mcar.R
 \name{gen.mcar}
 \alias{gen.mcar}
-\title{Generate missing (completely at random) cells in the dataset}
+\title{Generate missing (completely at random) cells in a data set}
 \usage{
 gen.mcar(df, prop.na = 0.2, warn.empty.row = TRUE, ...)
 }
 \arguments{
-\item{df}{Input data frame.}
+\item{df}{Input data frame or matrix.}
 
-\item{prop.na}{Proportion of missing cells, default = 0.2.}
+\item{prop.na}{Proportion of generated missing cells. The default is
+\code{prop.na = 0.2}.}
 
-\item{warn.empty.row}{Show warnings if empty rows were present.}
+\item{warn.empty.row}{Show a warning if empty rows were present in the
+output data set.}
 
 \item{...}{Other parameters (will be ignored).}
 }
 \value{
-A data frame containing generated missing values.
+A data frame or matrix containing generated missing cells.
 }
 \description{
-Generate missing (completely at random) cells in the dataset
+Generate missing (completely at random) cells in a data set
 }
 \examples{
 data("mtcars")

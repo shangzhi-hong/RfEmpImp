@@ -2,14 +2,15 @@
 #' prediction nodes of random forests
 #'
 #' @description
-#' \code{RfNodeCond} multiple imputation method is for mixed types of variables,
+#' \code{RfNode.Cond} multiple imputation method is for mixed types of variables,
 #' using conditional distribution formed by predicting nodes of random forest
 #' (out-of-bag observations will be excluded).
 #'
 #' @details
-#' \code{imp.rfnode.cond} multiple imputation, for missing observations, the
-#' non-missing observations used for imputation will be found by the observations
-#' included in the predicting nodes in the random trees.
+#' During imputation using \code{imp.rfnode.cond}, for missing observations, the
+#' candidate non-missing observations will be found by the predicting nodes
+#' of random trees in the random forest model. Only the in-bag observations
+#' for each random tree will be used for imputation.
 #'
 #' @param data A data frame or a matrix containing the incomplete data. Missing
 #' values should be coded as \code{NA}s.
@@ -87,7 +88,7 @@ imp.rfnode.cond <- function(
         obs.eq.prob = FALSE,
         do.sample = TRUE,
         printFlag = print.flag,
-        # Try to avoid the influences of remove.lindep() in mice >= 3.9.0
+        # Bypass remove.lindep() in mice >= 3.9.0
         maxcor = 1.0,
         eps = 0,
         ...))

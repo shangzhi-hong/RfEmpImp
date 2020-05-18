@@ -110,17 +110,18 @@ mice.impute.rfpred.cate <- function(
     if (yObsLvNum == 1) return(rep_len(yObs, length.out = yMisNum))
     xMis <- x[wy, , drop = FALSE]
     if (isTRUE(use.pred.prob.cate)) {
-        # Construct predictions based on vote probs averaged over nodes.
+        # Construct predictions based on probabilities
         # Suppress warnings like:
         # "Dropped unused factor level(s) in dependent variable"
-        # TODO: Add `...` back to ranger after release of v0.12.3
+        # Let ranger handle unused arguments after v0.12.3
         rangerObjProb <- suppressWarnings(ranger(
             x = xObs,
             y = yObs,
             probability = TRUE,
             oob.error = FALSE,
             num.trees = num.trees.cate,
-            num.threads = num.threads))
+            num.threads = num.threads,
+            ...))
         misPredMat <- predictions(predict(rangerObjProb, xMis))
         yLevels <- colnames(misPredMat)
         impValChar <- apply(

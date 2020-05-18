@@ -2,7 +2,7 @@
 title: "Introduction to RfEmpImp"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{intro}
+  %\VignetteIndexEntry{Introduction}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -22,31 +22,48 @@ suppressMessages(library(RfEmpImp))
 
 
 ## Random-forest-based multiple imputation evolved
-This an R package for multiple
+This is the repository for R package `RfEmpImp`, an R package for multiple
 imputation using chained random forests (RF).  
-This R package is an implementation for the prediction-based and node-based 
-imputation algorithms and currently operates under the multiple imputation
-computation framework [`mice`](https://CRAN.R-project.org/package=mice).  
-This R package contains both newly proposed and improved algorithms for
+`RfEmpImp` implemented prediction-based and node-based multiple imputation
+algorithms using random forests and currently operates under the multiple
+imputation computation framework [`mice`](https://CRAN.R-project.org/package=mice).  
+`RfEmpImp` contains both newly proposed and improved algorithms for
 random-forest-based multiple imputation of missing data.  
 For more details of the implemented imputation algorithms, please refer to:
-[arXiv:2004.14823](https://arxiv.org/abs/2004.14823) (further updates pending).
+[arXiv:2004.14823](https://arxiv.org/abs/2004.14823).
+
+
+## Installation
+Users can install the CRAN version of `RfEmpImp` from CRAN, or the latest
+development version of `RfEmpImp` from GitHub:  
+```r
+# Install from CRAN
+install.packages("RfEmpImp")
+# Install from GitHub online
+if(!"remotes" %in% installed.packages()) install.packages("remotes")
+remotes::install_github("shangzhi-hong/RfEmpImp")
+# Install from released source package
+install.packages(path_to_source_file, repos = NULL, type = "source")
+# Attach
+library(RfEmpImp)
+```
 
 
 ## Prediction-based imputation
 ### For mixed types of variables
-With version `2.0.0`, the names of parameters were further simplified, please
-refer to the documentation for details.  
-For data with mixed types of variables, `RfEmp` method is a short cut for
-using `RfPred.Emp` for continuous variables and `RfPred.Cate` for categorical
-variables (of type `logical` or `factor`, etc.).
+For data with mixed types of variables, users can call function `imp.rfemp()` to
+use `RfEmp` method, for using `RfPred.Emp` method for continuous variables, and
+using `RfPred.Cate` method for categorical variables
+(of type `logical` or `factor`, etc.).  
+Starting with version `2.0.0`, the names of parameters were further simplified,
+please refer to the documentation for details.
 
 ### Prediction-based imputation for continuous variables
 For continuous variables, in `RfPred.Emp` method, the empirical distribution of
-random forest's out-of-bag prediction errors is used to construct the conditional
-distributions of the variable under imputation, providing conditional
-distributions with better quality. Users can set `method = "rfpred.emp"`
-in function call to `mice` to use it.
+random forest's out-of-bag prediction errors is used when constructing the
+conditional distributions of the variable under imputation, providing conditional
+distributions with better quality. Users can set `method = "rfpred.emp"` in
+function call to `mice` to use it.
 
 Also, in `RfPred.Norm` method, normality was assumed for RF prediction errors,
 as proposed by Shah *et al.*, and users can set `method = "rfpred.norm"`
@@ -74,20 +91,26 @@ res <- reg.ests(poolObj)
 ```
 
 ## Node-based imputation
-For both continuous variables, the observations under the predicting nodes of
-random forest are used as candidates for imputation.  
-Two methods are now available for the `RfNode` algorithm.
+For continuous or categorical variables, the observations under the predicting
+nodes of random forest are used as candidates for imputation.  
+Two methods are now available for the `RfNode` algorithm series.
 
 ### Node-based imputation using predicting nodes
-`RfNode.Cond` uses the conditional distribution formed by the prediction nodes,
-i.e. the weight changes of observations caused by the bootstrapping of random
-forest are considered, and uses "in-bag" observations only. Users can set 
-`method = "rfnode.cond"` in function call to `mice` to use it.
+Users can call function `imp.rfnode.cond()` to use `RfNode.Cond` method,
+performing imputation using the conditional distribution formed by the
+prediction nodes.  
+The weight changes of observations caused by the bootstrapping of random
+forest are considered, and only the "in-bag" observations are used as candidates
+for imputation.  
+Also, users can set `method = "rfnode.cond"` in function call to `mice` to use
+it.
 
 ### Node-based imputation using proximities
-`RfNode.Prox` uses the concepts of proximity matrices of random forests, and
-observations fall under the same predicting nodes are used as candidates for
-imputation.  Users can set `method = "rfnode.prox"` in function call to `mice`
+Users can call function `imp.rfnode.prox()` to use `RfNode.Prox` method, 
+performing imputation using the proximity matrices of random forests.  
+All the observations fall under the same predicting nodes are used as candidates
+for imputation, including the out-of-bag ones.  
+Also, users can set `method = "rfnode.prox"` in function call to `mice`
 to use it.
 
 ### Example:
@@ -111,9 +134,9 @@ res <- reg.ests(poolObj)
 As random forest can be compute-intensive itself, and during multiple imputation
 process, random forest models will be built for the variables containing missing
 data for a certain number of iterations (usually 5 to 10 times) repeatedly
-(usually 5 to 20 times), so computational efficiency is of crucial
-importance for multiple imputation using chained random forests, especially for
-large data sets.  
+(usually 5 to 20 times, for the number of imputations performed).
+Thus, computational efficiency is of crucial importance for multiple imputation
+using chained random forests, especially for large data sets.  
 So in `RfEmpImp`, the random forest model building process is accelerated using
 parallel computation powered by [`ranger`](https://CRAN.R-project.org/package=ranger).
 The ranger R package provides support for parallel computation using native C++.

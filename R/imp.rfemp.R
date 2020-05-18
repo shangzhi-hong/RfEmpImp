@@ -123,7 +123,7 @@ imp.rfemp <- function(
         num.trees.cate = num.trees.cate,
         num.threads = num.threads,
         printFlag = print.flag,
-        # Try to avoid the influences of remove.lindep() in mice >= 3.9.0
+        # Bypass remove.lindep() in mice >= 3.9.0
         maxcor = 1.0,
         eps = 0,
         ...))

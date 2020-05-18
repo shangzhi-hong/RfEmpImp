@@ -7,10 +7,11 @@
 #' forests (both in-bag and out-of-bag observations will be used for imputation).
 #'
 #' @details
-#' \code{imp.rfnode.prox} multiple imputation, for missing observations, the
-#' non-missing observations used for imputation will be found by whether two
-#' observations can be retrieved from the same predicting node, the observations
-#' used for imputation may not be necessarily be contained in the node.
+#' During imputation using \code{imp.rfnode.prox}, for missing observations, the
+#' candidate non-missing observations will be found by whether two observations
+#' can be retrieved from the same predicting node during prediction. The
+#' observations used for imputation may not be necessarily be contained in the
+#' terminal node of random forest model.
 #'
 #' @param data A data frame or a matrix containing the incomplete data. Missing
 #' values should be coded as \code{NA}s.
@@ -88,7 +89,7 @@ imp.rfnode.prox <- function(
         obs.eq.prob = FALSE,
         do.sample = TRUE,
         printFlag = print.flag,
-        # Try to avoid the influences of remove.lindep() in mice >= 3.9.0
+        # Bypass remove.lindep() in mice >= 3.9.0
         maxcor = 1.0,
         eps = 0,
         ...))
