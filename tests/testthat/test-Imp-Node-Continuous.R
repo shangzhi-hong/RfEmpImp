@@ -1,7 +1,7 @@
-context("RfEmpImp-Node for continuous variables")
+context("mice.impute.rfnode for continuous variables")
 
 # Set-up
-NUM_OBS <- 100
+NUM_OBS <- 200
 testData <- data.frame(
     x1 = rnorm(NUM_OBS, mean = 2, sd = 1),
     x2 = rnorm(NUM_OBS, mean = 2, sd = 1),
@@ -22,7 +22,7 @@ ry <- sample(
 num.trees.node <- 2
 wy <- !ry
 
-test_that("Node selection works", {
+test_that("mice.impute.rfnode works for continuous variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         for (use.node.cond.dist in c(TRUE, FALSE)) {
             for (obs.eq.prob in c(TRUE, FALSE)) {

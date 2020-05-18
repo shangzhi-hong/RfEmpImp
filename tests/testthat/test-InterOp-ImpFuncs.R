@@ -1,7 +1,7 @@
 context("InterOp - ImpFuncs")
 
 # Set-up
-NUM_OBS <- 50
+NUM_OBS <- 200
 testData <- data.frame(
     x1 = rnorm(NUM_OBS, mean = 2, sd = 1),
     x2 = rnorm(NUM_OBS, mean = 2, sd = 1),

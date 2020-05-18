@@ -1,7 +1,7 @@
-context("RfEmpImp for categorical variables")
+context("mice.impute.rfpred.cate for categorical variables")
 
 # Set-up
-NUM_OBS <- 100
+NUM_OBS <- 200
 testData <- data.frame(
     x1 = rnorm(NUM_OBS, mean = 2, sd = 1),
     x2 = rnorm(NUM_OBS, mean = 2, sd = 1),
@@ -32,11 +32,11 @@ ry <- sample(
     x = c(TRUE, FALSE),
     size = NUM_OBS,
     replace = TRUE,
-    prob = c(0.5, 0.5))
+    prob = c(0.6, 0.4))
 wy <- !ry
 num.trees.cate <- 10
 
-test_that("rfpred.cate works for categorical variables", {
+test_that("mice.impute.rfpred.cate works for categorical variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         for (use.pred.prob.cate in c(TRUE, FALSE)) {
             catImpOut1 <- mice.impute.rfpred.cate(
@@ -67,7 +67,9 @@ test_that("rfpred.cate works for categorical variables", {
 
 })
 
-test_that("rfemp caller works for categorical variables", {
+context("mice.impute.rfemp for categorical variables")
+
+test_that("mice.impute.rfemp caller works for categorical variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         catImpOut1 <- mice.impute.rfemp(
             y = y,
@@ -106,7 +108,9 @@ testData <- transform(
 y <- testData[["y"]]
 x <- subset(testData, select = -y)
 
-test_that("rfpred.cate works for logical variables", {
+context("mice.impute.rfpred.cate for logical variables")
+
+test_that("mice.impute.rfpred.cate works for logical variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         for (use.pred.prob.cate in c(TRUE, FALSE)) {
             catImpOut1 <- mice.impute.rfpred.cate(
@@ -135,7 +139,9 @@ test_that("rfpred.cate works for logical variables", {
 
 })
 
-test_that("rfemp caller works for logical variables", {
+context("mice.impute.rfemp for logical variables")
+
+test_that("mice.impute.rfemp works for logical variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         catImpOut1 <- mice.impute.rfemp(
             y = y,

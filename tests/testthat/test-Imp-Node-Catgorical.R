@@ -1,8 +1,8 @@
-context("RfEmpImp-Node for categorical variables")
+context("mice.impute.rfnode for categorical variables")
 
 # Set-up
 set.seed(2020)
-NUM_OBS <- 100
+NUM_OBS <- 200
 testData <- data.frame(
     x1 = rnorm(NUM_OBS, mean = 2, sd = 1),
     x2 = rnorm(NUM_OBS, mean = 2, sd = 1),
@@ -40,7 +40,7 @@ ry <- sample(
 wy <- !ry
 num.trees.cate <- 10
 
-test_that("RfEmpImp-Node works for categorical variables", {
+test_that("mice.impute.rfnode works for categorical variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         for (use.node.cond.dist in c(TRUE, FALSE)) {
             for (obs.eq.prob in c(TRUE, FALSE)) {
@@ -97,7 +97,9 @@ testData <- transform(testData,
 y <- testData[["y"]]
 x <- subset(testData, select = -y)
 
-test_that("RfEmpImp works for logical variables", {
+context("mice.impute.rfnode for logical variables")
+
+test_that("mice.impute.rfnode works for logical variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         for (use.node.cond.dist in c(TRUE, FALSE)) {
             for (obs.eq.prob in c(TRUE, FALSE)) {

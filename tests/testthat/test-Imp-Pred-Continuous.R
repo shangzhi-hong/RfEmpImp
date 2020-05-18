@@ -1,7 +1,7 @@
-context("RfEmpImp for continuous variables")
+context("mice.impute.rfpred.emp for continuous variables")
 
 # Set-up
-NUM_OBS <- 50
+NUM_OBS <- 200
 testData <- data.frame(
     x1 = rnorm(NUM_OBS, mean = 2, sd = 1),
     x2 = rnorm(NUM_OBS, mean = 2, sd = 1),
@@ -21,7 +21,7 @@ ry <- sample(
 wy <- !ry
 num.trees.cont <- 10
 
-test_that("rfpred.emp works for continuous variables", {
+test_that("mice.impute.rfpred.emp works for continuous variables", {
     for (pre.boot in c(TRUE, FALSE)) {
         for (sym.dist in c(TRUE, FALSE)) {
             for (emp.err.cont in c(TRUE, FALSE)) {
@@ -56,6 +56,8 @@ test_that("rfpred.emp works for continuous variables", {
         }
     }
 })
+
+context("mice.impute.rfemp for continuous variables")
 
 test_that("rfemp caller works for continuous variables", {
     for (pre.boot in c(TRUE, FALSE)) {
