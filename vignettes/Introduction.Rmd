@@ -20,7 +20,6 @@ An R package for random-forest-empowered imputation of missing Data
 suppressMessages(library(RfEmpImp))
 ```
 
-
 ## Random-forest-based multiple imputation evolved
 This is the repository for R package `RfEmpImp`, an R package for multiple
 imputation using chained random forests (RF).  
@@ -30,7 +29,7 @@ imputation computation framework [`mice`](https://CRAN.R-project.org/package=mic
 `RfEmpImp` contains both newly proposed and improved algorithms for
 random-forest-based multiple imputation of missing data.  
 For more details of the implemented imputation algorithms, please refer to:
-[arXiv:2004.14823](https://arxiv.org/abs/2004.14823).
+[arXiv:2004.14823](https://arxiv.org/abs/2004.14823) (further updates soon).
 
 
 ## Installation
@@ -142,6 +141,18 @@ parallel computation powered by [`ranger`](https://CRAN.R-project.org/package=ra
 The ranger R package provides support for parallel computation using native C++.
 In our simulations, parallel computation can provide impressive performance boost
 for imputation process (about 4x faster on a quad-core laptop).
+
+
+## Imputation functions
+| Type                        | Impute function | Univariate sampler        | Variable type |
+|-----------------------------|-----------------|---------------------------|---------------|
+| Prediction-based imputation | imp.emp()       | mice.impute.rfemp()       | Mixed         |
+|                             | /               | mice.impute.rfpred.emp()  | Continuous    |
+|                             | /               | mice.impute.rfpred.norm() | Continuous    |
+|                             | /               | mice.impute.rfpred.cate() | Categorical   |
+| Node-based imputation       | imp.node.cond() | mice.impute.rfnode.cond() | Mixed         |
+|                             | imp.node.prox() | mice.impute.rfnode.prox() | Mixed         |
+|                             | /               | mice.impute.rfnode()      | Mixed         |
 
 
 ## References

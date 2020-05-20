@@ -133,6 +133,29 @@ poolObj <- pool(regObj)
 res <- reg.ests(poolObj)
 ```
 
+## Imputation functions
+
+| Type                        | Impute function | Univariate sampler        | Variable type |
+| --------------------------- | --------------- | ------------------------- | ------------- |
+| Prediction-based imputation | imp.emp()       | mice.impute.rfemp()       | Mixed         |
+|                             | /               | mice.impute.rfpred.emp()  | Continuous    |
+|                             | /               | mice.impute.rfpred.norm() | Continuous    |
+|                             | /               | mice.impute.rfpred.cate() | Categorical   |
+| Node-based imputation       | imp.node.cond() | mice.impute.rfnode.cond() | Mixed         |
+|                             | imp.node.prox() | mice.impute.rfnode.prox() | Mixed         |
+|                             | /               | mice.impute.rfnode()      | Mixed         |
+
+## Package structure
+
+The figure below shows how the imputation functions are organized in
+this R package.  
+
+<center>
+
+<img src="man/figures/pkgstr.png" alt="Package structure" width = "80%"/>
+
+</center>
+
 ## Support for parallel computation
 
 As random forest can be compute-intensive itself, and during multiple
