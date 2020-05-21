@@ -13,8 +13,8 @@ An R package for random-forest-empowered imputation of missing Data
 
 ## Random-forest-based multiple imputation evolved
 
-This is the repository for R package `RfEmpImp`, an R package for
-multiple imputation using chained random forests (RF).  
+This is the repository for `RfEmpImp`, an R package for multiple
+imputation using chained random forests (RF).  
 `RfEmpImp` implemented prediction-based and node-based multiple
 imputation algorithms using random forests and currently operates under
 the multiple imputation computation framework
@@ -73,7 +73,7 @@ machine theory is used, and the predictions of missing categories are
 based on the predicted probabilities for each missing observation. Users
 can set `method = "rfpred.cate"` in function call to `mice` to use it.
 
-### Example:
+### Example for prediction-based imputation
 
 ``` r
 # Prepare data
@@ -94,7 +94,9 @@ res <- reg.ests(poolObj)
 For continuous or categorical variables, the observations under the
 predicting nodes of random forest are used as candidates for
 imputation.  
-Two methods are now available for the `RfNode` algorithm series.
+Two methods are now available for the `RfNode` algorithm series.  
+It should be noted that categorical variables should be of types of
+`logical` or `factor`, etc.
 
 ### Node-based imputation using predicting nodes
 
@@ -116,7 +118,7 @@ candidates for imputation, including the out-of-bag ones.
 Also, users can set `method = "rfnode.prox"` in function call to `mice`
 to use it.
 
-### Example:
+### Example for node-based imputation
 
 ``` r
 # Prepare data
@@ -149,12 +151,7 @@ res <- reg.ests(poolObj)
 
 The figure below shows how the imputation functions are organized in
 this R package.  
-
-<center>
-
 <img src="man/figures/pkgstr.png" alt="Package structure" width = "80%"/>
-
-</center>
 
 ## Support for parallel computation
 

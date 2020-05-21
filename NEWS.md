@@ -12,6 +12,6 @@
 ## RfEmpImp 2.0.0
 * Add support for imputation using predicting nodes of random forests
 
-## RfEmpImp 1.0.0
-* First public release
+## RfEmpImp 1.0.1
+* First public release on GitHub
 * Unit tests ready
