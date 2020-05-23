@@ -1,6 +1,7 @@
 context("mice.impute.rfpred.cate for categorical variables")
 
 # Set-up
+set.seed(2020)
 NUM_OBS <- 200
 testData <- data.frame(
     x1 = rnorm(NUM_OBS, mean = 2, sd = 1),
@@ -15,12 +16,12 @@ testData <- transform(
         y <-
             cut(yTemp, breaks = quantile(
                     yTemp,
-                    probs = seq(0, 1, by = 0.20),
+                    probs = seq(0, 1, by = 0.25),
                     na.rm = TRUE,
                     names = FALSE),
                 include.lowest = TRUE,
                 right = TRUE,
-                labels = c("A", "B", "C", "D", "E")
+                labels = c("A", "B", "C", "D")
             )
         y
     }

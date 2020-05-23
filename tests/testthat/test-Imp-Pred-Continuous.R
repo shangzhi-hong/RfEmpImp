@@ -1,7 +1,8 @@
 context("mice.impute.rfpred.emp for continuous variables")
 
 # Set-up
-NUM_OBS <- 200
+set.seed(2020)
+NUM_OBS <- 100
 testData <- data.frame(
     x1 = rnorm(NUM_OBS, mean = 2, sd = 1),
     x2 = rnorm(NUM_OBS, mean = 2, sd = 1),

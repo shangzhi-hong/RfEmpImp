@@ -18,13 +18,13 @@ testData <- transform(
                 yTemp,
                 breaks = quantile(
                     yTemp,
-                    probs = seq(0, 1, by = 0.20),
+                    probs = seq(0, 1, by = 0.25),
                     na.rm = TRUE,
                     names = FALSE
                 ),
                 include.lowest = TRUE,
                 right = TRUE,
-                labels = c("A", "B", "C", "D", "E")
+                labels = c("A", "B", "C", "D")
             )
         y
     })
