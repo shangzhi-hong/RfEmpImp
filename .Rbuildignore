@@ -2,4 +2,3 @@
 ^README\.Rmd$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^man/figures/pkgstr\.png$

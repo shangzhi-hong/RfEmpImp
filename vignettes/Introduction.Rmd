@@ -21,13 +21,11 @@ suppressMessages(library(RfEmpImp))
 ```
 
 ## Random-forest-based multiple imputation evolved
-This is the repository for R package `RfEmpImp`, an R package for multiple
-imputation using chained random forests (RF).  
-`RfEmpImp` implemented prediction-based and node-based multiple imputation
-algorithms using random forests and currently operates under the multiple
+`RfEmpImp` is an R package for multiple imputation using chained random forests
+(RF).  
+This R package provides prediction-based and node-based multiple imputation
+algorithms using random forests, and currently operates under the multiple
 imputation computation framework [`mice`](https://CRAN.R-project.org/package=mice).  
-`RfEmpImp` contains both newly proposed and improved algorithms for
-random-forest-based multiple imputation of missing data.  
 For more details of the implemented imputation algorithms, please refer to:
 [arXiv:2004.14823](https://arxiv.org/abs/2004.14823) (further updates soon).
 
@@ -74,7 +72,7 @@ theory is used, and the predictions of missing categories are based on the
 predicted probabilities for each missing observation. Users can set 
 `method = "rfpred.cate"` in function call to `mice` to use it.
 
-### Example:
+### Example for prediction-based imputation
 ```r
 # Prepare data
 df <- nhanes
@@ -92,7 +90,9 @@ res <- reg.ests(poolObj)
 ## Node-based imputation
 For continuous or categorical variables, the observations under the predicting
 nodes of random forest are used as candidates for imputation.  
-Two methods are now available for the `RfNode` algorithm series.
+Two methods are now available for the `RfNode` algorithm series.  
+It should be noted that categorical variables should be of types of `logical` or
+`factor`, etc.
 
 ### Node-based imputation using predicting nodes
 Users can call function `imp.rfnode.cond()` to use `RfNode.Cond` method,
@@ -112,7 +112,7 @@ for imputation, including the out-of-bag ones.
 Also, users can set `method = "rfnode.prox"` in function call to `mice`
 to use it.
 
-### Example:
+### Example for node-based imputation
 ```r
 # Prepare data
 df <- nhanes
@@ -129,6 +129,18 @@ res <- reg.ests(poolObj)
 ```
 
 
+## Imputation functions
+| Type                        | Impute function | Univariate sampler        | Variable type |
+|-----------------------------|-----------------|---------------------------|---------------|
+| Prediction-based imputation | imp.emp()       | mice.impute.rfemp()       | Mixed         |
+|                             | /               | mice.impute.rfpred.emp()  | Continuous    |
+|                             | /               | mice.impute.rfpred.norm() | Continuous    |
+|                             | /               | mice.impute.rfpred.cate() | Categorical   |
+| Node-based imputation       | imp.node.cond() | mice.impute.rfnode.cond() | Mixed         |
+|                             | imp.node.prox() | mice.impute.rfnode.prox() | Mixed         |
+|                             | /               | mice.impute.rfnode()      | Mixed         |
+
+
 ## Support for parallel computation
 As random forest can be compute-intensive itself, and during multiple imputation
 process, random forest models will be built for the variables containing missing
@@ -143,18 +155,6 @@ In our simulations, parallel computation can provide impressive performance boos
 for imputation process (about 4x faster on a quad-core laptop).
 
 
-## Imputation functions
-| Type                        | Impute function | Univariate sampler        | Variable type |
-|-----------------------------|-----------------|---------------------------|---------------|
-| Prediction-based imputation | imp.emp()       | mice.impute.rfemp()       | Mixed         |
-|                             | /               | mice.impute.rfpred.emp()  | Continuous    |
-|                             | /               | mice.impute.rfpred.norm() | Continuous    |
-|                             | /               | mice.impute.rfpred.cate() | Categorical   |
-| Node-based imputation       | imp.node.cond() | mice.impute.rfnode.cond() | Mixed         |
-|                             | imp.node.prox() | mice.impute.rfnode.prox() | Mixed         |
-|                             | /               | mice.impute.rfnode()      | Mixed         |
-
-
 ## References
 1. Hong, Shangzhi, et al. "Multiple imputation using chained random forests."
 Preprint, submitted April 30, 2020. https://arxiv.org/abs/2004.14823.
@@ -164,10 +164,12 @@ The American Statistician (2019): 1-15.
 Random Forests for High Dimensional Data in C++ and R." Journal of Statistical
 Software 77.i01 (2017).
 4. Shah, Anoop D., et al. "Comparison of random forest and parametric imputation
-models for imputing missing data using MICE: a CALIBER study." American journal
-of epidemiology 179.6 (2014): 764-774.
+models for imputing missing data using MICE: a CALIBER study." American Journal
+of Epidemiology 179.6 (2014): 764-774.
 5. Doove, Lisa L., Stef Van Buuren, and Elise Dusseldorp. "Recursive partitioning
 for missing data imputation in the presence of interaction effects."
 Computational Statistics & Data Analysis 72 (2014): 92-104.
 6. Malley, James D., et al. "Probability machines." Methods of information in
 medicine 51.01 (2012): 74-81.
+7. Van Buuren, Stef, and Karin Groothuis-Oudshoorn. "mice: Multivariate Imputation
+by Chained Equations in R." Journal of Statistical Software 45.i03 (2010).

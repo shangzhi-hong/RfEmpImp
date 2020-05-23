@@ -13,14 +13,12 @@ An R package for random-forest-empowered imputation of missing Data
 
 ## Random-forest-based multiple imputation evolved
 
-This is the repository for `RfEmpImp`, an R package for multiple
-imputation using chained random forests (RF).  
-`RfEmpImp` implemented prediction-based and node-based multiple
-imputation algorithms using random forests and currently operates under
+`RfEmpImp` is an R package for multiple imputation using chained random
+forests (RF).  
+This R package provides prediction-based and node-based multiple
+imputation algorithms using random forests, and currently operates under
 the multiple imputation computation framework
 [`mice`](https://CRAN.R-project.org/package=mice).  
-`RfEmpImp` contains both newly proposed and improved algorithms for
-random-forest-based multiple imputation of missing data.  
 For more details of the implemented imputation algorithms, please refer
 to: [arXiv:2004.14823](https://arxiv.org/abs/2004.14823) (further
 updates soon).
@@ -151,7 +149,7 @@ res <- reg.ests(poolObj)
 
 The figure below shows how the imputation functions are organized in
 this R package.  
-<img src="man/figures/pkgstr.png" alt="Package structure" width = "80%"/>
+<img src="man/figures/package-structure.png" alt="Package structure" width = "80%"/>
 
 ## Support for parallel computation
 
@@ -181,10 +179,13 @@ boost for imputation process (about 4x faster on a quad-core laptop).
     and R.” Journal of Statistical Software 77.i01 (2017).
 4.  Shah, Anoop D., et al. “Comparison of random forest and parametric
     imputation models for imputing missing data using MICE: a CALIBER
-    study.” American journal of epidemiology 179.6 (2014): 764-774.
+    study.” American Journal of Epidemiology 179.6 (2014): 764-774.
 5.  Doove, Lisa L., Stef Van Buuren, and Elise Dusseldorp. “Recursive
     partitioning for missing data imputation in the presence of
     interaction effects.” Computational Statistics & Data Analysis 72
     (2014): 92-104.
 6.  Malley, James D., et al. “Probability machines.” Methods of
     information in medicine 51.01 (2012): 74-81.
+7.  Van Buuren, Stef, and Karin Groothuis-Oudshoorn. “mice: Multivariate
+    Imputation by Chained Equations in R.” Journal of Statistical
+    Software 45.i03 (2010).
