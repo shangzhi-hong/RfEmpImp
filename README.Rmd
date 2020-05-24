@@ -179,4 +179,4 @@ Computational Statistics & Data Analysis 72 (2014): 92-104.
 6. Malley, James D., et al. "Probability machines." Methods of information in
 medicine 51.01 (2012): 74-81.
 7. Van Buuren, Stef, and Karin Groothuis-Oudshoorn. "mice: Multivariate Imputation
-by Chained Equations in R." Journal of Statistical Software 45.i03 (2010).
+by Chained Equations in R." Journal of Statistical Software 45.i03 (2011).
