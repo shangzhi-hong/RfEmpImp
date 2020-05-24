@@ -1,5 +1,6 @@
 ## RfEmpImp 2.0.5
-* Update dependency for ranger (>= 0.12.3) to handle paramter passing properly
+* Add new function `query.rf.pred.idx` for querying observations associated with terminal nodes
+* Update dependency for ranger (>= 0.12.3) to handle parameter passing properly
 * Update documentations
 
 ## RfEmpImp 2.0.4
