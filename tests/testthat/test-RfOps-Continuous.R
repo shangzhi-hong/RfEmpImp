@@ -1,4 +1,4 @@
-context("RfOps - Node in Single Tree for Continuous Variable")
+context("RfOps - node in single tree for continuous variable")
 
 # Set-up
 set.seed(2020)
@@ -38,7 +38,7 @@ test_that("single tree node prediction works for continuous variable", {
     expect_true(abs(reCalc - trueRed) < 1e-5)
 })
 
-context("RfOps - Nodes in Forest for Continuous Variable")
+context("RfOps - nodes in forest for continuous variable")
 
 num.trees <- 2
 

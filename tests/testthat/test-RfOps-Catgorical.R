@@ -1,4 +1,4 @@
-context("RfOps - Node in Single Tree for Categorical Variable")
+context("RfOps - node in single tree for categorical variable")
 
 # Set-up
 set.seed(2020)
@@ -88,7 +88,7 @@ test_that("predicted probabilites works", {
 })
 
 
-context("RfOps - Node in Forest for Categorical Variable")
+context("RfOps - node in forest for categorical variable")
 
 num.trees <- 2
 

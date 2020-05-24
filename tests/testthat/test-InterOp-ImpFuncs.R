@@ -1,4 +1,4 @@
-context("InterOp - ImpFuncs")
+context("InterOp - imputation functions")
 
 # Set-up
 set.seed(2020)
