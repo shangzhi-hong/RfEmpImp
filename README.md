@@ -188,4 +188,4 @@ boost for imputation process (about 4x faster on a quad-core laptop).
     information in medicine 51.01 (2012): 74-81.
 7.  Van Buuren, Stef, and Karin Groothuis-Oudshoorn. “mice: Multivariate
     Imputation by Chained Equations in R.” Journal of Statistical
-    Software 45.i03 (2010).
+    Software 45.i03 (2011).
