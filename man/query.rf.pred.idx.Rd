@@ -2,8 +2,8 @@
 % Please edit documentation in R/query.rf.pred.idx.R
 \name{query.rf.pred.idx}
 \alias{query.rf.pred.idx}
-\title{Query for corresponding observations under the terminal nodes for an
-\code{ranger} object}
+\title{Identify corresponding observations under the terminal nodes for a random
+forest model by \code{ranger}}
 \usage{
 query.rf.pred.idx(obj, data, id.name = FALSE, unique.by.id = FALSE, ...)
 }

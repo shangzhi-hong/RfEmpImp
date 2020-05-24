@@ -1,5 +1,5 @@
-#' Query for corresponding observations under the terminal nodes for an
-#' \code{ranger} object
+#' Identify corresponding observations under the terminal nodes for a random
+#' forest model by \code{ranger}
 #'
 #' @description
 #' The observation indexes (row numbers) constituting the terminal node
