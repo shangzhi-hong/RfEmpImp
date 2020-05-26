@@ -10,9 +10,9 @@ testData <- data.frame(
 )
 testData <- transform(testData,
                       y = 4 + 6 * x1 + 8 * x2 + 10 * x3 + rnorm(NUM_OBS))
-num.trees <- 1
 
 test_that("single tree node prediction works for continuous variable", {
+    num.trees <- 1
     rfObj <- ranger(
         y ~ x1 + x2 + x3,
         data = testData,
@@ -38,11 +38,11 @@ test_that("single tree node prediction works for continuous variable", {
     expect_true(abs(reCalc - trueRed) < 1e-5)
 })
 
+
 context("RfOps - nodes in forest for continuous variable")
 
-num.trees <- 2
-
 test_that("forest prediction works for continuous variable", {
+    num.trees <- 2
     rfObj <- ranger(
         y ~ x1 + x2 + x3,
         data = testData,
