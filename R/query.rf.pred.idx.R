@@ -1,5 +1,5 @@
-#' Identify corresponding observations under the terminal nodes for a random
-#' forest model by \code{ranger}
+#' Identify corresponding observations indexes under the terminal nodes for a
+#' random forest model by \code{ranger}
 #'
 #' @description
 #' The observation indexes (row numbers) constituting the terminal node
@@ -18,8 +18,7 @@
 #'
 #' @param id.name Use the IDs of the terminal nodes as names for the lists.
 #'
-#' @param unique.by.id Only return unique observation indexes identified by
-#' terminal node IDs.
+#' @param unique.by.id Only return results of unique terminal node IDs.
 #'
 #' @param ... Other parameters (will be ignored).
 #'

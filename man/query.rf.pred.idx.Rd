@@ -2,8 +2,8 @@
 % Please edit documentation in R/query.rf.pred.idx.R
 \name{query.rf.pred.idx}
 \alias{query.rf.pred.idx}
-\title{Identify corresponding observations under the terminal nodes for a random
-forest model by \code{ranger}}
+\title{Identify corresponding observations indexes under the terminal nodes for a
+random forest model by \code{ranger}}
 \usage{
 query.rf.pred.idx(obj, data, id.name = FALSE, unique.by.id = FALSE, ...)
 }
@@ -14,8 +14,7 @@ query.rf.pred.idx(obj, data, id.name = FALSE, unique.by.id = FALSE, ...)
 
 \item{id.name}{Use the IDs of the terminal nodes as names for the lists.}
 
-\item{unique.by.id}{Only return unique observation indexes identified by
-terminal node IDs.}
+\item{unique.by.id}{Only return results of unique terminal node IDs.}
 
 \item{...}{Other parameters (will be ignored).}
 }

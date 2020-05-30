@@ -72,9 +72,9 @@ if \code{FALSE}, use proximity-based imputation.}
 \item{obs.eq.prob}{If \code{TRUE}, the candidate observations will be sampled
 with equal probability.}
 
-\item{do.sample}{If \code{TRUE}, draw samples for missing observations;
-if \code{FALSE}, the corresponding observations numbers will be returned.
-For testing purposes, and WILL CAUSE ERRORS for the \code{mice} sampler
+\item{do.sample}{If \code{TRUE}, draw samples for missing observations.
+If \code{FALSE}, the corresponding observations numbers will be returned,
+for testing purposes only, and WILL CAUSE ERRORS for the \code{mice} sampler
 function.}
 
 \item{num.threads}{Number of threads for parallel computing. The default is
