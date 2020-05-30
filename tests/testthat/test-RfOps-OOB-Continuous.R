@@ -66,7 +66,8 @@ test_that("out-of-bag prediction works", {
             inList = predObsIdxList,
             oobInd = oobIndSingleObs,
             MoreArgs = list(idx = useIdx,
-                            obsVal = testData$y)
+                            obsVal = testData$y),
+            SIMPLIFY = TRUE
         )
         reCalcOobPred <- mean(predictionsFromTrees, na.rm = TRUE)
         rangerOobPred <- rfObj$predictions[useIdx]
