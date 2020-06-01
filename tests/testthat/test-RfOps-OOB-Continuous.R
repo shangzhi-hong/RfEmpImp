@@ -28,6 +28,21 @@ test_that("out-of-bag prediction is NaN for in-bag observations", {
     expect_true(all(is.na(rfObj$predictions) == inbagObsInd))
 })
 
+test_that("out-of-bag mean squared error works", {
+    num.trees <- 1
+    rfObj <- ranger(
+        y ~ x1 + x2 + x3,
+        data = testData,
+        num.trees = num.trees,
+        keep.inbag = TRUE,
+        num.threads = 1)
+    predVecTot <- rfObj[["predictions"]]
+    trueVec <- testData$y[!is.na(predVecTot)]
+    predVec <- predVecTot[!is.na(predVecTot)]
+    oobMseRecalc <- mean((trueVec - predVec) ** 2)
+    oobMse <- rfObj$prediction.error
+    expect_true(abs(oobMseRecalc - oobMse) < 1e-5)
+})
 
 test_that("out-of-bag prediction works", {
     num.trees <- 5
