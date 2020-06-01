@@ -1,5 +1,5 @@
-#' Univariate sampler functions for mixed types of variables based on predicting
-#' nodes of random forests
+#' Univariate sampler function for mixed types of variables for node-based
+#' imputation, using predicting nodes of random forests
 #'
 #' @description
 #' Please note that functions with names starting with "mice.impute" are

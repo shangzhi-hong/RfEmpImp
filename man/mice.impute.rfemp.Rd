@@ -2,8 +2,9 @@
 % Please edit documentation in R/mice.impute.rfemp.R
 \name{mice.impute.rfemp}
 \alias{mice.impute.rfemp}
-\title{Univariate sampler functions for mixed types of variables using the empirical
-error distributions or predicted probabilities of random forests}
+\title{Univariate sampler function for mixed types of variables for
+prediction-based imputation, using empirical distribution of out-of-bag
+prediction errors and predicted probabilities of random forests}
 \usage{
 mice.impute.rfemp(
   y,

@@ -1,5 +1,5 @@
-#' Univariate sampler function for categorical variables using predicted
-#' probabilities of random forest
+#' Univariate sampler function for categorical variables for prediction-based
+#' imputation, using predicted probabilities of random forest
 #'
 #' @description
 #' Please note that functions with names starting with "mice.impute" are
@@ -14,7 +14,7 @@
 #'
 #' @details
 #' \code{RfEmpImp} Imputation sampler for: categorical variables based on
-#' probability machines.
+#' predicted probabilities.
 #'
 #' @param y Vector to be imputed.
 #'

@@ -2,8 +2,8 @@
 % Please edit documentation in R/mice.impute.rfpred.cate.R
 \name{mice.impute.rfpred.cate}
 \alias{mice.impute.rfpred.cate}
-\title{Univariate sampler function for categorical variables using predicted
-probabilities of random forest}
+\title{Univariate sampler function for categorical variables for prediction-based
+imputation, using predicted probabilities of random forest}
 \usage{
 mice.impute.rfpred.cate(
   y,
@@ -66,7 +66,7 @@ probabilities for the categories.
 }
 \details{
 \code{RfEmpImp} Imputation sampler for: categorical variables based on
-probability machines.
+predicted probabilities.
 }
 \examples{
 # Prepare data

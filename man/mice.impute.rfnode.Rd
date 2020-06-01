@@ -5,8 +5,8 @@
 \alias{mice.impute.rfnode}
 \alias{mice.impute.rfnode.cond}
 \alias{mice.impute.rfnode.prox}
-\title{Univariate sampler functions for mixed types of variables based on predicting
-nodes of random forests}
+\title{Univariate sampler function for mixed types of variables for node-based
+imputation, using predicting nodes of random forests}
 \usage{
 mice.impute.rfnode(
   y,

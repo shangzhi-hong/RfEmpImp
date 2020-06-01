@@ -1,5 +1,6 @@
-#' Univariate sampler functions for mixed types of variables using the empirical
-#' error distributions or predicted probabilities of random forests
+#' Univariate sampler function for mixed types of variables for
+#' prediction-based imputation, using empirical distribution of out-of-bag
+#' prediction errors and predicted probabilities of random forests
 #'
 #' @description
 #' Please note that functions with names starting with "mice.impute" are

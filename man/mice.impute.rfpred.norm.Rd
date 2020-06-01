@@ -2,8 +2,8 @@
 % Please edit documentation in R/mice.impute.rfpred.norm.R
 \name{mice.impute.rfpred.norm}
 \alias{mice.impute.rfpred.norm}
-\title{Univariate sampler function for continuous variables assuming normality for
-prediction errors}
+\title{Univariate sampler function for continuous variables for prediction-based
+imputation, assuming normality for prediction errors of random forest}
 \usage{
 mice.impute.rfpred.norm(
   y,

@@ -1,5 +1,5 @@
-#' Univariate sampler function for continuous variables assuming normality for
-#' prediction errors
+#' Univariate sampler function for continuous variables for prediction-based
+#' imputation, assuming normality for prediction errors of random forest
 #'
 #' @description
 #' Please note that functions with names starting with "mice.impute" are
