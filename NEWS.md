@@ -3,7 +3,6 @@
 with the terminal nodes
 * Add new function `query.rf.pred.val` for querying observed values associated
 with the terminal nodes
-* Add new function `conv.factor` for converting variables
 * Update dependency for `mice (>= 3.9.0)` to avoid collinearity checks
 * Update dependency for `ranger (>= 0.12.3)` to fix parameter passing
 * Update documentations
