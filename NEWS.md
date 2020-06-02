@@ -1,4 +1,6 @@
-## RfEmpImp 2.1.1
+## RfEmpImp 2.1.2
+* Add support for imputation using samples of classification trees predictions
+for prediction-based imputation (RfPred-Cate)
 * Add new function `query.rf.pred.idx` for querying observation IDs associated
 with the terminal nodes
 * Add new function `query.rf.pred.val` for querying observed values associated
