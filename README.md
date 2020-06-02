@@ -45,22 +45,22 @@ library(RfEmpImp)
 ### For mixed types of variables
 
 For data with mixed types of variables, users can call function
-`imp.rfemp()` to use `RfEmp` method, for using `RfPred.Emp` method for
-continuous variables, and using `RfPred.Cate` method for categorical
+`imp.rfemp()` to use `RfEmp` method, for using `RfPred-Emp` method for
+continuous variables, and using `RfPred-Cate` method for categorical
 variables (of type `logical` or `factor`, etc.).  
 Starting with version `2.0.0`, the names of parameters were further
 simplified, please refer to the documentation for details.
 
 ### Prediction-based imputation for continuous variables
 
-For continuous variables, in `RfPred.Emp` method, the empirical
+For continuous variables, in `RfPred-Emp` method, the empirical
 distribution of random forest’s out-of-bag prediction errors is used
 when constructing the conditional distributions of the variable under
 imputation, providing conditional distributions with better quality.
 Users can set `method = "rfpred.emp"` in function call to `mice` to use
 it.
 
-Also, in `RfPred.Norm` method, normality was assumed for RF prediction
+Also, in `RfPred-Norm` method, normality was assumed for RF prediction
 errors, as proposed by Shah *et al.*, and users can set `method =
 "rfpred.norm"` in function call to `mice` to use it.
 
@@ -97,7 +97,7 @@ It should be noted that categorical variables should be of types of
 
 ### Node-based imputation using predicting nodes
 
-Users can call function `imp.rfnode.cond()` to use `RfNode.Cond` method,
+Users can call function `imp.rfnode.cond()` to use `RfNode-Cond` method,
 performing imputation using the conditional distribution formed by the
 prediction nodes.  
 The weight changes of observations caused by the bootstrapping of random
@@ -108,7 +108,7 @@ to use it.
 
 ### Node-based imputation using proximities
 
-Users can call function `imp.rfnode.prox()` to use `RfNode.Prox` method,
+Users can call function `imp.rfnode.prox()` to use `RfNode-Prox` method,
 performing imputation using the proximity matrices of random forests.  
 All the observations fall under the same predicting nodes are used as
 candidates for imputation, including the out-of-bag ones.  
