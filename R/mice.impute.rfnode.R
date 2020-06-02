@@ -86,16 +86,15 @@
 #'
 #' @examples
 #' # Prepare data: convert categorical variables to factors
-#' nhanes.fix <- nhanes
-#' nhanes.fix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
+#' nhanes.fix <- conv.factor(nhanes, c("age", "hyp"))
 #'
 #' # Using "rfnode.cond" or "rfnode"
 #' impRfNodeCond <- mice(nhanes.fix, method = "rfnode.cond", m = 5,
-#' maxit = 5, maxcor = 1.0, printFlag = FALSE)
+#' maxit = 5, maxcor = 1.0, eps = 0, printFlag = FALSE)
 #'
 #' # Using "rfnode.prox"
 #' impRfNodeProx <- mice(nhanes.fix, method = "rfnode.prox", m = 5,
-#' maxit = 5, maxcor = 1.0, printFlag = FALSE)
+#' maxit = 5, maxcor = 1.0, eps = 0, printFlag = FALSE)
 #'
 #' @export
 mice.impute.rfnode <- function(

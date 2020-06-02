@@ -92,8 +92,8 @@
 #'
 #' @examples
 #' # Prepare data: convert categorical variables to factors
-#' nhanes.fix <- nhanes
-#' nhanes.fix[, c("age", "hyp")] <- lapply(nhanes[, c("age", "hyp")], as.factor)
+#' nhanes.fix <- conv.factor(nhanes, c("age", "hyp"))
+#'
 #' # This function is exported to be visible to the mice sampler functions, and
 #' # users can set method = "rfemp" in call to mice to use this function.
 #' # Users are recommended to use the imp.rfemp function instead:

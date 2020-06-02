@@ -75,8 +75,7 @@
 #' mtcars.catmcar <- mtcars
 #' mtcars.catmcar[, c("gear", "carb")] <-
 #'     gen.mcar(mtcars.catmcar[, c("gear", "carb")], warn.empty.row = FALSE)
-#' mtcars.catmcar[, c("gear", "carb")] <-
-#'     lapply(mtcars.catmcar[, c("gear", "carb")], as.factor)
+#' mtcars.catmcar <- conv.factor(mtcars.catmcar, c("gear", "carb"))
 #' # Perform imputation
 #' impObj <- mice(mtcars.catmcar, method = "rfpred.cate", m = 5,
 #'                maxit = 5, maxcor = 1.0,
