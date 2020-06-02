@@ -76,8 +76,7 @@ predicted probabilities for each missing observation. Users can set
 ### Example for prediction-based imputation
 ```r
 # Prepare data
-df <- nhanes
-df[, c("age", "hyp")] <- lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
+df <- conv.factor(nhanes, c("age", "hyp"))
 # Do imputation
 imp <- imp.rfemp(df)
 # Do analyses
@@ -116,8 +115,7 @@ to use it.
 ### Example for node-based imputation
 ```r
 # Prepare data
-df <- nhanes
-df[, c("age", "hyp")] <- lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
+df <- conv.factor(nhanes, c("age", "hyp"))
 # Do imputation
 imp <- imp.rfnode.cond(df)
 # Or: imp <- imp.rfnode.prox(df)

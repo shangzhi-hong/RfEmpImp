@@ -75,8 +75,7 @@ can set `method = "rfpred.cate"` in function call to `mice` to use it.
 
 ``` r
 # Prepare data
-df <- nhanes
-df[, c("age", "hyp")] <- lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
+df <- conv.factor(nhanes, c("age", "hyp"))
 # Do imputation
 imp <- imp.rfemp(df)
 # Do analyses
@@ -120,8 +119,7 @@ to use it.
 
 ``` r
 # Prepare data
-df <- nhanes
-df[, c("age", "hyp")] <- lapply(X = nhanes[, c("age", "hyp")], FUN = as.factor)
+df <- conv.factor(nhanes, c("age", "hyp"))
 # Do imputation
 imp <- imp.rfnode.cond(df)
 # Or: imp <- imp.rfnode.prox(df)
