@@ -15,8 +15,9 @@ conv.factor(data, convNames = NULL, exceptNames = NULL, uniqueNum = 5)
 \item{exceptNames}{Names of variables to be excluded from conversion, the
 default is \code{convNames = NULL}.}
 
-\item{uniqueNum}{Unique values in the variables to be converted to factors,
-the default is \code{uniqueNum = 5}.}
+\item{uniqueNum}{Variables of less than or equal to a specific number of
+unique values in the  to be converted to factors, the default is
+\code{uniqueNum = 5}.}
 }
 \value{
 A data frame of converted variables.
