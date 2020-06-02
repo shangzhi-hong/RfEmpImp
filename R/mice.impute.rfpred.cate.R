@@ -33,8 +33,13 @@
 #' default to \code{10}.
 #'
 #' @param use.pred.prob.cate Logical, \code{TRUE} for assigning categories based
-#' on predicted probabilities, \code{FALSE} for imputation based on majority
-#' votes, default to \code{TRUE}.
+#' on predicted probabilities, \code{FALSE} for imputation based on random draws
+#' from predictions of classification trees, default to \code{TRUE}. Note that
+#' if \code{forest.vote.cate = TRUE}, then this option is invalid.
+#'
+#' @param forest.vote.cate Logical, \code{TRUE} for assigning categories based
+#' on majority votes of random forests, \code{FALSE} for imputation based on
+#' control of option \code{use.pred.prob.cate}, default to \code{FALSE}.
 #'
 #' @param pre.boot Perform bootstrap prior to imputation to get 'proper'
 #' multiple imputation, i.e. accommodating sampling variation in estimating
@@ -85,6 +90,7 @@ mice.impute.rfpred.cate <- function(
     wy = NULL,
     num.trees.cate = 10,
     use.pred.prob.cate = TRUE,
+    forest.vote.cate = FALSE,
     pre.boot = TRUE,
     num.threads = NULL,
     ...) {
@@ -109,7 +115,17 @@ mice.impute.rfpred.cate <- function(
     yObsLvNum <- nlevels(yobsLvDrop)
     if (yObsLvNum == 1) return(rep_len(yObs, length.out = yMisNum))
     xMis <- x[wy, , drop = FALSE]
-    if (isTRUE(use.pred.prob.cate)) {
+    if (isTRUE(forest.vote.cate)) {
+        # Construct predictions based on major votes, less variant
+        rangerObj <- suppressWarnings(ranger(
+            x = xObs,
+            y = yObs,
+            oob.error = FALSE,
+            num.trees = num.trees.cate,
+            num.threads = num.threads,
+            ...))
+        impVal <- predictions(predict(rangerObj, xMis))
+    } else if (isTRUE(use.pred.prob.cate)) {
         # Construct predictions based on probabilities
         # Suppress warnings like:
         # "Dropped unused factor level(s) in dependent variable"
@@ -132,13 +148,20 @@ mice.impute.rfpred.cate <- function(
             })
         impVal <- factor(x = impValChar, levels = levels(y))
     } else {
-        # Construct predictions based on major votes, less variant
+        # Imputation using random draws from predictions of trees
         rangerObj <- ranger(
             x = xObs,
             y = yObs,
             oob.error = FALSE,
-            num.trees = num.trees.cate)
-        impVal <- predictions(predict(rangerObj, xMis))
+            num.trees = num.trees.cate,
+            num.threads = num.threads,
+            ...)
+        misPredMat <- predictions(predict(rangerObj, xMis, predict.all = TRUE))
+        impValChar <- apply(
+            X = misPredMat,
+            MARGIN = 1,
+            FUN = function(x) sample(x = x, size = 1))
+        impVal <- factor(x = levels(y)[impValChar], levels = levels(y))
     }
     if (yIsLogical) impVal <- as.logical(impVal == "TRUE")
     return(impVal)

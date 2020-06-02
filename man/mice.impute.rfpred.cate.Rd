@@ -12,6 +12,7 @@ mice.impute.rfpred.cate(
   wy = NULL,
   num.trees.cate = 10,
   use.pred.prob.cate = TRUE,
+  forest.vote.cate = FALSE,
   pre.boot = TRUE,
   num.threads = NULL,
   ...
@@ -35,8 +36,13 @@ indicates locations in \code{y} for which imputations are created.}
 default to \code{10}.}
 
 \item{use.pred.prob.cate}{Logical, \code{TRUE} for assigning categories based
-on predicted probabilities, \code{FALSE} for imputation based on majority
-votes, default to \code{TRUE}.}
+on predicted probabilities, \code{FALSE} for imputation based on random draws
+from predictions of classification trees, default to \code{TRUE}. Note that
+if \code{forest.vote.cate = TRUE}, then this option is invalid.}
+
+\item{forest.vote.cate}{Logical, \code{TRUE} for assigning categories based
+on majority votes of random forests, \code{FALSE} for imputation based on
+control of option \code{use.pred.prob.cate}, default to \code{FALSE}.}
 
 \item{pre.boot}{Perform bootstrap prior to imputation to get 'proper'
 multiple imputation, i.e. accommodating sampling variation in estimating
