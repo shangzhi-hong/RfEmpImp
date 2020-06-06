@@ -92,5 +92,8 @@ imp.rfnode.prox <- function(
         # Bypass remove.lindep() in mice >= 3.9.0
         maxcor = 1.0,
         eps = 0,
+        # Bypass collinearity and constant checks
+        remove.collinear = FALSE,
+        remove.constant = FALSE,
         ...))
 }
