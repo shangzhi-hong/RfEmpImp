@@ -94,7 +94,9 @@
 #' # Users can set method = "rfpred.emp" in call to mice to use this method
 #' data("airquality")
 #' impObj <- mice(airquality, method = "rfpred.emp", m = 5,
-#' maxit = 5, maxcor = 1.0, eps = 0, printFlag = FALSE)
+#' maxit = 5, maxcor = 1.0, eps = 0,
+#' remove.collinear = FALSE, remove.constant = FALSE,
+#' printFlag = FALSE)
 #'
 #' @export
 mice.impute.rfpred.emp <- function(

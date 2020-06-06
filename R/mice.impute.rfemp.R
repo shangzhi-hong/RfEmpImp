@@ -98,7 +98,10 @@
 #' # users can set method = "rfemp" in call to mice to use this function.
 #' # Users are recommended to use the imp.rfemp function instead:
 #' impObj <- mice(nhanes.fix, method = "rfemp", m = 5,
-#' maxit = 5, maxcor = 1.0, eps = 0, printFlag = FALSE)
+#' maxit = 5, maxcor = 1.0, eps = 0,
+#' remove.collinear = FALSE, remove.constant = FALSE,
+#' printFlag = FALSE
+#' )
 #'
 #' @export
 mice.impute.rfemp <- function(
