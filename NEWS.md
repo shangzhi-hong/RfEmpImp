@@ -1,4 +1,6 @@
-## RfEmpImp 2.1.3
+## RfEmpImp 2.1.5
+* New independent `mice.impute.rfpred.norm` function, and thus simplified
+`mice.impute.rfpred.emp` function
 * Bypass collinearity and constant checks in `mice` for `imp.*` functions
 * Add support for imputation using samples of classification trees predictions
 for prediction-based imputation (RfPred-Cate)
