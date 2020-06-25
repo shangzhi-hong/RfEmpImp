@@ -12,7 +12,6 @@ mice.impute.rfpred.emp(
   wy = NULL,
   num.trees.cont = 10,
   sym.dist = TRUE,
-  emp.err.cont = TRUE,
   alpha.emp = 0,
   pre.boot = TRUE,
   num.threads = NULL,
