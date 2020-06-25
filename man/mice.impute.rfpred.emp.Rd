@@ -42,12 +42,6 @@ empirical distribution will be kept intact. The default is
 \code{sym.dist = TRUE}.
 This option is invalid when \code{emp.err.cont = FALSE}.}
 
-\item{emp.err.cont}{If \code{TRUE}, the empirical distribution of out-of-bag
-prediction errors will be used for constructing conditional distributions;
-if \code{FALSE}, for normality will be assumed for the distribution for the
-prediction errors, the variance estimate equals to overall out-of-bag
-prediction error, i.e. out-of-bag mean squared error (see Shah et al. 2014).}
-
 \item{alpha.emp}{The "significance level" for the empirical distribution of
 out-of-bag prediction errors, can be used for prevention for outliers
 (useful for highly skewed variables).

@@ -34,6 +34,20 @@
 #' @param num.trees.cont Number of trees to build for continuous variables.
 #'  The default is \code{num.trees = 10}.
 #'
+#' @param norm.err.cont Use normality assumption for prediction errors of random
+#' forests. The default is \code{norm.err.cont = TRUE}, and normality will be
+#' assumed for the distribution for the prediction errors, the variance estimate
+#' equals to overall out-of-bag prediction error, i.e. out-of-bag mean squared
+#' error (see Shah et al. 2014). If \code{FALSE}, then the predictions of random
+#' forest are used.
+#'
+#' @param alpha.oob The "significance level" for individual out-of-bag
+#' prediction errors used for the calculation for out-of-bag mean squared error,
+#' useful when presence of extreme values.
+#' For example, set alpha = 0.05 to use 95\% confidence level.
+#' The default is \code{alpha.oob = 0.0}, and all the individual out-of-bag
+#' prediction errors will be kept intact.
+#'
 #' @param pre.boot If \code{TRUE}, bootstrapping prior to imputation will be
 #' performed to perform 'proper' multiple imputation, for accommodating sampling
 #' variation in estimating population regression parameters
@@ -73,20 +87,59 @@ mice.impute.rfpred.norm <- function(
     x,
     wy = NULL,
     num.trees.cont = 10,
+    norm.err.cont = TRUE,
+    alpha.oob = 0.0,
     pre.boot = TRUE,
     num.threads = NULL,
     ...) {
-    return(
-        mice.impute.rfpred.emp(
-            y = y,
-            ry = ry,
-            x = x,
-            wy = wy,
-            num.trees.cont = num.trees.cont,
-            emp.err.cont = FALSE,
-            pre.boot = pre.boot,
+    if (is.null(wy))
+        wy <- !ry
+    yMisNum <- sum(wy)
+    if (isTRUE(pre.boot)) {
+        bootIdx <- sample(sum(ry), replace = TRUE)
+        yObs <- y[ry][bootIdx]
+        xObs <- x[ry, , drop = FALSE][bootIdx, , drop = FALSE]
+    } else {
+        yObs <- y[ry]
+        xObs <- x[ry, , drop = FALSE]
+    }
+    xMis <- x[wy, , drop = FALSE]
+    # Let ranger handle unused arguments after v0.12.3
+    rfObj <- suppressWarnings(
+        ranger(
+            x = xObs,
+            y = yObs,
+            oob.error = TRUE,
+            num.trees = num.trees.cont,
             num.threads = num.threads,
             ...
         )
     )
+    misPredVal <- predictions(predict(rfObj, xMis))
+    if (norm.err.cont) {
+        oobMse <- NULL
+        if (isTRUE(alpha.oob > 0 && alpha.oob < 1)) {
+            # Get empirical OOB prediction errors
+            oobErr <-  yObs - rfObj[["predictions"]]
+            # To fix "NaN"s in OOB error due to small tree number
+            oobErrAbs <- abs(oobErr[!is.na(oobErr)])
+            oobErrorAbsHi <- quantile(
+                oobErrAbs,
+                probs = (1 - alpha.oob),
+                na.rm = TRUE,
+                names = FALSE
+            )
+            oobErrAbs <- oobErrAbs[oobErrAbs < oobErrorAbsHi]
+            oobMse <- mean(oobErrAbs * oobErrAbs)
+        } else {
+            oobMse <- rfObj[["prediction.error"]]
+        }
+        # Use normal assumption
+        impVal <- rnorm(length(misPredVal),
+                        mean = misPredVal,
+                        sd = sqrt(rfObj[["prediction.error"]]))
+        return(impVal)
+    } else {
+        return(misPredVal)
+    }
 }

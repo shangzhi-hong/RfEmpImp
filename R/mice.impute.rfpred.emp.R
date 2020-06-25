@@ -37,12 +37,6 @@
 #' @param num.trees.cont Number of trees to build for continuous variables.
 #'  The default is \code{num.trees = 10}.
 #'
-#' @param emp.err.cont If \code{TRUE}, the empirical distribution of out-of-bag
-#' prediction errors will be used for constructing conditional distributions;
-#' if \code{FALSE}, for normality will be assumed for the distribution for the
-#' prediction errors, the variance estimate equals to overall out-of-bag
-#' prediction error, i.e. out-of-bag mean squared error (see Shah et al. 2014).
-#'
 #' @param alpha.emp The "significance level" for the empirical distribution of
 #' out-of-bag prediction errors, can be used for prevention for outliers
 #' (useful for highly skewed variables).
@@ -132,43 +126,35 @@ mice.impute.rfpred.emp <- function(
         num.threads = num.threads,
         ...))
     misPredVal <- predictions(predict(rfObj, xMis))
-    if (emp.err.cont) {
-        # Get empirical OOB prediction errors
-        oobErrEmp <-  yObs - rfObj[["predictions"]]
-        # To fix "NaN"s in OOB error due to small tree number
-        oobErrEmp <- oobErrEmp[!is.na(oobErrEmp)]
-        if (isTRUE(sym.dist)) {
-            oobErrEmpAbs <- abs(oobErrEmp)
-            if (isTRUE(alpha.emp > 0 && alpha.emp < 1)) {
-                oobErrorEmpHi <- quantile(oobErrEmpAbs,
-                                          probs = (1 - alpha.emp),
-                                          na.rm = TRUE,
-                                          names = FALSE)
-                oobErrEmpAbs <- oobErrEmpAbs[oobErrEmpAbs < oobErrorEmpHi]
-            }
-            noiseAbs <- sample(x = oobErrEmpAbs, size = yMisNum, replace = TRUE)
-            signVec <- sample(x = c(1L, -1L), size = yMisNum, replace = TRUE)
-            noiseVec <- signVec * noiseAbs
-        } else {
-            if (isTRUE(alpha.emp > 0 && alpha.emp < 1)) {
-                oobErrorEmpLimit <- quantile(
-                    oobErrEmp,
-                    probs = c((alpha.emp / 2), (1 - alpha.emp / 2)),
-                    na.rm = TRUE,
-                    names = FALSE)
-                oobErrEmp <- oobErrEmp[
-                    oobErrEmp > oobErrorEmpLimit[1] &
-                    oobErrEmp < oobErrorEmpLimit[2]]
-            }
-            noiseVec <- sample(x = oobErrEmp, size = yMisNum, replace = TRUE)
+    # Get empirical OOB prediction errors
+    oobErrEmp <-  yObs - rfObj[["predictions"]]
+    # To fix "NaN"s in OOB error due to small tree number
+    oobErrEmp <- oobErrEmp[!is.na(oobErrEmp)]
+    if (isTRUE(sym.dist)) {
+        oobErrEmpAbs <- abs(oobErrEmp)
+        if (isTRUE(alpha.emp > 0 && alpha.emp < 1)) {
+            oobErrorEmpHi <- quantile(oobErrEmpAbs,
+                                      probs = (1 - alpha.emp),
+                                      na.rm = TRUE,
+                                      names = FALSE)
+            oobErrEmpAbs <- oobErrEmpAbs[oobErrEmpAbs < oobErrorEmpHi]
         }
-        impVal <- misPredVal + noiseVec
-        return(impVal)
+        noiseAbs <- sample(x = oobErrEmpAbs, size = yMisNum, replace = TRUE)
+        signVec <- sample(x = c(1L, -1L), size = yMisNum, replace = TRUE)
+        noiseVec <- signVec * noiseAbs
     } else {
-        # Use normal assumption
-        impVal <- rnorm(length(misPredVal),
-                        mean = misPredVal,
-                        sd = sqrt(rfObj[["prediction.error"]]))
-        return(impVal)
+        if (isTRUE(alpha.emp > 0 && alpha.emp < 1)) {
+            oobErrorEmpLimit <- quantile(
+                oobErrEmp,
+                probs = c((alpha.emp / 2), (1 - alpha.emp / 2)),
+                na.rm = TRUE,
+                names = FALSE)
+            oobErrEmp <- oobErrEmp[
+                oobErrEmp > oobErrorEmpLimit[1] &
+                oobErrEmp < oobErrorEmpLimit[2]]
+        }
+        noiseVec <- sample(x = oobErrEmp, size = yMisNum, replace = TRUE)
     }
+    impVal <- misPredVal + noiseVec
+    return(impVal)
 }

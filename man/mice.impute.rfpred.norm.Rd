@@ -11,6 +11,8 @@ mice.impute.rfpred.norm(
   x,
   wy = NULL,
   num.trees.cont = 10,
+  norm.err.cont = TRUE,
+  alpha.oob = 0,
   pre.boot = TRUE,
   num.threads = NULL,
   ...
@@ -32,6 +34,20 @@ indicates locations in \code{y} for which imputations are created.}
 
 \item{num.trees.cont}{Number of trees to build for continuous variables.
 The default is \code{num.trees = 10}.}
+
+\item{norm.err.cont}{Use normality assumption for prediction errors of random
+forests. The default is \code{norm.err.cont = TRUE}, and normality will be
+assumed for the distribution for the prediction errors, the variance estimate
+equals to overall out-of-bag prediction error, i.e. out-of-bag mean squared
+error (see Shah et al. 2014). If \code{FALSE}, then the predictions of random
+forest are used.}
+
+\item{alpha.oob}{The "significance level" for individual out-of-bag
+prediction errors used for the calculation for out-of-bag mean squared error,
+useful when presence of extreme values.
+For example, set alpha = 0.05 to use 95\% confidence level.
+The default is \code{alpha.oob = 0.0}, and all the individual out-of-bag
+prediction errors will be kept intact.}
 
 \item{pre.boot}{If \code{TRUE}, bootstrapping prior to imputation will be
 performed to perform 'proper' multiple imputation, for accommodating sampling
