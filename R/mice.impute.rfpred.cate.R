@@ -117,27 +117,43 @@ mice.impute.rfpred.cate <- function(
     xMis <- x[wy, , drop = FALSE]
     if (isTRUE(forest.vote.cate)) {
         # Construct predictions based on major votes, less variant
-        rangerObj <- suppressWarnings(ranger(
+        # TODO: Let ranger handle unused arguments after v0.12.3
+        # rangerObj <- suppressWarnings(ranger(
+        #     x = xObs,
+        #     y = yObs,
+        #     oob.error = FALSE,
+        #     num.trees = num.trees.cate,
+        #     num.threads = num.threads,
+        #     ...))
+        rangerObj <- rangerCallerSafe(
             x = xObs,
             y = yObs,
             oob.error = FALSE,
             num.trees = num.trees.cate,
             num.threads = num.threads,
-            ...))
+            ...)
         impVal <- predictions(predict(rangerObj, xMis))
     } else if (isTRUE(use.pred.prob.cate)) {
         # Construct predictions based on probabilities
         # Suppress warnings like:
         # "Dropped unused factor level(s) in dependent variable"
-        # Let ranger handle unused arguments after v0.12.3
-        rangerObjProb <- suppressWarnings(ranger(
+        # TODO: Let ranger handle unused arguments after v0.12.3
+        # rangerObjProb <- suppressWarnings(ranger(
+        #     x = xObs,
+        #     y = yObs,
+        #     probability = TRUE,
+        #     oob.error = FALSE,
+        #     num.trees = num.trees.cate,
+        #     num.threads = num.threads,
+        #     ...))
+        rangerObjProb <- rangerCallerSafe(
             x = xObs,
             y = yObs,
             probability = TRUE,
             oob.error = FALSE,
             num.trees = num.trees.cate,
             num.threads = num.threads,
-            ...))
+            ...)
         misPredMat <- predictions(predict(rangerObjProb, xMis))
         yLevels <- colnames(misPredMat)
         impValChar <- apply(
@@ -149,7 +165,15 @@ mice.impute.rfpred.cate <- function(
         impVal <- factor(x = impValChar, levels = levels(y))
     } else {
         # Imputation using random draws from predictions of trees
-        rangerObj <- ranger(
+        # TODO: Let ranger handle unused arguments after v0.12.3
+        # rangerObj <- suppressWarnings(ranger(
+        #     x = xObs,
+        #     y = yObs,
+        #     oob.error = FALSE,
+        #     num.trees = num.trees.cate,
+        #     num.threads = num.threads,
+        #     ...))
+        rangerObj <- rangerCallerSafe(
             x = xObs,
             y = yObs,
             oob.error = FALSE,

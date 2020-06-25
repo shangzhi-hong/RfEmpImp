@@ -139,3 +139,4 @@ test_that("mice.impute.rfpred.norm works for continuous variables", {
         }
     }
 })
+

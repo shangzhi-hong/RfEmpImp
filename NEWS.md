@@ -1,4 +1,6 @@
 ## RfEmpImp 2.1.5
+* Add new wrapper function to recover dependency on `ranger (>= 0.12.1)` and
+to fix parameter passing
 * New independent `mice.impute.rfpred.norm` function, and thus simplified
 `mice.impute.rfpred.emp` function
 * Bypass collinearity and constant checks in `mice` for `imp.*` functions
@@ -11,7 +13,6 @@ with the terminal nodes
 * Add new function `conv.factor` for converting variables
 * Update dependency for `mice (>= 3.9.0)` to avoid collinearity checks during
 imputation
-* Update dependency for `ranger (>= 0.12.3)` to fix parameter passing
 * Update documentations
 
 ## RfEmpImp 2.0.3

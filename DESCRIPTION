@@ -25,7 +25,7 @@ RoxygenNote: 7.1.0
 Depends:
     R (>= 3.5.0),
     mice (>= 3.9.0),
-    ranger (>= 0.12.3)
+    ranger (>= 0.12.1)
 Suggests: 
     testthat (>= 2.1.0),
     knitr,

@@ -117,13 +117,20 @@ mice.impute.rfpred.emp <- function(
     }
     xMis <- x[wy, , drop = FALSE]
     # Let ranger handle unused arguments after v0.12.3
-    rfObj <- suppressWarnings(ranger(
+    # rfObj <- suppressWarnings(ranger(
+    #     x = xObs,
+    #     y = yObs,
+    #     oob.error = TRUE,
+    #     num.trees = num.trees.cont,
+    #     num.threads = num.threads,
+    #     ...))
+    rfObj <- rangerCallerSafe(
         x = xObs,
         y = yObs,
         oob.error = TRUE,
         num.trees = num.trees.cont,
         num.threads = num.threads,
-        ...))
+        ...)
     misPredVal <- predictions(predict(rfObj, xMis))
     # Get empirical OOB prediction errors
     oobErrEmp <-  yObs - rfObj[["predictions"]]

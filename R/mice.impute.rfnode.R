@@ -122,13 +122,19 @@ mice.impute.rfnode <- function(
     }
     xMis <- x[wy, , drop = FALSE]
     # Output in-bag list when using conditional distribution
-    # Let ranger handle unused arguments after v0.12.3
-    rfObj <- suppressWarnings(ranger(x = xObs,
+    # TODO: Let ranger handle unused arguments after v0.12.3
+    # rfObj <- suppressWarnings(ranger(x = xObs,
+    #                 y = yObs,
+    #                 num.trees = num.trees.node,
+    #                 keep.inbag = use.node.cond.dist,
+    #                 num.threads = num.threads,
+    #                 ...))
+    rfObj <- rangerCallerSafe(x = xObs,
                     y = yObs,
                     num.trees = num.trees.node,
                     keep.inbag = use.node.cond.dist,
                     num.threads = num.threads,
-                    ...))
+                    ...)
     # Get Nodes for training and test set
     nodeObjMis <- predict(rfObj, data = xMis, type = "terminalNodes")
     nodeObjObs <- predict(rfObj, data = xObs, type = "terminalNodes")
