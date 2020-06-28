@@ -6,7 +6,7 @@
 [![CRAN Status
 Badge](http://www.r-pkg.org/badges/version/RfEmpImp)](https://CRAN.R-project.org/package=RfEmpImp)
 [![GitHub Version
-Badge](https://img.shields.io/static/v1?label=GitHub&message=2.1.5&color=3399ff)](https://github.com/shangzhi-hong/RfEmpImp)
+Badge](https://img.shields.io/static/v1?label=GitHub&message=2.1.6&color=3399ff)](https://github.com/shangzhi-hong/RfEmpImp)
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)  
 An R package for random-forest-empowered imputation of missing Data

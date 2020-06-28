@@ -7,12 +7,13 @@
 reg.ests(obj, ...)
 }
 \arguments{
-\item{obj}{Pooled object.}
+\item{obj}{Pooled object from function \code{pool()}.}
 
 \item{...}{Other parameters to pass down.}
 }
 \value{
-A data frame containing estimates and confidence intervals.
+A data frame containing coefficient estimates and corresponding
+confidence intervals.
 }
 \description{
 Get the estimates with corresponding confidence intervals after pooling.

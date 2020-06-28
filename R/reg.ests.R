@@ -3,11 +3,12 @@
 #' @description
 #' Get the estimates with corresponding confidence intervals after pooling.
 #'
-#' @param obj Pooled object.
+#' @param obj Pooled object from function \code{pool()}.
 #'
 #' @param ... Other parameters to pass down.
 #'
-#' @return A data frame containing estimates and confidence intervals.
+#' @return A data frame containing coefficient estimates and corresponding
+#' confidence intervals.
 #'
 #' @export
 reg.ests <- function(obj, ...) {

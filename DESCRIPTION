@@ -1,27 +1,27 @@
 Package: RfEmpImp
 Type: Package
 Title: Multiple Imputation using Chained Random Forests
-Version: 2.1.5
+Version: 2.1.6
 Authors@R: c(person("Shangzhi", "Hong", role = c("aut", "cre"),
             email = "shangzhi-hong@hotmail.com"),
             person("Henry S.", "Lynn", role = c("ths")))
 Maintainer: Shangzhi Hong <shangzhi-hong@hotmail.com>
-Description: An R package for methods of multiple imputation using chained
-    random forests. Implemented methods can handle missing data in mixed types
-    of by using prediction-based or node-based conditional distributions
-    constructed using random forests. For prediction-based imputation,
-    the method based on the empirical distribution of out-of-bag prediction
-    errors of random forests, and the method based on normality assumption are
-    provided for continuous variables. And the method based on predicted
-    probabilities is provided for categorical variables. For node-based
-    imputation, the method based on the conditional distribution formed by
-    the predicting nodes of random forests, and the method based on proximity
-    measures of random forests are provided. More details of the statistical
-    methods can be found in Hong et al. (2020) <arXiv:2004.14823>.
+Description: An R package for multiple imputation using chained random forests.
+    Implemented methods can handle missing data in mixed types of variables by
+    using prediction-based or node-based conditional distributions constructed
+    using random forests. For prediction-based imputation, the method based on
+    the empirical distribution of out-of-bag prediction errors of random forests
+    and the method based on normality assumption for prediction errors of random
+    forests are provided for imputing continuous variables. And the method based
+    on predicted probabilities is provided for imputing categorical variables.
+    For node-based imputation, the method based on the conditional distribution
+    formed by the predicting nodes of random forests, and the method based on
+    proximity measures of random forests are provided. More details of the
+    statistical methods can be found in Hong et al. (2020) <arXiv:2004.14823>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Depends:
     R (>= 3.5.0),
     mice (>= 3.9.0),

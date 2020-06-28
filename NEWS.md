@@ -1,3 +1,6 @@
+## RfEmpImp 2.1.6
+* Update documentations
+
 ## RfEmpImp 2.1.5
 * Add new wrapper function to recover dependency on `ranger (>= 0.12.1)` and
 to fix parameter passing
