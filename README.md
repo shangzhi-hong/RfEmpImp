@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# RfEmpImp <a href='https://github.com/shangzhi-hong/RfEmpImp'><img src='man/figures/logo.png' align="right" height="160"/></a>
+# RfEmpImp <a href='https://github.com/shangzhi-hong/RfEmpImp'><img src='man/figures/logo.png' height="160" style="float:right"/></a>
 
 [![CRAN Status
 Badge](http://www.r-pkg.org/badges/version/RfEmpImp)](https://CRAN.R-project.org/package=RfEmpImp)
@@ -61,8 +61,8 @@ Users can set `method = "rfpred.emp"` in function call to `mice` to use
 it.
 
 Also, in `RfPred-Norm` method, normality was assumed for RF prediction
-errors, as proposed by Shah *et al.*, and users can set `method =
-"rfpred.norm"` in function call to `mice` to use it.
+errors, as proposed by Shah *et al.*, and users can set
+`method = "rfpred.norm"` in function call to `mice` to use it.
 
 ### Prediction-based imputation for categorical variables
 
@@ -134,7 +134,7 @@ res <- reg.ests(poolObj)
 ## Imputation functions
 
 | Type                        | Impute function | Univariate sampler        | Variable type |
-| --------------------------- | --------------- | ------------------------- | ------------- |
+|-----------------------------|-----------------|---------------------------|---------------|
 | Prediction-based imputation | imp.emp()       | mice.impute.rfemp()       | Mixed         |
 |                             | /               | mice.impute.rfpred.emp()  | Continuous    |
 |                             | /               | mice.impute.rfpred.norm() | Continuous    |

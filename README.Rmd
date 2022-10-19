@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# RfEmpImp <a href='https://github.com/shangzhi-hong/RfEmpImp'><img src='man/figures/logo.png' align="right" height="160"/></a>
+# RfEmpImp <a href='https://github.com/shangzhi-hong/RfEmpImp'><img src='man/figures/logo.png' height="160" style="float:right"/></a>
 
 [![CRAN Status Badge](http://www.r-pkg.org/badges/version/RfEmpImp)](https://CRAN.R-project.org/package=RfEmpImp)
 [![GitHub Version Badge](https://img.shields.io/static/v1?label=GitHub&message=2.1.6&color=3399ff)](https://github.com/shangzhi-hong/RfEmpImp)
