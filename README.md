@@ -1,14 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# RfEmpImp <a href='https://github.com/shangzhi-hong/RfEmpImp'><img src='man/figures/logo.png' height="160" style="float:right"/></a>
+# RfEmpImp <a href='https://github.com/shangzhi-hong/RfEmpImp'><img src='man/figures/logo.png' height="160" style="float:right;"/></a>
 
 [![CRAN Status
 Badge](http://www.r-pkg.org/badges/version/RfEmpImp)](https://CRAN.R-project.org/package=RfEmpImp)
 [![GitHub Version
-Badge](https://img.shields.io/static/v1?label=GitHub&message=2.1.6&color=3399ff)](https://github.com/shangzhi-hong/RfEmpImp)
-[![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)  
+Badge](https://img.shields.io/static/v1?label=GitHub&message=2.1.8&color=3399ff)](https://github.com/shangzhi-hong/RfEmpImp)
+
 An R package for random-forest-empowered imputation of missing Data
 
 ## Random-forest-based multiple imputation evolved

@@ -1,4 +1,4 @@
-## RfEmpImp 2.1.7
+## RfEmpImp 2.1.8
 * Documentation fixes for CRAN checks
 
 ## RfEmpImp 2.1.6
